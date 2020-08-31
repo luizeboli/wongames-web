@@ -3,7 +3,12 @@
     [
       "babel-plugin-styled-components",
       {
-        "ssr": true
+        "ssr": true,
+        // We need this prop because jest-styled-components expects classNames to contain `sc-`
+        // Actually classNames only starts with `sc-` when hash starts with a number
+        // https://github.com/styled-components/babel-plugin-styled-components/pull/276
+        // https://github.com/styled-components/jest-styled-components/issues/297#issuecomment-639362675
+        "displayName": true
       }
     ]
   ],
