@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-types */
+
 // For some reason TS is unable to augment jest.Matchers when importing jest-styled-components
 // https://github.com/styled-components/jest-styled-components/issues/291
 declare namespace jest {
