@@ -34,7 +34,7 @@ describe('<Heading />', () => {
       screen.getByRole('heading', { name: /Won Games Title/i }),
     ).toHaveStyle({
       'padding-left': '0.8rem',
-      'border-left': '0.7rem solid #3CD3C1',
+      'border-left': '0.7rem solid #F231A5',
     });
   });
 
@@ -44,6 +44,62 @@ describe('<Heading />', () => {
     expect(
       screen.getByRole('heading', { name: /Won Games Title/i }),
     ).toHaveStyleRule('border-bottom', '0.5rem solid #F231A5', {
+      modifier: '::after',
+    });
+  });
+
+  it('should render a small sized heading', () => {
+    renderWithTheme(<Heading size="small">Won Games Title</Heading>);
+
+    expect(
+      screen.getByRole('heading', { name: /Won Games Title/i }),
+    ).toHaveStyle({
+      'font-size': '1.6rem',
+    });
+
+    expect(
+      screen.getByRole('heading', { name: /Won Games Title/i }),
+    ).toHaveStyleRule('width', '3rem', {
+      modifier: '::after',
+    });
+  });
+
+  it('should render a heading with a primary color bottom line', () => {
+    renderWithTheme(
+      <Heading lineColor="primary" lineBottom lineLeft>
+        Won Games Title
+      </Heading>,
+    );
+
+    expect(
+      screen.getByRole('heading', { name: /Won Games Title/i }),
+    ).toHaveStyle({
+      'padding-left': '0.8rem',
+      'border-left': '0.7rem solid #F231A5',
+    });
+    expect(
+      screen.getByRole('heading', { name: /Won Games Title/i }),
+    ).toHaveStyleRule('border-bottom', '0.5rem solid #F231A5', {
+      modifier: '::after',
+    });
+  });
+
+  it('should render a heading with a secondary color bottom line', () => {
+    renderWithTheme(
+      <Heading lineColor="secondary" lineBottom lineLeft>
+        Won Games Title
+      </Heading>,
+    );
+
+    expect(
+      screen.getByRole('heading', { name: /Won Games Title/i }),
+    ).toHaveStyle({
+      'padding-left': '0.8rem',
+      'border-left': '0.7rem solid #3CD3C1',
+    });
+    expect(
+      screen.getByRole('heading', { name: /Won Games Title/i }),
+    ).toHaveStyleRule('border-bottom', '0.5rem solid #3CD3C1', {
       modifier: '::after',
     });
   });
