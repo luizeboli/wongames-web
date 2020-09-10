@@ -49,7 +49,7 @@
           {
             "groups": [
               ["^react", "^\\w", "^@+\\w"],
-              ["^@+(components|styles|utils)"],
+              ["^(components|styles|utils)"],
               ["^\\.\\./", "^\\./"]
             ]
           }

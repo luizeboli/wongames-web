@@ -1,6 +1,7 @@
+import Link from 'next/link';
+
 import Heading from 'components/Heading';
 import Logo from 'components/Logo';
-import Link from 'next/link';
 
 import * as S from './styles';
 

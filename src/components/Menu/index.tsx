@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import Button from 'components/Button';
-import Logo from 'components/Logo';
-import MediaMatch from 'components/MediaMatch';
 import { Close as CloseIcon } from '@styled-icons/material-outlined/Close';
 import { Search as SearchIcon } from '@styled-icons/material-outlined/Search';
 import { ShoppingCart as ShoppingCartIcon } from '@styled-icons/material-outlined/ShoppingCart';
 import { Menu2 as MenuIcon } from '@styled-icons/remix-line/Menu2';
+
+import Button from 'components/Button';
+import Logo from 'components/Logo';
+import MediaMatch from 'components/MediaMatch';
 
 import * as S from './styles';
 
