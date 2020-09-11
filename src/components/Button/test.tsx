@@ -53,4 +53,25 @@ describe('<Button />', () => {
     expect(screen.getByText(/Sign Up/i)).toBeInTheDocument();
     expect(screen.getByTestId('icon')).toBeInTheDocument();
   });
+
+  it('should render Button as a button by default', () => {
+    renderWithTheme(<Button>Sign UP</Button>);
+
+    expect(
+      screen.getByRole('button', { name: /Sign Up/i }),
+    ).toBeInTheDocument();
+  });
+
+  it('should render Button as a link', () => {
+    renderWithTheme(
+      <Button as="a" href="/link">
+        Sign UP
+      </Button>,
+    );
+
+    expect(screen.getByRole('link', { name: /Sign Up/i })).toHaveAttribute(
+      'href',
+      '/link',
+    );
+  });
 });
