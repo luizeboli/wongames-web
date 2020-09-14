@@ -47,6 +47,7 @@ export const Container = styled.button<ContainerProps>`
     background: linear-gradient(180deg, #ff5f5f 0%, #f062c0 50%);
     border: none;
     border-radius: ${theme.border.radius};
+    text-decoration: none;
 
     ${!!size && containerModifiers[size](theme)}
     ${fullWidth && containerModifiers.fullWidth()}
