@@ -26,4 +26,26 @@ describe('<Banner />', () => {
     expect(screen.getByRole('link', { name: /Buy Now/i })).toBeInTheDocument();
     expect(container.firstChild).toMatchSnapshot();
   });
+
+  it('should render a Ribbon', () => {
+    renderWithTheme(
+      <Banner
+        {...props}
+        ribbon="Hot Deal"
+        ribbonSize="small"
+        ribbonColor="secondary"
+      />,
+    );
+
+    const ribbon = screen.getByText(/Hot Deal/i);
+
+    expect(ribbon).toBeInTheDocument();
+    expect(ribbon).toHaveStyle({
+      backgroundColor: '#3cd3c1',
+    });
+    expect(ribbon).toHaveStyle({
+      height: '2.6rem',
+      fontSize: '1.2rem',
+    });
+  });
 });
