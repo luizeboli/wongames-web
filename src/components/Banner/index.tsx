@@ -25,7 +25,7 @@ const Banner = ({
   ribbonColor,
 }: BannerProps) => (
   <S.Container>
-    {ribbon && (
+    {!!ribbon && (
       <Ribbon size={ribbonSize} color={ribbonColor}>
         {ribbon}
       </Ribbon>
