@@ -38,11 +38,9 @@ export const Container = styled.h2<HeadingProps>`
   ${({ theme, color, lineLeft, lineBottom, size, lineColor }) => css`
     color: ${theme.colors[color!]};
 
-    ${lineLeft && containerModifiers.lineLeft(theme, lineColor)}
-    ${lineBottom &&
-    containerModifiers.lineBottom(theme, lineColor)}
-    ${!!size &&
-    containerModifiers[size](theme)}
+    ${lineLeft && containerModifiers.lineLeft(theme, lineColor!)}
+    ${lineBottom && containerModifiers.lineBottom(theme, lineColor!)}
+    ${!!size && containerModifiers[size](theme)}
 
     ${media.greaterThan('medium')`
       font-size: ${theme.font.sizes.xxlarge};

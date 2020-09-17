@@ -51,8 +51,7 @@ export const Container = styled.button<ContainerProps>`
 
     ${!!size && containerModifiers[size](theme)}
     ${fullWidth && containerModifiers.fullWidth()}
-    ${hasIcon &&
-    containerModifiers.withIcon(theme)}
+    ${hasIcon && containerModifiers.withIcon(theme)}
 
     :hover {
       background: linear-gradient(180deg, #e35565 0%, #d958a6 50%);
