@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import { renderWithTheme } from 'utils/tests/helpers';
 
@@ -28,7 +28,7 @@ describe('<Highlight />', () => {
 
     expect(screen.getByRole('link', { name: /Buy Now/i })).toBeInTheDocument();
 
-    // expect(container).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('should render background image', () => {
