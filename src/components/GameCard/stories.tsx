@@ -11,6 +11,10 @@ export default {
     img: 'https://source.unsplash.com/user/willianjusten/300x140',
     price: 'R$ 235,00',
   },
+  argTypes: {
+    onFav: { action: 'clicked' },
+    ribbon: { type: 'string' },
+  },
 } as Meta;
 
 export const Basic: Story<GameCardProps> = (args) => (
@@ -18,3 +22,15 @@ export const Basic: Story<GameCardProps> = (args) => (
     <GameCard {...args} />;
   </div>
 );
+
+export const withRibbon: Story<GameCardProps> = (args) => (
+  <div style={{ maxWidth: '30rem' }}>
+    <GameCard {...args} />;
+  </div>
+);
+
+withRibbon.args = {
+  ribbon: '150% off',
+  ribbonSize: 'small',
+  ribbonColor: 'secondary',
+};
