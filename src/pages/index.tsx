@@ -1,3 +1,5 @@
-export default function Home() {
-  return <h1>WG</h1>;
+import Home from 'screens/Home';
+
+export default function Index() {
+  return <Home />;
 }
