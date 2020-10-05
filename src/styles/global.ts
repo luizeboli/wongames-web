@@ -10,7 +10,7 @@ type GlobalStylesProps = {
 };
 
 const GlobalStyles: GlobalStyleComponent<
-  GlobalStyleProps,
+  GlobalStylesProps,
   DefaultTheme
 > = createGlobalStyle`
   @font-face {
