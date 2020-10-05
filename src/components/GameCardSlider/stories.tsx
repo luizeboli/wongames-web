@@ -1,63 +1,68 @@
-import { ArrowBackIos as ArrowLeft } from '@styled-icons/material-outlined/ArrowBackIos';
-import { ArrowForwardIos as ArrowRight } from '@styled-icons/material-outlined/ArrowForwardIos';
+import { Meta, Story } from '@storybook/react/types-6-0';
 
-import GameCard, { GameCardProps } from 'components/GameCard';
-import Slider, { SliderSettings } from 'components/Slider';
+import { GameCardProps } from 'components/GameCard';
 
-import * as S from './styles';
+import GameCardSlider from '.';
 
-const settings: SliderSettings = {
-  arrows: true,
-  slidesToShow: 4,
-  infinite: false,
-  lazyLoad: 'ondemand',
-  responsive: [
-    {
-      breakpoint: 1375,
-      settings: {
-        arrows: false,
-        slidesToShow: 3.2,
-      },
+const items = [
+  {
+    title: 'Population Zero',
+    developer: 'Rockstar Games',
+    img: 'https://source.unsplash.com/user/willianjusten/300x140',
+    price: 'R$ 235,00',
+    promotionalPrice: 'R$ 215,00',
+  },
+  {
+    title: 'Population Zero',
+    developer: 'Rockstar Games',
+    img: 'https://source.unsplash.com/user/willianjusten/300x141',
+    price: 'R$ 235,00',
+    promotionalPrice: 'R$ 215,00',
+  },
+  {
+    title: 'Population Zero',
+    developer: 'Rockstar Games',
+    img: 'https://source.unsplash.com/user/willianjusten/300x142',
+    price: 'R$ 235,00',
+    promotionalPrice: 'R$ 215,00',
+  },
+  {
+    title: 'Population Zero',
+    developer: 'Rockstar Games',
+    img: 'https://source.unsplash.com/user/willianjusten/300x143',
+    price: 'R$ 235,00',
+    promotionalPrice: 'R$ 215,00',
+  },
+  {
+    title: 'Population Zero',
+    developer: 'Rockstar Games',
+    img: 'https://source.unsplash.com/user/willianjusten/300x144',
+    price: 'R$ 235,00',
+    promotionalPrice: 'R$ 215,00',
+  },
+  {
+    title: 'Population Zero',
+    developer: 'Rockstar Games',
+    img: 'https://source.unsplash.com/user/willianjusten/300x145',
+    price: 'R$ 235,00',
+    promotionalPrice: 'R$ 215,00',
+  },
+];
+
+export default {
+  title: 'GameCardSlider',
+  component: GameCardSlider,
+  args: { items },
+  parameters: {
+    layout: 'fullscreen',
+    backgrounds: {
+      default: 'dark',
     },
-    {
-      breakpoint: 1024,
-      settings: {
-        arrows: false,
-        slidesToShow: 2.2,
-      },
-    },
-    {
-      breakpoint: 570,
-      settings: {
-        arrows: false,
-        slidesToShow: 1.2,
-      },
-    },
-    {
-      breakpoint: 375,
-      settings: {
-        arrows: false,
-        slidesToShow: 1.1,
-      },
-    },
-  ],
-  nextArrow: <ArrowRight aria-label="next games" />,
-  prevArrow: <ArrowLeft aria-label="previous games" />,
-};
+  },
+} as Meta;
 
-export type GameCardSliderProps = {
-  items: GameCardProps[];
-  color?: 'white' | 'black';
-};
-
-const GameCardSlider = ({ items, color = 'white' }: GameCardSliderProps) => (
-  <S.Container color={color}>
-    <Slider settings={settings}>
-      {items.map((item, index) => (
-        <GameCard key={index} {...item} />
-      ))}
-    </Slider>
-  </S.Container>
+export const Default: Story<GameCardProps[]> = (args) => (
+  <div style={{ maxWidth: '130rem', margin: '0 auto' }}>
+    <GameCardSlider items={args} {...args} />
+  </div>
 );
-
-export default GameCardSlider;
