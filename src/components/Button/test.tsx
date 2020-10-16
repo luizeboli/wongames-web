@@ -54,6 +54,23 @@ describe('<Button />', () => {
     expect(screen.getByTestId('icon')).toBeInTheDocument();
   });
 
+  it('should render a minimalist version', () => {
+    renderWithTheme(
+      <Button icon={<AddShoppingCart data-testid="icon" />} minimal>
+        Wishlist
+      </Button>,
+    );
+
+    expect(screen.getByRole('button', { name: /Wishlist/i })).toHaveStyle({
+      background: 'none',
+      color: '#F231A5',
+    });
+
+    expect(
+      screen.getByRole('button', { name: /Wishlist/i }),
+    ).toHaveStyleRule('background', 'none', { modifier: ':hover' });
+  });
+
   it('should render Button as a button by default', () => {
     renderWithTheme(<Button>Sign UP</Button>);
 

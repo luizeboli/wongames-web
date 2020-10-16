@@ -35,10 +35,14 @@ const containerModifiers = {
       }
     }
   `,
+  minimal: (theme: DefaultTheme) => css`
+    background: none;
+    color: ${theme.colors.primary};
+  `,
 };
 
 export const Container = styled.button<ContainerProps>`
-  ${({ theme, size, fullWidth, hasIcon }) => css`
+  ${({ theme, size, fullWidth, hasIcon, minimal }) => css`
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -52,9 +56,12 @@ export const Container = styled.button<ContainerProps>`
     ${!!size && containerModifiers[size](theme)}
     ${fullWidth && containerModifiers.fullWidth()}
     ${hasIcon && containerModifiers.withIcon(theme)}
+    ${minimal && containerModifiers.minimal(theme)}
 
     :hover {
-      background: linear-gradient(180deg, #e35565 0%, #d958a6 50%);
+      background: ${minimal
+        ? 'none'
+        : 'linear-gradient(180deg, #e35565 0%, #d958a6 50%)'};
     }
   `}
 `;

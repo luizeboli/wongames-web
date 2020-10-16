@@ -13,6 +13,7 @@ export type ButtonProps = {
   icon?: React.ReactNode;
   onClick?: () => (event: React.MouseEvent<HTMLButtonElement>) => void;
   as?: React.ElementType;
+  minimal?: boolean;
 } & ButtonTypes;
 
 const Button = ({
@@ -20,12 +21,14 @@ const Button = ({
   size = 'medium',
   fullWidth = false,
   icon,
+  minimal = false,
   ...restProps
 }: ButtonProps) => (
   <S.Container
     size={size}
     fullWidth={fullWidth}
     hasIcon={!!icon}
+    minimal={minimal}
     {...restProps}
   >
     {!!icon && icon}
