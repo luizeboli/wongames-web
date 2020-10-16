@@ -1,3 +1,4 @@
+import { darken } from 'polished';
 import styled, { css, DefaultTheme } from 'styled-components';
 
 import { ButtonProps } from '.';
@@ -38,6 +39,11 @@ const containerModifiers = {
   minimal: (theme: DefaultTheme) => css`
     background: none;
     color: ${theme.colors.primary};
+
+    &:hover {
+      background: none;
+      color: ${darken(0.1, theme.colors.primary)};
+    }
   `,
 };
 
@@ -53,15 +59,13 @@ export const Container = styled.button<ContainerProps>`
     border-radius: ${theme.border.radius};
     text-decoration: none;
 
+    :hover {
+      background: linear-gradient(180deg, #e35565 0%, #d958a6 50%);
+    }
+
     ${!!size && containerModifiers[size](theme)}
     ${fullWidth && containerModifiers.fullWidth()}
     ${hasIcon && containerModifiers.withIcon(theme)}
     ${minimal && containerModifiers.minimal(theme)}
-
-    :hover {
-      background: ${minimal
-        ? 'none'
-        : 'linear-gradient(180deg, #e35565 0%, #d958a6 50%)'};
-    }
   `}
 `;
