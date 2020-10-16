@@ -1,4 +1,5 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { renderWithTheme } from 'utils/tests/helpers';
 
@@ -24,5 +25,17 @@ describe('<Checkbox />', () => {
     expect(screen.getByText(/label action/i)).toHaveStyle({
       color: '#030517',
     });
+  });
+
+  it('should dispatch onCheck when checked status change', async () => {
+    const onCheck = jest.fn();
+    renderWithTheme(
+      <Checkbox label="Label Action" labelFor="check" onCheck={onCheck} />,
+    );
+
+    expect(onCheck).not.toHaveBeenCalled();
+
+    userEvent.click(screen.getByRole('checkbox'));
+    await waitFor(() => expect(onCheck).toHaveBeenCalledTimes(1));
   });
 });
