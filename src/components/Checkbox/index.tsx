@@ -8,12 +8,12 @@ export type CheckboxProps = {
 
 const Checkbox = ({ label, labelFor, labelColor = 'white' }: CheckboxProps) => (
   <S.Container>
+    <S.Input id={labelFor} type="checkbox" />
     {!!label && (
       <S.Label labelColor={labelColor} htmlFor={labelFor}>
         {label}
       </S.Label>
     )}
-    <input id={labelFor} type="checkbox" />
   </S.Container>
 );
 
