@@ -21,8 +21,8 @@ describe('<Container />', () => {
         max-width: 130rem;
         margin-left: auto;
         margin-right: auto;
-        padding-left: calc(NaN);
-        padding-right: calc(NaN);
+        padding-left: calc(3.2rem / 2);
+        padding-right: calc(3.2rem / 2);
       }
 
       <div
