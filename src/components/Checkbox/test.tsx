@@ -16,7 +16,7 @@ describe('<Checkbox />', () => {
 
   it('should render without a label', () => {
     renderWithTheme(<Checkbox />);
-    expect(screen.getByText(/label action/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/label action/i)).not.toBeInTheDocument();
   });
 
   it('should render with black label', () => {
