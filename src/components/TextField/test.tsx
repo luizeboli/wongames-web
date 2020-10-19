@@ -24,6 +24,12 @@ describe('<TextField />', () => {
     expect(screen.getByPlaceholderText('hey you')).toBeInTheDocument();
   });
 
+  it('should render with icon', () => {
+    renderWithTheme(<TextField icon={<Email data-testid="icon" />} />);
+
+    expect(screen.getByTestId('icon')).toBeInTheDocument();
+  });
+
   it('should change its value when typing', async () => {
     const onInput = jest.fn();
     renderWithTheme(
