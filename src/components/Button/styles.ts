@@ -5,7 +5,7 @@ import { ButtonProps } from '.';
 
 type ContainerProps = {
   hasIcon: boolean;
-} & Pick<ButtonProps, 'size' | 'fullWidth'>;
+} & Pick<ButtonProps, 'size' | 'fullWidth' | 'minimal'>;
 
 const containerModifiers = {
   small: (theme: DefaultTheme) => css`
