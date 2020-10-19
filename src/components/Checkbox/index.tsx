@@ -12,7 +12,7 @@ export type CheckboxProps = {
 const Checkbox = ({
   label,
   labelFor,
-  labelColor = 'white',
+  labelColor = 'black',
   onCheck,
 }: CheckboxProps) => {
   const [checked, setChecked] = useState(false);
