@@ -1,3 +1,4 @@
+import { Email } from '@styled-icons/material-outlined';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -28,6 +29,16 @@ describe('<TextField />', () => {
     renderWithTheme(<TextField icon={<Email data-testid="icon" />} />);
 
     expect(screen.getByTestId('icon')).toBeInTheDocument();
+  });
+
+  it('Renders with Icon on the right side', () => {
+    renderWithTheme(
+      <TextField icon={<Email data-testid="icon" />} iconPosition="right" />,
+    );
+
+    expect(screen.getByTestId('icon').parentElement).toHaveStyle({
+      order: 1,
+    });
   });
 
   it('should change its value when typing', async () => {
