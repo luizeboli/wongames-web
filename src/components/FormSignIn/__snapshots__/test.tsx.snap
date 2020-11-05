@@ -124,7 +124,7 @@ exports[`<FormSignIn /> should render the form 1`] = `
 
 <body>
   <div>
-    <div
+    <form
       class="c0"
     >
       <form>
@@ -230,7 +230,7 @@ exports[`<FormSignIn /> should render the form 1`] = `
           </a>
         </div>
       </form>
-    </div>
+    </form>
   </div>
 </body>
 `;
