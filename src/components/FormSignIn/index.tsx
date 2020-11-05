@@ -9,33 +9,31 @@ import * as S from './styles';
 
 const FormSignIn = () => (
   <FormWrapper>
-    <form>
-      <TextField
-        name="email"
-        placeholder="E-mail"
-        type="email"
-        icon={<Email />}
-      />
-      <TextField
-        name="password"
-        placeholder="Password"
-        type="password"
-        icon={<Lock />}
-      />
+    <TextField
+      name="email"
+      placeholder="E-mail"
+      type="email"
+      icon={<Email />}
+    />
+    <TextField
+      name="password"
+      placeholder="Password"
+      type="password"
+      icon={<Lock />}
+    />
 
-      <S.ForgotPassword href="#">Forgot your password?</S.ForgotPassword>
+    <S.ForgotPassword href="#">Forgot your password?</S.ForgotPassword>
 
-      <Button size="large" fullWidth>
-        Sign In
-      </Button>
+    <Button size="large" fullWidth>
+      Sign In
+    </Button>
 
-      <FormLink>
-        Don’t have an account?{' '}
-        <Link href="/sign-up">
-          <a>Sign Up!</a>
-        </Link>
-      </FormLink>
-    </form>
+    <FormLink>
+      Don’t have an account?{' '}
+      <Link href="/sign-up">
+        <a>Sign Up!</a>
+      </Link>
+    </FormLink>
   </FormWrapper>
 );
 
