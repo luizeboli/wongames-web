@@ -1,11 +1,86 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.main``;
+import * as HeadingStyles from 'components/Heading/styles';
+import * as LogoStyles from 'components/Logo/styles';
 
-export const BannerBlock = styled.div``;
+export const Container = styled.main`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+`;
 
-export const Subtitle = styled.h3``;
+export const BannerBlock = styled.div`
+  ${({ theme: { colors, spacings } }) => css`
+    background-image: url(/img/auth-bg.jpg);
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    padding: ${spacings.xxlarge} ${spacings.xxlarge} ${spacings.large};
 
-export const Footer = styled.p``;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: ${colors.black};
+      opacity: 0.85;
+    }
+  `}
+`;
 
-export const Content = styled.div``;
+export const BannerContent = styled.div`
+  ${({ theme: { colors, layers } }) => css`
+    position: relative;
+    z-index: ${layers.base};
+    color: ${colors.white};
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: space-between;
+    height: 100%;
+  `}
+`;
+
+export const Subtitle = styled.h3`
+  ${({ theme: { font, colors, spacings } }) => css`
+    font-size: ${font.sizes.xxlarge};
+    font-weight: ${font.light};
+    margin-top: ${spacings.xxsmall};
+
+    > strong {
+      color: ${colors.primary};
+    }
+  `}
+`;
+
+export const Footer = styled.p`
+  ${({ theme: { font } }) => css`
+    align-self: end;
+    font-size: ${font.sizes.xsmall};
+    text-align: center;
+  `}
+`;
+
+export const ContentWrapper = styled.div`
+  ${({ theme: { colors } }) => css`
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background-color: ${colors.white};
+  `}
+`;
+
+export const Content = styled.div`
+  ${({ theme: { spacings } }) => css`
+    width: 30rem;
+
+    ${LogoStyles.Container} {
+      margin 0 auto ${spacings.xxlarge};
+    }
+
+    ${HeadingStyles.Container} {
+      margin-bottom ${spacings.medium};
+    }
+  `}
+`;
