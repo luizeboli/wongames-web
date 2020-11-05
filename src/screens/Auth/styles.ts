@@ -1,12 +1,17 @@
 import styled, { css } from 'styled-components';
+import media from 'styled-media-query';
 
 import * as HeadingStyles from 'components/Heading/styles';
 import * as LogoStyles from 'components/Logo/styles';
 
 export const Container = styled.main`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   height: 100vh;
+
+  ${media.greaterThan('medium')`
+    grid-template-columns: 1fr 1fr;
+  `}
 `;
 
 export const BannerBlock = styled.div`
@@ -27,6 +32,10 @@ export const BannerBlock = styled.div`
       background: ${colors.black};
       opacity: 0.85;
     }
+
+    ${media.lessThan('medium')`
+      display: none;
+    `}
   `}
 `;
 
@@ -73,7 +82,7 @@ export const ContentWrapper = styled.div`
 
 export const Content = styled.div`
   ${({ theme: { spacings } }) => css`
-    width: 30rem;
+    max-width: 36rem;
 
     ${LogoStyles.Container} {
       margin 0 auto ${spacings.xxlarge};
