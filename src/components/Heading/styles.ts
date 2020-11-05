@@ -31,6 +31,13 @@ const containerModifiers = {
   `,
   medium: (theme: DefaultTheme) => css`
     font-size: ${theme.font.sizes.xlarge};
+
+    ${media.greaterThan('medium')`
+      font-size: ${theme.font.sizes.xxlarge};
+    `}
+  `,
+  huge: (theme: DefaultTheme) => css`
+    font-size: ${theme.font.sizes.huge};
   `,
 };
 
@@ -41,9 +48,5 @@ export const Container = styled.h2<HeadingProps>`
     ${lineLeft && containerModifiers.lineLeft(theme, lineColor!)}
     ${lineBottom && containerModifiers.lineBottom(theme, lineColor!)}
     ${!!size && containerModifiers[size](theme)}
-
-    ${media.greaterThan('medium')`
-      font-size: ${theme.font.sizes.xxlarge};
-    `}
   `}
 `;
