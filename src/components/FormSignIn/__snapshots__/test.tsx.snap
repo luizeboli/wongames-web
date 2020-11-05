@@ -89,6 +89,20 @@ exports[`<FormSignIn /> should render the form 1`] = `
   margin: 3.2rem auto 1.6rem;
 }
 
+.c0 input:-webkit-autofill,
+.c0 input:-webkit-autofill:hover,
+.c0 input:-webkit-autofill:focus,
+.c0 textarea:-webkit-autofill,
+.c0 textarea:-webkit-autofill:hover,
+.c0 textarea:-webkit-autofill:focus,
+.c0 select:-webkit-autofill,
+.c0 select:-webkit-autofill:hover,
+.c0 select:-webkit-autofill:focus {
+  border: none;
+  -webkit-text-fill-color: #030517;
+  -webkit-box-shadow: 0 0 0px 1000px #EAEAEA inset;
+}
+
 .c9 {
   font-size: 1.4rem;
   color: #030517;
@@ -127,109 +141,107 @@ exports[`<FormSignIn /> should render the form 1`] = `
     <form
       class="c0"
     >
-      <form>
+      <div
+        class="c1 "
+      >
         <div
-          class="c1 "
+          class="c2"
         >
           <div
-            class="c2"
+            class="c3"
           >
-            <div
-              class="c3"
+            <svg
+              aria-hidden="true"
+              class="c4"
+              fill="currentColor"
+              focusable="false"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                aria-hidden="true"
-                class="c4"
-                fill="currentColor"
-                focusable="false"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+              <path
+                d="M0 0h24v24H0V0z"
+                fill="none"
+              />
+              <path
+                d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"
+              />
+            </svg>
+          </div>
+          <input
+            class="c5"
+            name="email"
+            placeholder="E-mail"
+            type="email"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="c1 "
+      >
+        <div
+          class="c2"
+        >
+          <div
+            class="c3"
+          >
+            <svg
+              aria-hidden="true"
+              class="c4"
+              fill="currentColor"
+              focusable="false"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g
+                fill="none"
               >
                 <path
                   d="M0 0h24v24H0V0z"
-                  fill="none"
                 />
                 <path
-                  d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"
+                  d="M0 0h24v24H0V0z"
+                  opacity="0.87"
                 />
-              </svg>
-            </div>
-            <input
-              class="c5"
-              name="email"
-              placeholder="E-mail"
-              type="email"
-              value=""
-            />
+              </g>
+              <path
+                d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"
+              />
+            </svg>
           </div>
+          <input
+            class="c5"
+            name="password"
+            placeholder="Password"
+            type="password"
+            value=""
+          />
         </div>
-        <div
-          class="c1 "
-        >
-          <div
-            class="c2"
-          >
-            <div
-              class="c3"
-            >
-              <svg
-                aria-hidden="true"
-                class="c4"
-                fill="currentColor"
-                focusable="false"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  fill="none"
-                >
-                  <path
-                    d="M0 0h24v24H0V0z"
-                  />
-                  <path
-                    d="M0 0h24v24H0V0z"
-                    opacity="0.87"
-                  />
-                </g>
-                <path
-                  d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"
-                />
-              </svg>
-            </div>
-            <input
-              class="c5"
-              name="password"
-              placeholder="Password"
-              type="password"
-              value=""
-            />
-          </div>
-        </div>
+      </div>
+      <a
+        class="c6"
+        href="#"
+      >
+        Forgot your password?
+      </a>
+      <button
+        class="c7 c8"
+      >
+        <span>
+          Sign In
+        </span>
+      </button>
+      <div
+        class="c9"
+      >
+        Don’t have an account?
+         
         <a
-          class="c6"
-          href="#"
+          href="/sign-up"
         >
-          Forgot your password?
+          Sign Up!
         </a>
-        <button
-          class="c7 c8"
-        >
-          <span>
-            Sign In
-          </span>
-        </button>
-        <div
-          class="c9"
-        >
-          Don’t have an account?
-           
-          <a
-            href="/sign-up"
-          >
-            Sign Up!
-          </a>
-        </div>
-      </form>
+      </div>
     </form>
   </div>
 </body>

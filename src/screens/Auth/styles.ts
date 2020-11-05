@@ -84,6 +84,11 @@ export const Content = styled.div`
   ${({ theme: { spacings } }) => css`
     max-width: 36rem;
 
+    > a {
+      width: fit-content:
+      height: fit-content;
+    }
+
     ${LogoStyles.Container} {
       margin 0 auto ${spacings.xxlarge};
     }

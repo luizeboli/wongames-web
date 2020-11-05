@@ -21,6 +21,20 @@ describe('<Form />', () => {
         margin: 3.2rem auto 1.6rem;
       }
 
+      .c0 input:-webkit-autofill,
+      .c0 input:-webkit-autofill:hover,
+      .c0 input:-webkit-autofill:focus,
+      .c0 textarea:-webkit-autofill,
+      .c0 textarea:-webkit-autofill:hover,
+      .c0 textarea:-webkit-autofill:focus,
+      .c0 select:-webkit-autofill,
+      .c0 select:-webkit-autofill:hover,
+      .c0 select:-webkit-autofill:focus {
+        border: none;
+        -webkit-text-fill-color: #030517;
+        -webkit-box-shadow: 0 0 0px 1000px #EAEAEA inset;
+      }
+
       .c1 {
         font-size: 1.4rem;
         color: #030517;
