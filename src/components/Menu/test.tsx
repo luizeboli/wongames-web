@@ -43,7 +43,7 @@ describe('<Menu />', () => {
   it('should show register box if logged out', () => {
     renderWithTheme(<Menu />);
 
-    expect(screen.getByText(/login now/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/sign in/i)).toHaveLength(2);
     expect(screen.getByText(/sign up/i)).toBeInTheDocument();
 
     expect(screen.queryByText(/my account/i)).not.toBeInTheDocument();
@@ -53,7 +53,7 @@ describe('<Menu />', () => {
   it('should show my account and wishlist if logged in', () => {
     renderWithTheme(<Menu username="felicio" />);
 
-    expect(screen.queryByText(/login now/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/sign in/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/sign up/i)).not.toBeInTheDocument();
 
     expect(screen.getByText(/my account/i)).toBeInTheDocument();
