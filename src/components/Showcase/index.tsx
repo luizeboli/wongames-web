@@ -7,7 +7,7 @@ import * as S from './styles';
 
 export type ShowcaseProps = {
   title?: string;
-  highlight: HighlightProps;
+  highlight?: HighlightProps;
   games?: GameCardProps[];
 };
 
