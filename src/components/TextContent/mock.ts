@@ -6,7 +6,7 @@ export default {
 <h4>Heading</h4>
 <h5>Heading</h5>
 <h6>Heading</h6>
-<img alt="" src="/img/games/cyberpunk-1.jpg" />
+<img alt="" src="/img/games/Skate-4.1.jpg" />
 <p>
   Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero,
   tempore. Nulla accusamus tempora quaerat repellat accusantium
@@ -19,7 +19,7 @@ export default {
   consequuntur eligendi similique nostrum aspernatur natus! Laboriosam
   sint quis ad quibusdam?
 </p>
-<img alt="" src="/img/games/cyberpunk-2.jpg" />
+<img alt="" src="/img/games/Skate-4.2.jpg" />
 <ul>
   <li>Lorem Ipsum</li>
   <li>Lorem Ipsum</li>
