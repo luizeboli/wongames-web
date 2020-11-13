@@ -9,18 +9,19 @@ export type LayoutProps = {
 };
 
 const Layout = ({ children }: LayoutProps) => (
-  <section>
+  <S.Wrapper>
     <Container>
       <Menu />
-      {children}
     </Container>
+
+    <S.Content>{children}</S.Content>
 
     <S.SectionFooter>
       <Container>
         <Footer />
       </Container>
     </S.SectionFooter>
-  </section>
+  </S.Wrapper>
 );
 
 export default Layout;
