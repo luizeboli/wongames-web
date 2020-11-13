@@ -29,8 +29,8 @@ export async function getStaticProps() {
       gallery: galleryMock,
       description: textContentMock.body,
       gameDetails: gameDetailsMock,
-      upcommingGames: gamesMock,
-      upcommingHighlight: highlightMock,
+      upcomingGames: gamesMock,
+      upcomingHighlight: highlightMock,
       recommendedGames: gamesMock,
     },
   };
