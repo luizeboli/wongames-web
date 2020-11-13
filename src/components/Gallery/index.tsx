@@ -83,7 +83,10 @@ const Gallery = ({ items }: GalleryProps) => {
         {items.map((item, index) => (
           <img
             role="button"
-            onClick={() => setModalOpen(true)}
+            onClick={() => {
+              setModalOpen(true);
+              sliderRef.current!.slickGoTo(index, true);
+            }}
             key={`thumb-${index}`}
             src={item.src}
             alt={`Thumb - ${item.label}`}
