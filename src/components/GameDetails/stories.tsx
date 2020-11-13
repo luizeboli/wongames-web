@@ -11,7 +11,15 @@ export default {
     },
   },
   args: {
-    platforms: ['windows', 'linux'],
+    platforms: ['windows', 'linux', 'apple'],
+  },
+  argTypes: {
+    platforms: {
+      control: {
+        type: 'inline-check',
+        options: ['windows', 'linux', 'apple'],
+      },
+    },
   },
 } as Meta;
 

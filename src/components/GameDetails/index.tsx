@@ -6,9 +6,15 @@ import MediaMatch from 'components/MediaMatch';
 import * as S from './styles';
 
 type Platform = 'windows' | 'linux' | 'apple';
+type Rating = 'BR0' | 'BR10' | 'BR12' | 'BR14' | 'BR16' | 'BR18';
 
 export type GameDetailsProps = {
+  releaseDate: string;
+  developer: string;
+  publisher: string;
   platforms: Platform[];
+  rating: Rating;
+  genres: string[];
 };
 
 const platformsIcons = {
@@ -17,7 +23,23 @@ const platformsIcons = {
   apple: <Apple title="Apple" size={18} />,
 };
 
-const GameDetails = ({ platforms }: GameDetailsProps) => (
+const ratings = {
+  BR0: 'FREE',
+  BR10: '10+',
+  BR12: '12+',
+  BR14: '14+',
+  BR16: '16+',
+  BR18: '18+',
+};
+
+const GameDetails = ({
+  releaseDate,
+  developer,
+  publisher,
+  platforms,
+  rating,
+  genres,
+}: GameDetailsProps) => (
   <S.Wrapper>
     <MediaMatch greaterThan="small">
       <Heading lineLeft lineColor="secondary">
@@ -28,12 +50,18 @@ const GameDetails = ({ platforms }: GameDetailsProps) => (
     <S.Container>
       <S.Block>
         <S.Title>Developer</S.Title>
-        <S.Description>Gearbox</S.Description>
+        <S.Description>{developer}</S.Description>
       </S.Block>
 
       <S.Block>
         <S.Title>Release Date</S.Title>
-        <S.Description>Nov</S.Description>
+        <S.Description>
+          {new Intl.DateTimeFormat('en-us', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+          }).format(new Date(releaseDate))}
+        </S.Description>
       </S.Block>
 
       <S.Block>
@@ -47,17 +75,17 @@ const GameDetails = ({ platforms }: GameDetailsProps) => (
 
       <S.Block>
         <S.Title>Publisher</S.Title>
-        <S.Description>Nov</S.Description>
+        <S.Description>{publisher}</S.Description>
       </S.Block>
 
       <S.Block>
         <S.Title>Rating</S.Title>
-        <S.Description>Nov</S.Description>
+        <S.Description>{ratings[rating]}</S.Description>
       </S.Block>
 
       <S.Block>
         <S.Title>Genres</S.Title>
-        <S.Description>Nov</S.Description>
+        <S.Description>{genres.join(' / ')}</S.Description>
       </S.Block>
     </S.Container>
   </S.Wrapper>

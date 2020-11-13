@@ -46,7 +46,7 @@ export const IconsWrapper = styled.div`
   `}
 `;
 
-export const Icon = styled.div`
+export const Icon = styled.span`
   ${({ theme }) => css`
     margin-right: ${theme.spacings.xxsmall};
   `}
