@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
 import 'matchMediaMock';
+
 import Slider from '.';
 
 describe('<Slider />', () => {

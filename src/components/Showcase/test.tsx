@@ -5,6 +5,7 @@ import highlightMock from 'components/Highlight/mock';
 import { renderWithTheme } from 'utils/tests/helpers';
 
 import 'matchMediaMock';
+
 import Showcase from '.';
 
 const props = {

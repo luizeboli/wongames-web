@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react';
 import { renderWithTheme } from 'utils/tests/helpers';
 
 import 'matchMediaMock';
+
 import GameCardSlider from '.';
 
 const items = [

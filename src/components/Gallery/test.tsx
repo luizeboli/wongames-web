@@ -5,6 +5,7 @@ import { renderWithTheme } from 'utils/tests/helpers';
 import mockGallery from './mock';
 
 import 'matchMediaMock';
+
 import Gallery from '.';
 
 describe('<Gallery />', () => {
