@@ -11,7 +11,7 @@ export type EmptyProps = {
 };
 
 const Empty = ({ title, description, hasLink }: EmptyProps) => (
-  <S.Wrapper>
+  <S.Container>
     <S.Image
       src="/img/empty.svg"
       alt="A gamer in a couch playing videogame"
@@ -26,7 +26,7 @@ const Empty = ({ title, description, hasLink }: EmptyProps) => (
         <Button as="a">Go back to store</Button>
       </Link>
     )}
-  </S.Wrapper>
+  </S.Container>
 );
 
 export default Empty;
