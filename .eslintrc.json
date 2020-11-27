@@ -44,7 +44,7 @@
     {
       "files": ["src/**/*.tsx", "src/**/*.ts"],
       "rules": {
-        "simple-import-sort/imports": [
+        "simple-import-sort/sort": [
           "error",
           {
             "groups": [
