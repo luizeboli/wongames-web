@@ -38,13 +38,13 @@
     "react/react-in-jsx-scope": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "simple-import-sort/sort": "error"
+    "simple-import-sort/imports": "error"
   },
   "overrides": [
     {
       "files": ["src/**/*.tsx", "src/**/*.ts"],
       "rules": {
-        "simple-import-sort/sort": [
+        "simple-import-sort/imports": [
           "error",
           {
             "groups": [
