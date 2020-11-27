@@ -38,19 +38,21 @@
     "react/react-in-jsx-scope": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "sort-imports": "off",
+    "import/order": "off",
     "simple-import-sort/imports": "error"
   },
   "overrides": [
     {
       "files": ["src/**/*.tsx", "src/**/*.ts"],
       "rules": {
-        "simple-import-sort/sort": [
+        "simple-import-sort/imports": [
           "error",
           {
             "groups": [
               ["^react", "^\\w", "^@+\\w"],
               ["^(components|styles|utils)"],
-              ["^\\.\\./", "^\\./"]
+              ["^\\.\\./", "^\\./", "^\\u0000"]
             ]
           }
         ]
