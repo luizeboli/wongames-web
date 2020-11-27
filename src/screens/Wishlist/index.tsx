@@ -7,8 +7,6 @@ import Heading from 'components/Heading';
 import { HighlightProps } from 'components/Highlight';
 import Showcase from 'components/Showcase';
 
-import * as S from './styles';
-
 export type WishlistScreenProps = {
   games?: GameCardProps[];
   recommendedGames: GameCardProps[];
