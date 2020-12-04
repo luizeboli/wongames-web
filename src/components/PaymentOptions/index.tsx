@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import { Add, ShoppingCart } from '@styled-icons/material-outlined';
 
 import Button from 'components/Button';
@@ -9,7 +9,7 @@ import * as S from './styles';
 
 export type PaymentOptionsProps = {
   cards?: PaymentCard[];
-  handlePayment: () => void;
+  handlePayment: () => (event: MouseEvent<HTMLButtonElement>) => void;
 };
 
 export type PaymentCard = {
