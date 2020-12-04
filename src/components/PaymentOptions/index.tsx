@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Add, ShoppingCart } from '@styled-icons/material-outlined';
 
 import Button from 'components/Button';
@@ -17,43 +18,52 @@ export type PaymentCard = {
   img: string;
 };
 
-const PaymentOptions = ({ cards, handlePayment }: PaymentOptionsProps) => (
-  <S.Container>
-    <S.Body>
-      <Heading color="black" size="small" lineBottom>
-        Payment
-      </Heading>
+const PaymentOptions = ({ cards, handlePayment }: PaymentOptionsProps) => {
+  const [checked, setChecked] = useState(false);
 
-      <S.CardsList>
-        {cards?.map((card) => (
-          <S.CardItem key={card.number}>
-            <S.CardInfo>
-              <img src={card.img} alt={card.flag} />
-              {card.number}
-            </S.CardInfo>
-            <Radio
-              name="credit-card"
-              id={card.number}
-              value={card.number}
-              onCheck={() => ({})}
-            />
-          </S.CardItem>
-        ))}
+  return (
+    <S.Container>
+      <S.Body>
+        <Heading color="black" size="small" lineBottom>
+          Payment
+        </Heading>
 
-        <S.AddCard role="button">
-          <Add size={14} /> Add a new credit card
-        </S.AddCard>
-      </S.CardsList>
-    </S.Body>
-    <S.Footer>
-      <Button as="a" fullWidth minimal>
-        Continue shopping
-      </Button>
-      <Button fullWidth icon={<ShoppingCart />} onClick={handlePayment}>
-        Buy now
-      </Button>
-    </S.Footer>
-  </S.Container>
-);
+        <S.CardsList>
+          {cards?.map((card) => (
+            <S.CardItem key={card.number}>
+              <S.CardInfo>
+                <img src={card.img} alt={card.flag} />
+                {card.number}
+              </S.CardInfo>
+              <Radio
+                name="credit-card"
+                id={card.number}
+                value={card.number}
+                onCheck={() => setChecked(true)}
+              />
+            </S.CardItem>
+          ))}
+
+          <S.AddCard role="button">
+            <Add size={14} /> Add a new credit card
+          </S.AddCard>
+        </S.CardsList>
+      </S.Body>
+      <S.Footer>
+        <Button as="a" fullWidth minimal>
+          Continue shopping
+        </Button>
+        <Button
+          fullWidth
+          icon={<ShoppingCart />}
+          onClick={handlePayment}
+          disabled={!checked}
+        >
+          Buy now
+        </Button>
+      </S.Footer>
+    </S.Container>
+  );
+};
 
 export default PaymentOptions;
