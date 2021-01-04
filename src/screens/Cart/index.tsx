@@ -25,7 +25,7 @@ const Cart = ({
   total,
   cards,
 }: CartProps) => {
-  const handlePayment = () => ({});
+  const handlePayment = () => () => ({});
 
   return (
     <Layout>
