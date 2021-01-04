@@ -1,4 +1,4 @@
-import Base from 'templates/Base';
+import Layout from 'screens/Layout';
 
 import { Container } from 'components/Container';
 import Heading from 'components/Heading';
@@ -11,7 +11,7 @@ export type ProfileTemplateProps = {
 };
 
 const Profile = ({ children }: ProfileTemplateProps) => (
-  <Base>
+  <Layout>
     <Container>
       <Heading lineLeft lineColor="secondary">
         My profile
@@ -22,7 +22,7 @@ const Profile = ({ children }: ProfileTemplateProps) => (
         <S.Content>{children}</S.Content>
       </S.Main>
     </Container>
-  </Base>
+  </Layout>
 );
 
 export default Profile;
