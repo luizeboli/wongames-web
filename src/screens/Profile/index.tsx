@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import Layout from 'screens/Layout';
 
 import { Container } from 'components/Container';
@@ -10,19 +11,22 @@ export type ProfileTemplateProps = {
   children: React.ReactNode;
 };
 
-const Profile = ({ children }: ProfileTemplateProps) => (
-  <Layout>
-    <Container>
-      <Heading lineLeft lineColor="secondary">
-        My profile
-      </Heading>
+const Profile = ({ children }: ProfileTemplateProps) => {
+  const { asPath } = useRouter();
+  return (
+    <Layout>
+      <Container>
+        <Heading lineLeft lineColor="secondary">
+          My profile
+        </Heading>
 
-      <S.Main>
-        <ProfileMenu />
-        <S.Content>{children}</S.Content>
-      </S.Main>
-    </Container>
-  </Layout>
-);
+        <S.Main>
+          <ProfileMenu activeLink={asPath} />
+          <S.Content>{children}</S.Content>
+        </S.Main>
+      </Container>
+    </Layout>
+  );
+};
 
 export default Profile;
