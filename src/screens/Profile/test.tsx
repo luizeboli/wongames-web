@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 
 import { renderWithTheme } from 'utils/tests/helpers';
 
-import 'match-media-mock';
+import 'matchMediaMock';
 
 import Profile from '.';
 
@@ -10,7 +10,7 @@ jest.mock('next/router', () => ({
   useRouter: jest.fn(() => ({ asPath: '/profile/me' })),
 }));
 
-jest.mock('templates/Base', () => ({
+jest.mock('screens/Layout', () => ({
   __esModule: true,
   default: function Mock({ children }: { children: React.ReactNode }) {
     return <div data-testid="Mock Base">{children}</div>;
