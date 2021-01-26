@@ -19,11 +19,11 @@ describe('<Checkbox />', () => {
     expect(screen.queryByText(/label action/i)).not.toBeInTheDocument();
   });
 
-  it('should render with black label', () => {
+  it('should render with white label', () => {
     renderWithTheme(<Checkbox label="Label Action" labelFor="check" />);
 
     expect(screen.getByText(/label action/i)).toHaveStyle({
-      color: '#030517',
+      color: '#FAFAFA',
     });
   });
 
