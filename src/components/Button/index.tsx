@@ -3,9 +3,7 @@ import { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 
 import * as S from './styles';
 
-type ButtonTypes =
-  | AnchorHTMLAttributes<HTMLAnchorElement>
-  | ButtonHTMLAttributes<HTMLButtonElement>;
+type ButtonTypes = AnchorHTMLAttributes<HTMLAnchorElement> | ButtonHTMLAttributes<HTMLButtonElement>;
 
 export type ButtonProps = {
   children?: React.ReactNode;
@@ -17,24 +15,10 @@ export type ButtonProps = {
 } & ButtonTypes;
 
 const Button: React.ForwardRefRenderFunction<S.ContainerProps, ButtonProps> = (
-  {
-    children,
-    size = 'medium',
-    fullWidth = false,
-    icon,
-    minimal = false,
-    ...restProps
-  },
+  { children, size = 'medium', fullWidth = false, icon, minimal = false, ...restProps },
   ref,
 ) => (
-  <S.Container
-    size={size}
-    fullWidth={fullWidth}
-    hasIcon={!!icon}
-    minimal={minimal}
-    ref={ref}
-    {...restProps}
-  >
+  <S.Container size={size} fullWidth={fullWidth} hasIcon={!!icon} minimal={minimal} ref={ref} {...restProps}>
     {!!icon && icon}
     {!!children && <span>{children}</span>}
   </S.Container>

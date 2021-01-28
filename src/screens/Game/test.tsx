@@ -79,13 +79,9 @@ describe('<Game />', () => {
       display: 'none',
     });
 
-    expect(screen.getByTestId('Mock Gallery').parentElement).toHaveStyleRule(
-      'display',
-      'block',
-      {
-        media: '(min-width: 768px)',
-      },
-    );
+    expect(screen.getByTestId('Mock Gallery').parentElement).toHaveStyleRule('display', 'block', {
+      media: '(min-width: 768px)',
+    });
   });
 
   it('should render the cover image', () => {
@@ -102,12 +98,8 @@ describe('<Game />', () => {
       media: '(min-width: 768px)',
     });
 
-    expect(cover).toHaveStyleRule(
-      'clip-path',
-      'polygon(0 0,100% 0,100% 100%,0 85%)',
-      {
-        media: '(min-width: 768px)',
-      },
-    );
+    expect(cover).toHaveStyleRule('clip-path', 'polygon(0 0,100% 0,100% 100%,0 85%)', {
+      media: '(min-width: 768px)',
+    });
   });
 });

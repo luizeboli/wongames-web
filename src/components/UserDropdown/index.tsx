@@ -1,10 +1,6 @@
 import Link from 'next/link';
 import { ChevronDown } from '@styled-icons/boxicons-regular/ChevronDown';
-import {
-  AccountCircle,
-  ExitToApp,
-  FavoriteBorder,
-} from '@styled-icons/material-outlined';
+import { AccountCircle, ExitToApp, FavoriteBorder } from '@styled-icons/material-outlined';
 
 import Dropdown from 'components/Dropdown';
 

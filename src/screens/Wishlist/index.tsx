@@ -1,5 +1,3 @@
-import Layout from 'screens/Layout';
-
 import { Container } from 'components/Container';
 import { Divider } from 'components/Divider';
 import Empty from 'components/Empty';
@@ -8,6 +6,7 @@ import { Grid } from 'components/Grid';
 import Heading from 'components/Heading';
 import { HighlightProps } from 'components/Highlight';
 import Showcase from 'components/Showcase';
+import Layout from 'screens/Layout';
 
 export type WishlistScreenProps = {
   games?: GameCardProps[];
@@ -15,11 +14,7 @@ export type WishlistScreenProps = {
   recommendedHighlight: HighlightProps;
 };
 
-const Wishlist = ({
-  games = [],
-  recommendedGames,
-  recommendedHighlight,
-}: WishlistScreenProps) => (
+const Wishlist = ({ games = [], recommendedGames, recommendedHighlight }: WishlistScreenProps) => (
   <Layout>
     <Container>
       <Heading lineLeft lineColor="secondary">
@@ -33,21 +28,13 @@ const Wishlist = ({
           ))}
         </Grid>
       ) : (
-        <Empty
-          title="Your wishlist is empty"
-          description="Games added to your wishlist will appear here"
-          hasLink
-        />
+        <Empty title="Your wishlist is empty" description="Games added to your wishlist will appear here" hasLink />
       )}
 
       <Divider />
     </Container>
 
-    <Showcase
-      title="You may like these games"
-      games={recommendedGames}
-      highlight={recommendedHighlight}
-    />
+    <Showcase title="You may like these games" games={recommendedGames} highlight={recommendedHighlight} />
   </Layout>
 );
 

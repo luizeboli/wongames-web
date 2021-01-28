@@ -16,26 +16,15 @@ describe('<Banner />', () => {
   it('should render correctly', () => {
     const { container } = renderWithTheme(<Banner {...props} />);
 
-    expect(
-      screen.getByRole('heading', { name: /Game Title/i }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('heading', { name: /Game Subtitle/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Game Title/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Game Subtitle/i })).toBeInTheDocument();
     expect(screen.getByRole('image')).toHaveAttribute('src', 'image-source');
     expect(screen.getByRole('link', { name: /Buy Now/i })).toBeInTheDocument();
     expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should render a Ribbon', () => {
-    renderWithTheme(
-      <Banner
-        {...props}
-        ribbon="Hot Deal"
-        ribbonSize="small"
-        ribbonColor="secondary"
-      />,
-    );
+    renderWithTheme(<Banner {...props} ribbon="Hot Deal" ribbonSize="small" ribbonColor="secondary" />);
 
     const ribbon = screen.getByText(/Hot Deal/i);
 

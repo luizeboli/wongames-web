@@ -29,15 +29,11 @@ jest.mock('components/GameCard', () => ({
 
 describe('<Games />', () => {
   it('should render sections', () => {
-    renderWithTheme(
-      <Games filterItems={filterItemsMock} games={[gamesMock[0]]} />,
-    );
+    renderWithTheme(<Games filterItems={filterItemsMock} games={[gamesMock[0]]} />);
 
     expect(screen.getByTestId('Mock ExploreSidebar')).toBeInTheDocument();
     expect(screen.getByTestId('Mock GameCard')).toBeInTheDocument();
 
-    expect(
-      screen.getByRole('button', { name: /show more/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /show more/i })).toBeInTheDocument();
   });
 });

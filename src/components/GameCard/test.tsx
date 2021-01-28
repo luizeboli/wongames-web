@@ -15,17 +15,11 @@ describe('<GameCard />', () => {
   it('should render correctly', () => {
     renderWithTheme(<GameCard {...props} />);
 
-    expect(
-      screen.getByRole('heading', { name: /Population Zero/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Population Zero/i })).toBeInTheDocument();
 
-    expect(
-      screen.getByRole('heading', { name: /Rockstar Games/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Rockstar Games/i })).toBeInTheDocument();
 
-    expect(
-      screen.getByRole('img', { name: /Population Zero/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: /Population Zero/i })).toBeInTheDocument();
 
     expect(screen.getByLabelText(/add to wishlist/i)).toBeInTheDocument();
   });
@@ -68,14 +62,7 @@ describe('<GameCard />', () => {
   });
 
   it('should render the Ribbon', () => {
-    renderWithTheme(
-      <GameCard
-        {...props}
-        ribbon="150%"
-        ribbonColor="secondary"
-        ribbonSize="small"
-      />,
-    );
+    renderWithTheme(<GameCard {...props} ribbon="150%" ribbonColor="secondary" ribbonSize="small" />);
 
     const ribbon = screen.getByText(/150%/i);
 

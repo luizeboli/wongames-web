@@ -14,25 +14,17 @@ describe('<ExploreSidebar />', () => {
     renderWithTheme(<ExploreSidebar items={items} onFilter={jest.fn} />);
 
     expect(screen.getByRole('heading', { name: /price/i })).toBeInTheDocument();
-    expect(
-      screen.getByRole('heading', { name: /sort by/i }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('heading', { name: /system/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /sort by/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /system/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /genre/i })).toBeInTheDocument();
   });
 
   it('should render inputs', () => {
     renderWithTheme(<ExploreSidebar items={items} onFilter={jest.fn} />);
 
-    expect(
-      screen.getByRole('checkbox', { name: /under \$50/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('checkbox', { name: /under \$50/i })).toBeInTheDocument();
 
-    expect(
-      screen.getByRole('radio', { name: /low to high/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('radio', { name: /low to high/i })).toBeInTheDocument();
   });
 
   it('should render the filter button', () => {
@@ -42,13 +34,7 @@ describe('<ExploreSidebar />', () => {
   });
 
   it('should check initial values that are passed', () => {
-    renderWithTheme(
-      <ExploreSidebar
-        items={items}
-        onFilter={jest.fn}
-        initialValues={{ windows: true, sort_by: 'low-to-high' }}
-      />,
-    );
+    renderWithTheme(<ExploreSidebar items={items} onFilter={jest.fn} initialValues={{ windows: true, sort_by: 'low-to-high' }} />);
 
     expect(screen.getByRole('checkbox', { name: /windows/i })).toBeChecked();
 
@@ -58,13 +44,7 @@ describe('<ExploreSidebar />', () => {
   it('should filter with initial values', () => {
     const onFilter = jest.fn();
 
-    renderWithTheme(
-      <ExploreSidebar
-        items={items}
-        initialValues={{ windows: true, sort_by: 'low-to-high' }}
-        onFilter={onFilter}
-      />,
-    );
+    renderWithTheme(<ExploreSidebar items={items} initialValues={{ windows: true, sort_by: 'low-to-high' }} onFilter={onFilter} />);
 
     userEvent.click(screen.getByRole('button', { name: /filter/i }));
 
@@ -103,9 +83,7 @@ describe('<ExploreSidebar />', () => {
   });
 
   it('should open/close sidebar when filtering on mobile ', () => {
-    const { container } = renderWithTheme(
-      <ExploreSidebar items={items} onFilter={jest.fn} />,
-    );
+    const { container } = renderWithTheme(<ExploreSidebar items={items} onFilter={jest.fn} />);
 
     const variant = {
       media: '(max-width:768px)',

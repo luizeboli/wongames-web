@@ -31,27 +31,21 @@ Basic.args = {
   games: gamesMock,
 };
 
-export const withoutTitle: Story<ShowcaseProps> = (args) => (
-  <Showcase {...args} />
-);
+export const withoutTitle: Story<ShowcaseProps> = (args) => <Showcase {...args} />;
 
 withoutTitle.args = {
   highlight: highlightMock,
   games: gamesMock,
 };
 
-export const withoutHighlight: Story<ShowcaseProps> = (args) => (
-  <Showcase {...args} />
-);
+export const withoutHighlight: Story<ShowcaseProps> = (args) => <Showcase {...args} />;
 
 Basic.args = {
   title: 'Most popular',
   games: gamesMock,
 };
 
-export const withoutGames: Story<ShowcaseProps> = (args) => (
-  <Showcase {...args} />
-);
+export const withoutGames: Story<ShowcaseProps> = (args) => <Showcase {...args} />;
 
 withoutGames.args = {
   title: 'Most popular',

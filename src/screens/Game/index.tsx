@@ -1,5 +1,3 @@
-import Layout from 'screens/Layout';
-
 import { Divider } from 'components/Divider';
 import Gallery, { GalleryImageProps } from 'components/Gallery';
 import { GameCardProps } from 'components/GameCard';
@@ -8,6 +6,7 @@ import GameInfo, { GameInfoProps } from 'components/GameInfo';
 import { HighlightProps } from 'components/Highlight';
 import Showcase from 'components/Showcase';
 import TextContent from 'components/TextContent';
+import Layout from 'screens/Layout';
 
 import * as S from './styles';
 
@@ -55,11 +54,7 @@ const Game = ({
         <Divider />
       </S.SectionGameDetails>
 
-      <Showcase
-        title="Upcoming"
-        games={upcomingGames}
-        highlight={upcomingHighlight}
-      />
+      <Showcase title="Upcoming" games={upcomingGames} highlight={upcomingHighlight} />
       <Showcase title="Recommended games" games={recommendedGames} />
     </S.Main>
   </Layout>

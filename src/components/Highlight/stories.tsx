@@ -14,9 +14,7 @@ export default {
 
 export const Basic: Story<HighlightProps> = (args) => <Highlight {...args} />;
 
-export const withFloatImage: Story<HighlightProps> = (args) => (
-  <Highlight {...args} />
-);
+export const withFloatImage: Story<HighlightProps> = (args) => <Highlight {...args} />;
 
 withFloatImage.args = {
   floatImage: '/img/red-dead-float.png',

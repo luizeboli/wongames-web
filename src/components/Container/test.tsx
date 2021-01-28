@@ -11,10 +11,7 @@ describe('<Container />', () => {
       </Container>,
     );
 
-    expect(container.firstChild).toHaveStyleRule(
-      'max-width',
-      theme.grid.container,
-    );
+    expect(container.firstChild).toHaveStyleRule('max-width', theme.grid.container);
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       .c0 {

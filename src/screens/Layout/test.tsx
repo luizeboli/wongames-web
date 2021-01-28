@@ -31,9 +31,7 @@ describe('<Layout />', () => {
     );
 
     expect(screen.getByTestId('mock menu')).toBeInTheDocument();
-    expect(
-      screen.getByRole('heading', { name: /heading/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /heading/i })).toBeInTheDocument();
     expect(screen.getByTestId('mock footer')).toBeInTheDocument();
   });
 });

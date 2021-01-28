@@ -1,9 +1,9 @@
-import Layout from 'screens/Layout';
 import { KeyboardArrowDown as ArrowDown } from '@styled-icons/material-outlined/KeyboardArrowDown';
 
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar';
 import GameCard, { GameCardProps } from 'components/GameCard';
 import { Grid } from 'components/Grid';
+import Layout from 'screens/Layout';
 
 import * as S from './styles';
 

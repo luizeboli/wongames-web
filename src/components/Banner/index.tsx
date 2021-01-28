@@ -14,16 +14,7 @@ export type BannerProps = {
   ribbonColor?: RibbonColors;
 };
 
-const Banner = ({
-  img,
-  title,
-  subtitle,
-  buttonLabel,
-  buttonLink,
-  ribbon,
-  ribbonSize,
-  ribbonColor,
-}: BannerProps) => (
+const Banner = ({ img, title, subtitle, buttonLabel, buttonLink, ribbon, ribbonSize, ribbonColor }: BannerProps) => (
   <S.Container>
     {!!ribbon && (
       <Ribbon size={ribbonSize} color={ribbonColor}>

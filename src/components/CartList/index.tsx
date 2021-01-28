@@ -32,11 +32,7 @@ const CartList = ({ items = [], total, hasButton = false }: CartListProps) => (
         </S.Footer>
       </>
     ) : (
-      <Empty
-        title="Your cart is empty"
-        description="Go back to the store and explore great games and offers."
-        hasLink
-      />
+      <Empty title="Your cart is empty" description="Go back to the store and explore great games and offers." hasLink />
     )}
   </S.Container>
 );

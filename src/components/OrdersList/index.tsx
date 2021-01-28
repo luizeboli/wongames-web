@@ -17,11 +17,7 @@ const OrdersList = ({ items = [] }: OrdersListProps) => (
     {items.length ? (
       items.map((item) => <GameItem key={item.downloadLink} {...item} />)
     ) : (
-      <Empty
-        title="You have no orders yet"
-        description="Go back to the store and explore great games and offers"
-        hasLink
-      />
+      <Empty title="You have no orders yet" description="Go back to the store and explore great games and offers" hasLink />
     )}
   </S.Wrapper>
 );

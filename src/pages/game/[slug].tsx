@@ -1,10 +1,9 @@
-import Game, { GameScreenProps } from 'screens/Game';
-
 import galleryMock from 'components/Gallery/mock';
 import gamesMock from 'components/GameCardSlider/mock';
 import gameDetailsMock from 'components/GameDetails/mock';
 import highlightMock from 'components/Highlight/mock';
 import textContentMock from 'components/TextContent/mock';
+import Game, { GameScreenProps } from 'screens/Game';
 
 export default function Index(props: GameScreenProps) {
   return <Game {...props} />;

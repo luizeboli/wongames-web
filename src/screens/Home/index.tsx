@@ -43,11 +43,7 @@ const Home = ({
     </S.SectionNews>
 
     <S.SectionMostPopular>
-      <Showcase
-        title="Most Popular"
-        highlight={mostPopularHighlight}
-        games={mostPopularGames}
-      />
+      <Showcase title="Most Popular" highlight={mostPopularHighlight} games={mostPopularGames} />
     </S.SectionMostPopular>
 
     <S.SectionUpcoming>
@@ -56,11 +52,7 @@ const Home = ({
     </S.SectionUpcoming>
 
     <S.SectionFreeGames>
-      <Showcase
-        title="Free Games"
-        highlight={freeHighlight}
-        games={freeGames}
-      />
+      <Showcase title="Free Games" highlight={freeHighlight} games={freeGames} />
     </S.SectionFreeGames>
   </Layout>
 );

@@ -29,9 +29,7 @@ describe('<Checkbox />', () => {
 
   it('should dispatch onCheck when checked status change', async () => {
     const onCheck = jest.fn();
-    renderWithTheme(
-      <Checkbox label="Label Action" labelFor="check" onCheck={onCheck} />,
-    );
+    renderWithTheme(<Checkbox label="Label Action" labelFor="check" onCheck={onCheck} />);
 
     expect(onCheck).not.toHaveBeenCalled();
 
@@ -42,14 +40,7 @@ describe('<Checkbox />', () => {
 
   it('should dispatch onCheck when checked status change even if isChecked is passed', async () => {
     const onCheck = jest.fn();
-    renderWithTheme(
-      <Checkbox
-        label="Label Action"
-        labelFor="check"
-        onCheck={onCheck}
-        isChecked
-      />,
-    );
+    renderWithTheme(<Checkbox label="Label Action" labelFor="check" onCheck={onCheck} isChecked />);
 
     expect(onCheck).not.toHaveBeenCalled();
 

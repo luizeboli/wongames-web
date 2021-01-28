@@ -24,9 +24,7 @@ describe('<OrdersList />', () => {
   it('should render the game items', () => {
     renderWithTheme(<OrdersList items={mock} />);
 
-    expect(
-      screen.getByRole('heading', { name: /my orders/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /my orders/i })).toBeInTheDocument();
 
     expect(screen.getAllByTestId('Mock GameItem')).toHaveLength(2);
   });

@@ -1,5 +1,3 @@
-import Layout from 'screens/Layout';
-
 import CartList, { CartListProps } from 'components/CartList';
 import { Container } from 'components/Container';
 import { Divider } from 'components/Divider';
@@ -9,6 +7,7 @@ import Heading from 'components/Heading';
 import { HighlightProps } from 'components/Highlight';
 import PaymentOptions, { PaymentOptionsProps } from 'components/PaymentOptions';
 import Showcase from 'components/Showcase';
+import Layout from 'screens/Layout';
 
 import * as S from './styles';
 
@@ -18,13 +17,7 @@ export type CartProps = {
 } & CartListProps &
   Pick<PaymentOptionsProps, 'cards'>;
 
-const Cart = ({
-  recommendedGames,
-  recommendedHighlight,
-  items,
-  total,
-  cards,
-}: CartProps) => {
+const Cart = ({ recommendedGames, recommendedHighlight, items, total, cards }: CartProps) => {
   const handlePayment = () => () => ({});
 
   return (
@@ -41,21 +34,13 @@ const Cart = ({
             <PaymentOptions cards={cards} handlePayment={handlePayment} />
           </S.Content>
         ) : (
-          <Empty
-            title="Your cart is empty"
-            description="Go back to the store and explore great games and offers"
-            hasLink
-          />
+          <Empty title="Your cart is empty" description="Go back to the store and explore great games and offers" hasLink />
         )}
 
         <Divider />
       </Container>
 
-      <Showcase
-        title="You may like these games"
-        games={recommendedGames}
-        highlight={recommendedHighlight}
-      />
+      <Showcase title="You may like these games" games={recommendedGames} highlight={recommendedHighlight} />
     </Layout>
   );
 };

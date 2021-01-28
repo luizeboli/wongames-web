@@ -11,9 +11,7 @@ describe('<Heading />', () => {
 
     // Select element to be tested
     // Assert
-    expect(
-      screen.getByRole('heading', { name: /Won Games Title/i }),
-    ).toHaveStyle({
+    expect(screen.getByRole('heading', { name: /Won Games Title/i })).toHaveStyle({
       color: '#FAFAFA',
     });
   });
@@ -21,9 +19,7 @@ describe('<Heading />', () => {
   it('should render a black heading when color is passed', () => {
     renderWithTheme(<Heading color="black">Won Games Title</Heading>);
 
-    expect(
-      screen.getByRole('heading', { name: /Won Games Title/i }),
-    ).toHaveStyle({
+    expect(screen.getByRole('heading', { name: /Won Games Title/i })).toHaveStyle({
       color: '#030517',
     });
   });
@@ -31,9 +27,7 @@ describe('<Heading />', () => {
   it('should render a heading with a line to the left side', () => {
     renderWithTheme(<Heading lineLeft>Won Games Title</Heading>);
 
-    expect(
-      screen.getByRole('heading', { name: /Won Games Title/i }),
-    ).toHaveStyle({
+    expect(screen.getByRole('heading', { name: /Won Games Title/i })).toHaveStyle({
       'padding-left': '0.8rem',
       'border-left': '0.7rem solid #F231A5',
     });
@@ -42,9 +36,7 @@ describe('<Heading />', () => {
   it('should render a heading with a bottom line', () => {
     renderWithTheme(<Heading lineBottom>Won Games Title</Heading>);
 
-    expect(
-      screen.getByRole('heading', { name: /Won Games Title/i }),
-    ).toHaveStyleRule('border-bottom', '0.5rem solid #F231A5', {
+    expect(screen.getByRole('heading', { name: /Won Games Title/i })).toHaveStyleRule('border-bottom', '0.5rem solid #F231A5', {
       modifier: '::after',
     });
   });
@@ -52,15 +44,11 @@ describe('<Heading />', () => {
   it('should render a small sized heading', () => {
     renderWithTheme(<Heading size="small">Won Games Title</Heading>);
 
-    expect(
-      screen.getByRole('heading', { name: /Won Games Title/i }),
-    ).toHaveStyle({
+    expect(screen.getByRole('heading', { name: /Won Games Title/i })).toHaveStyle({
       'font-size': '1.6rem',
     });
 
-    expect(
-      screen.getByRole('heading', { name: /Won Games Title/i }),
-    ).toHaveStyleRule('width', '3rem', {
+    expect(screen.getByRole('heading', { name: /Won Games Title/i })).toHaveStyleRule('width', '3rem', {
       modifier: '::after',
     });
   });
@@ -68,9 +56,7 @@ describe('<Heading />', () => {
   it('should render a huge sized heading', () => {
     renderWithTheme(<Heading size="huge">Won Games Title</Heading>);
 
-    expect(
-      screen.getByRole('heading', { name: /Won Games Title/i }),
-    ).toHaveStyle({
+    expect(screen.getByRole('heading', { name: /Won Games Title/i })).toHaveStyle({
       'font-size': '5.2rem',
     });
   });
@@ -82,15 +68,11 @@ describe('<Heading />', () => {
       </Heading>,
     );
 
-    expect(
-      screen.getByRole('heading', { name: /Won Games Title/i }),
-    ).toHaveStyle({
+    expect(screen.getByRole('heading', { name: /Won Games Title/i })).toHaveStyle({
       'padding-left': '0.8rem',
       'border-left': '0.7rem solid #F231A5',
     });
-    expect(
-      screen.getByRole('heading', { name: /Won Games Title/i }),
-    ).toHaveStyleRule('border-bottom', '0.5rem solid #F231A5', {
+    expect(screen.getByRole('heading', { name: /Won Games Title/i })).toHaveStyleRule('border-bottom', '0.5rem solid #F231A5', {
       modifier: '::after',
     });
   });
@@ -102,15 +84,11 @@ describe('<Heading />', () => {
       </Heading>,
     );
 
-    expect(
-      screen.getByRole('heading', { name: /Won Games Title/i }),
-    ).toHaveStyle({
+    expect(screen.getByRole('heading', { name: /Won Games Title/i })).toHaveStyle({
       'padding-left': '0.8rem',
       'border-left': '0.7rem solid #3CD3C1',
     });
-    expect(
-      screen.getByRole('heading', { name: /Won Games Title/i }),
-    ).toHaveStyleRule('border-bottom', '0.5rem solid #3CD3C1', {
+    expect(screen.getByRole('heading', { name: /Won Games Title/i })).toHaveStyleRule('border-bottom', '0.5rem solid #3CD3C1', {
       modifier: '::after',
     });
   });

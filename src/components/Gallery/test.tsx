@@ -12,12 +12,8 @@ describe('<Gallery />', () => {
   it('should render thumbnails as buttons', () => {
     renderWithTheme(<Gallery items={mockGallery} />);
 
-    expect(
-      screen.getByRole('button', { name: /thumb - gallery image 1/i }),
-    ).toHaveAttribute('src', mockGallery[0].src);
-    expect(
-      screen.getByRole('button', { name: /thumb - gallery image 2/i }),
-    ).toHaveAttribute('src', mockGallery[1].src);
+    expect(screen.getByRole('button', { name: /thumb - gallery image 1/i })).toHaveAttribute('src', mockGallery[0].src);
+    expect(screen.getByRole('button', { name: /thumb - gallery image 2/i })).toHaveAttribute('src', mockGallery[1].src);
   });
 
   it('should handle open modal', () => {
@@ -28,9 +24,7 @@ describe('<Gallery />', () => {
     expect(modal.getAttribute('aria-hidden')).toBe('true');
     expect(modal).toHaveStyle({ opacity: 0, pointerEvents: 'none' });
 
-    fireEvent.click(
-      screen.getByRole('button', { name: /Thumb - Gallery Image 1/i }),
-    );
+    fireEvent.click(screen.getByRole('button', { name: /Thumb - Gallery Image 1/i }));
     expect(modal.getAttribute('aria-hidden')).toBe('false');
     expect(modal).toHaveStyle({ opacity: 1 });
   });
@@ -40,9 +34,7 @@ describe('<Gallery />', () => {
 
     const modal = screen.getByLabelText('modal');
 
-    fireEvent.click(
-      screen.getByRole('button', { name: /Thumb - Gallery Image 1/i }),
-    );
+    fireEvent.click(screen.getByRole('button', { name: /Thumb - Gallery Image 1/i }));
 
     fireEvent.click(screen.getByRole('button', { name: /close modal/i }));
 
@@ -51,15 +43,11 @@ describe('<Gallery />', () => {
   });
 
   it('should handle close modal when pressed ESC', () => {
-    const { container } = renderWithTheme(
-      <Gallery items={mockGallery.slice(0, 2)} />,
-    );
+    const { container } = renderWithTheme(<Gallery items={mockGallery.slice(0, 2)} />);
 
     const modal = screen.getByLabelText('modal');
 
-    fireEvent.click(
-      screen.getByRole('button', { name: /Thumb - Gallery Image 1/i }),
-    );
+    fireEvent.click(screen.getByRole('button', { name: /Thumb - Gallery Image 1/i }));
 
     fireEvent.keyUp(container, { key: 'Escape' });
 
@@ -70,9 +58,7 @@ describe('<Gallery />', () => {
   it('should open modal with selected image', async () => {
     renderWithTheme(<Gallery items={mockGallery.slice(0, 2)} />);
 
-    fireEvent.click(
-      screen.getByRole('button', { name: /Thumb - Gallery Image 1/i }),
-    );
+    fireEvent.click(screen.getByRole('button', { name: /Thumb - Gallery Image 1/i }));
 
     const img = await screen.findByRole('img', { name: /gallery image 1/i });
 

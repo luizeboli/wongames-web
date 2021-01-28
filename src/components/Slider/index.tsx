@@ -10,10 +10,7 @@ export type SliderProps = {
   settings: SliderSettings;
 };
 
-const Slider: React.ForwardRefRenderFunction<SlickSlider, SliderProps> = (
-  { children, settings },
-  ref,
-) => (
+const Slider: React.ForwardRefRenderFunction<SlickSlider, SliderProps> = ({ children, settings }, ref) => (
   <S.Wrapper>
     <SlickSlider {...settings} ref={ref}>
       {children}

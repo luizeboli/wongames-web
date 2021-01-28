@@ -1,8 +1,4 @@
-import {
-  AddShoppingCart,
-  Favorite,
-  FavoriteBorder,
-} from '@styled-icons/material-outlined';
+import { AddShoppingCart, Favorite, FavoriteBorder } from '@styled-icons/material-outlined';
 
 import Button from 'components/Button';
 import Ribbon, { RibbonColors, RibbonSizes } from 'components/Ribbon';
@@ -49,11 +45,7 @@ const GameCard = ({
         <S.Developer>{developer}</S.Developer>
       </S.Info>
       <S.FavButton role="button" onClick={onFav}>
-        {favorite ? (
-          <Favorite aria-label="Remove from wishlist" />
-        ) : (
-          <FavoriteBorder aria-label="Add to wishlist" />
-        )}
+        {favorite ? <Favorite aria-label="Remove from wishlist" /> : <FavoriteBorder aria-label="Add to wishlist" />}
       </S.FavButton>
       <S.BuyBox>
         {!!promotionalPrice && <S.Price isPromotional>{price}</S.Price>}

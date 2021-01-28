@@ -17,13 +17,7 @@ export type GameItemProps = {
   paymentInfo?: PaymentInfoProps;
 };
 
-const GameItem = ({
-  img,
-  title,
-  price,
-  downloadLink,
-  paymentInfo,
-}: GameItemProps) => (
+const GameItem = ({ img, title, price, downloadLink, paymentInfo }: GameItemProps) => (
   <S.Container>
     <S.GameContent>
       <S.ImageBox>
@@ -34,11 +28,7 @@ const GameItem = ({
         <S.Title>
           {title}
           {!!downloadLink && (
-            <S.DownloadLink
-              href={downloadLink}
-              target="_blank"
-              aria-label={`Get ${title} here`}
-            >
+            <S.DownloadLink href={downloadLink} target="_blank" aria-label={`Get ${title} here`}>
               <Download size={22} />
             </S.DownloadLink>
           )}

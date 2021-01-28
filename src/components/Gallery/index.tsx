@@ -95,11 +95,7 @@ const Gallery = ({ items }: GalleryProps) => {
       </Slider>
 
       <S.Modal aria-label="modal" aria-hidden={!modalOpen} isOpen={modalOpen}>
-        <S.Close
-          role="button"
-          aria-label="close modal"
-          onClick={() => setModalOpen(false)}
-        >
+        <S.Close role="button" aria-label="close modal" onClick={() => setModalOpen(false)}>
           <Close size={40} />
         </S.Close>
 

@@ -1,6 +1,5 @@
-import Auth from 'screens/Auth';
-
 import FormSignIn from 'components/FormSignIn';
+import Auth from 'screens/Auth';
 
 export default function SignIn() {
   return (

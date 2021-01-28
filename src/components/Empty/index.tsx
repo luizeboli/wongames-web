@@ -12,11 +12,7 @@ export type EmptyProps = {
 
 const Empty = ({ title, description, hasLink }: EmptyProps) => (
   <S.Container>
-    <S.Image
-      src="/img/empty.svg"
-      alt="A gamer in a couch playing videogame"
-      role="image"
-    />
+    <S.Image src="/img/empty.svg" alt="A gamer in a couch playing videogame" role="image" />
 
     <S.Title>{title}</S.Title>
     <S.Description>{description}</S.Description>

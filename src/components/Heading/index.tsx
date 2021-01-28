@@ -19,13 +19,7 @@ const Heading = ({
   size = 'medium',
   lineColor = 'primary',
 }: HeadingProps) => (
-  <S.Container
-    color={color}
-    lineLeft={lineLeft}
-    lineBottom={lineBottom}
-    size={size}
-    lineColor={lineColor}
-  >
+  <S.Container color={color} lineLeft={lineLeft} lineBottom={lineBottom} size={size} lineColor={lineColor}>
     {children}
   </S.Container>
 );

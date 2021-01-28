@@ -31,11 +31,7 @@ export type ExploreSidebarProps = {
   onFilter: (values: Values) => void;
 };
 
-const ExploreSidebar = ({
-  items,
-  onFilter,
-  initialValues = {},
-}: ExploreSidebarProps) => {
+const ExploreSidebar = ({ items, onFilter, initialValues = {} }: ExploreSidebarProps) => {
   const [values, setValues] = useState(initialValues);
   const [isOpen, setIsOpen] = useState(false);
 

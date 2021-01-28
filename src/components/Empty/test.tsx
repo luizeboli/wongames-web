@@ -19,15 +19,11 @@ describe('<Empty />', () => {
       }),
     ).toBeInTheDocument();
 
-    expect(
-      screen.getByRole('heading', { name: /a simple title/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /a simple title/i })).toBeInTheDocument();
 
     expect(screen.getByText(/a simple description/i)).toBeInTheDocument();
 
-    expect(
-      screen.getByRole('link', { name: /go back to store/i }),
-    ).toHaveAttribute('href', '/');
+    expect(screen.getByRole('link', { name: /go back to store/i })).toHaveAttribute('href', '/');
 
     expect(container.parentElement).toMatchSnapshot();
   });
@@ -35,8 +31,6 @@ describe('<Empty />', () => {
   it('should not render link when hasLink is not passed', () => {
     renderWithTheme(<Empty {...props} />);
 
-    expect(
-      screen.queryByRole('link', { name: /go back to store/i }),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /go back to store/i })).not.toBeInTheDocument();
   });
 });

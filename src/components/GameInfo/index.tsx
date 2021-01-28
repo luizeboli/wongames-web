@@ -1,7 +1,4 @@
-import {
-  AddShoppingCart,
-  FavoriteBorder,
-} from '@styled-icons/material-outlined';
+import { AddShoppingCart, FavoriteBorder } from '@styled-icons/material-outlined';
 
 import Button from 'components/Button';
 import Heading from 'components/Heading';

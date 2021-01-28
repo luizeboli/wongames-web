@@ -32,18 +32,14 @@ describe('<TextField />', () => {
   });
 
   it('Renders with Icon on the right side', () => {
-    renderWithTheme(
-      <TextField icon={<Email data-testid="icon" />} iconPosition="right" />,
-    );
+    renderWithTheme(<TextField icon={<Email data-testid="icon" />} iconPosition="right" />);
 
     expect(screen.getByTestId('icon').parentElement).toHaveStyle({ order: 1 });
   });
 
   it('Changes its value when typing', async () => {
     const onInput = jest.fn();
-    renderWithTheme(
-      <TextField onInput={onInput} label="TextField" name="TextField" />,
-    );
+    renderWithTheme(<TextField onInput={onInput} label="TextField" name="TextField" />);
 
     const input = screen.getByRole('textbox');
     const text = 'This is my new text';
@@ -58,14 +54,7 @@ describe('<TextField />', () => {
 
   it('Does not changes its value when disabled', async () => {
     const onInput = jest.fn();
-    renderWithTheme(
-      <TextField
-        onInput={onInput}
-        label="TextField"
-        name="TextField"
-        disabled
-      />,
-    );
+    renderWithTheme(<TextField onInput={onInput} label="TextField" name="TextField" disabled />);
 
     const input = screen.getByRole('textbox');
     expect(input).toBeDisabled();
@@ -80,13 +69,7 @@ describe('<TextField />', () => {
   });
 
   it('Renders with error', () => {
-    const { container } = renderWithTheme(
-      <TextField
-        icon={<Email data-testid="icon" />}
-        label="TextField"
-        error="Error message"
-      />,
-    );
+    const { container } = renderWithTheme(<TextField icon={<Email data-testid="icon" />} label="TextField" error="Error message" />);
 
     expect(screen.getByText('Error message')).toBeInTheDocument();
 

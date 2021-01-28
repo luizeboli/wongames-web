@@ -46,9 +46,7 @@ describe('<Button />', () => {
   });
 
   it('should render the icon version', () => {
-    renderWithTheme(
-      <Button icon={<AddShoppingCart data-testid="icon" />}>Sign UP</Button>,
-    );
+    renderWithTheme(<Button icon={<AddShoppingCart data-testid="icon" />}>Sign UP</Button>);
 
     expect(screen.getByText(/Sign Up/i)).toBeInTheDocument();
     expect(screen.getByTestId('icon')).toBeInTheDocument();
@@ -66,17 +64,13 @@ describe('<Button />', () => {
       color: '#F231A5',
     });
 
-    expect(
-      screen.getByRole('button', { name: /Wishlist/i }),
-    ).toHaveStyleRule('background', 'none', { modifier: ':hover' });
+    expect(screen.getByRole('button', { name: /Wishlist/i })).toHaveStyleRule('background', 'none', { modifier: ':hover' });
   });
 
   it('should render Button as a button by default', () => {
     renderWithTheme(<Button>Sign UP</Button>);
 
-    expect(
-      screen.getByRole('button', { name: /Sign Up/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Sign Up/i })).toBeInTheDocument();
   });
 
   it('should render Button as a link', () => {
@@ -86,21 +80,14 @@ describe('<Button />', () => {
       </Button>,
     );
 
-    expect(screen.getByRole('link', { name: /Sign Up/i })).toHaveAttribute(
-      'href',
-      '/link',
-    );
+    expect(screen.getByRole('link', { name: /Sign Up/i })).toHaveAttribute('href', '/link');
   });
 
   it('should render a disabled Button', () => {
     renderWithTheme(<Button disabled>Buy now</Button>);
 
-    expect(screen.getByRole('button', { name: /buy now/i })).toHaveStyleRule(
-      'cursor',
-      'not-allowed',
-      {
-        modifier: ':disabled',
-      },
-    );
+    expect(screen.getByRole('button', { name: /buy now/i })).toHaveStyleRule('cursor', 'not-allowed', {
+      modifier: ':disabled',
+    });
   });
 });

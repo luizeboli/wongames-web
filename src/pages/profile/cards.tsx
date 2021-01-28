@@ -1,7 +1,6 @@
-import Profile from 'screens/Profile';
-
 import CardsList, { CardsListProps } from 'components/CardsList';
 import mockCards from 'components/PaymentOptions/mock';
+import Profile from 'screens/Profile';
 
 export default function ProfileCards({ cards }: CardsListProps) {
   return (

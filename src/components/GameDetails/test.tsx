@@ -10,24 +10,12 @@ describe('<GameDetails />', () => {
   it('should render the blocks', () => {
     renderWithTheme(<GameDetails {...gameMock} />);
 
-    expect(
-      screen.getByRole('heading', { name: /developer/i }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('heading', { name: /release date/i }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('heading', { name: /platforms/i }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('heading', { name: /publisher/i }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('heading', { name: /rating/i }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('heading', { name: /genres/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /developer/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /release date/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /platforms/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /publisher/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /rating/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /genres/i })).toBeInTheDocument();
   });
 
   it('should render platform icons', () => {
@@ -59,9 +47,7 @@ describe('<GameDetails />', () => {
   it('should render a list of genres', () => {
     renderWithTheme(<GameDetails {...gameMock} />);
 
-    expect(
-      screen.getByText(/role-playing \/ action \/ adventure/i),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/role-playing \/ action \/ adventure/i)).toBeInTheDocument();
   });
 
   it('should render the publisher', () => {

@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
-import Layout from 'screens/Layout';
 
 import { Container } from 'components/Container';
 import Heading from 'components/Heading';
 import ProfileMenu from 'components/ProfileMenu';
+import Layout from 'screens/Layout';
 
 import * as S from './styles';
 

@@ -1,7 +1,6 @@
-import Wishlist, { WishlistScreenProps } from 'screens/Wishlist';
-
 import gamesMock from 'components/GameCardSlider/mock';
 import highlightMock from 'components/Highlight/mock';
+import Wishlist, { WishlistScreenProps } from 'screens/Wishlist';
 
 export default function WishlistPage({ ...props }: WishlistScreenProps) {
   return <Wishlist {...props} />;

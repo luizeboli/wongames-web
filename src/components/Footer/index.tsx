@@ -23,32 +23,16 @@ const Footer = () => (
         </Heading>
 
         <nav aria-labelledby="social media">
-          <a
-            href="https://www.instagram.com/won-games"
-            target="_blank"
-            rel="noopenner, noreferrer"
-          >
+          <a href="https://www.instagram.com/won-games" target="_blank" rel="noopenner, noreferrer">
             Instagram
           </a>
-          <a
-            href="https://www.twitter.com/won-games"
-            target="_blank"
-            rel="noopenner, noreferrer"
-          >
+          <a href="https://www.twitter.com/won-games" target="_blank" rel="noopenner, noreferrer">
             Twitter
           </a>
-          <a
-            href="https://www.youtube.com/won-games"
-            target="_blank"
-            rel="noopenner, noreferrer"
-          >
+          <a href="https://www.youtube.com/won-games" target="_blank" rel="noopenner, noreferrer">
             Youtube
           </a>
-          <a
-            href="https://www.facebook.com/won-games"
-            target="_blank"
-            rel="noopenner, noreferrer"
-          >
+          <a href="https://www.facebook.com/won-games" target="_blank" rel="noopenner, noreferrer">
             Facebook
           </a>
         </nav>

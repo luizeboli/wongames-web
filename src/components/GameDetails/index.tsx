@@ -32,14 +32,7 @@ const ratings = {
   BR18: '18+',
 };
 
-const GameDetails = ({
-  releaseDate,
-  developer,
-  publisher,
-  platforms,
-  rating,
-  genres,
-}: GameDetailsProps) => (
+const GameDetails = ({ releaseDate, developer, publisher, platforms, rating, genres }: GameDetailsProps) => (
   <S.Wrapper>
     <MediaMatch greaterThan="small">
       <Heading lineLeft lineColor="secondary">
