@@ -1,10 +1,5 @@
 import { useMemo } from 'react';
-import {
-  ApolloClient,
-  HttpLink,
-  InMemoryCache,
-  NormalizedCacheObject,
-} from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
 
@@ -16,7 +11,7 @@ function createApolloClient() {
   });
 }
 
-export function initializeApollo(initialState = {}) {
+export function initializeApollo(initialState?: NormalizedCacheObject) {
   const apolloClientGlobal = apolloClient ?? createApolloClient();
 
   if (initialState) {
@@ -31,7 +26,7 @@ export function initializeApollo(initialState = {}) {
   return apolloClient;
 }
 
-export function useApollo(initialState = {}) {
+export function useApollo(initialState?: NormalizedCacheObject) {
   const store = useMemo(() => initializeApollo(initialState), [initialState]);
   return store;
 }

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import { Wrapper as CartWrapperStyles } from 'components/CartList/styles';
+import { Container as CartContainerStyles } from 'components/CartList/styles';
 
 export const Wrapper = styled.main`
-  ${CartWrapperStyles} {
+  ${CartContainerStyles} {
     width: 56rem;
   }
 `;
