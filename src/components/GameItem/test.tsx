@@ -7,7 +7,7 @@ import GameItem from '.';
 const props = {
   img: 'https://source.unsplash.com/user/willianjusten/151x70',
   title: 'Red Dead Redemption 2',
-  price: 'R$ 215,00',
+  price: 215,
 };
 
 describe('<GameItem />', () => {
@@ -18,7 +18,7 @@ describe('<GameItem />', () => {
 
     expect(screen.getByRole('img', { name: props.title })).toHaveAttribute('src', props.img);
 
-    expect(screen.getByText('R$ 215,00')).toBeInTheDocument();
+    expect(screen.getByText('$215.00')).toBeInTheDocument();
   });
 
   it('should render the item with download link', () => {

@@ -3,6 +3,7 @@ import { AddShoppingCart, Favorite, FavoriteBorder } from '@styled-icons/materia
 
 import Button from 'components/Button';
 import Ribbon, { RibbonColors, RibbonSizes } from 'components/Ribbon';
+import formatPrice from 'utils/formatPrice';
 
 import * as S from './styles';
 
@@ -11,8 +12,8 @@ export type GameCardProps = {
   slug: string;
   developer: string;
   img: string;
-  price: string;
-  promotionalPrice?: string;
+  price: number;
+  promotionalPrice?: number;
   favorite?: boolean;
   onFav?: () => void;
   ribbon?: React.ReactNode;
@@ -55,8 +56,8 @@ const GameCard = ({
         {favorite ? <Favorite aria-label="Remove from wishlist" /> : <FavoriteBorder aria-label="Add to wishlist" />}
       </S.FavButton>
       <S.BuyBox>
-        {!!promotionalPrice && <S.Price isPromotional>{price}</S.Price>}
-        <S.Price>{promotionalPrice || price}</S.Price>
+        {!!promotionalPrice && <S.Price isPromotional>{formatPrice(price)}</S.Price>}
+        <S.Price>{formatPrice(promotionalPrice || price)}</S.Price>
         <Button icon={<AddShoppingCart />} size="small" />
       </S.BuyBox>
     </S.Content>

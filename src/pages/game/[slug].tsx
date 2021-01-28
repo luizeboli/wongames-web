@@ -1,36 +1,66 @@
-import galleryMock from 'components/Gallery/mock';
+import { GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
+
 import gamesMock from 'components/GameCardSlider/mock';
-import gameDetailsMock from 'components/GameDetails/mock';
 import highlightMock from 'components/Highlight/mock';
-import textContentMock from 'components/TextContent/mock';
+import { QueryGameBySlug, QueryGameBySlugVariables } from 'graphql/generated/QueryGameBySlug';
+import { QueryGames, QueryGamesVariables } from 'graphql/generated/QueryGames';
+import { QUERY_GAME_BY_SLUG, QUERY_GAMES } from 'graphql/queries/games';
 import Game, { GameScreenProps } from 'screens/Game';
+import { initializeApollo } from 'utils/apollo';
+
+const apolloClient = initializeApollo();
 
 export default function Index(props: GameScreenProps) {
+  const router = useRouter();
+
+  if (router.isFallback) return <p>Loading fallback from next router...</p>;
+
   return <Game {...props} />;
 }
 
 export async function getStaticPaths() {
-  return {
-    paths: [{ params: { slug: 'skate-4' } }],
-    fallback: false,
-  };
+  const { data } = await apolloClient.query<QueryGames, QueryGamesVariables>({ query: QUERY_GAMES, variables: { limit: 9 } });
+
+  const paths = data.games.map(({ slug }) => ({ params: { slug } }));
+
+  return { paths, fallback: true };
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { data } = await apolloClient.query<QueryGameBySlug, QueryGameBySlugVariables>({
+    query: QUERY_GAME_BY_SLUG,
+    variables: { slug: `${params?.slug}` },
+  });
+
+  if (!data.games.length) {
+    return { notFound: true };
+  }
+
+  const game = data.games[0];
+
   return {
     props: {
-      cover: '/img/games/Skate-4.1.jpg',
+      cover: game.cover?.src,
       gameInfo: {
-        title: 'Skate 4',
-        price: '99.90',
-        description: 'The best skate game for the century',
+        title: game.name,
+        price: game.price,
+        description: game.short_description,
       },
-      gallery: galleryMock,
-      description: textContentMock.body,
-      gameDetails: gameDetailsMock,
+      gallery: game.gallery,
+      description: game.description,
+      gameDetails: {
+        developer: game.developers[0]?.name,
+        releaseDate: game.release_date,
+        platforms: game.platforms.map((platform) => platform.name),
+        publisher: game.publisher?.name,
+        rating: game.rating,
+        genres: game.categories.map((category) => category.name),
+      },
       upcomingGames: gamesMock,
       upcomingHighlight: highlightMock,
       recommendedGames: gamesMock,
+      revalidate: 300,
     },
   };
-}
+};

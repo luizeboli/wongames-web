@@ -7,7 +7,7 @@ import GameInfo from '.';
 const props = {
   title: 'hypa game',
   description: 'hypa description',
-  price: '210,00',
+  price: 210,
 };
 
 describe('<GameInfo />', () => {
@@ -15,7 +15,7 @@ describe('<GameInfo />', () => {
     renderWithTheme(<GameInfo {...props} />);
 
     expect(screen.getByRole('heading', { name: /hypa game/i })).toBeInTheDocument();
-    expect(screen.getByText(/\$210,00/)).toBeInTheDocument();
+    expect(screen.getByText(/\$210.00/)).toBeInTheDocument();
     expect(screen.getByText(/hypa description/i)).toBeInTheDocument();
   });
 

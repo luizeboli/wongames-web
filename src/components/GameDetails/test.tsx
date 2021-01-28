@@ -39,7 +39,7 @@ describe('<GameDetails />', () => {
   });
 
   it('should render 18+ rating when BR18', () => {
-    renderWithTheme(<GameDetails {...gameMock} rating="BR18" />);
+    renderWithTheme(<GameDetails {...gameMock} rating="br_18" />);
 
     expect(screen.getByText(/18\+/)).toBeInTheDocument();
   });
