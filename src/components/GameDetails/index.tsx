@@ -6,7 +6,7 @@ import MediaMatch from 'components/MediaMatch';
 import * as S from './styles';
 
 type Platform = 'windows' | 'linux' | 'apple';
-type Rating = 'BR0' | 'BR10' | 'BR12' | 'BR14' | 'BR16' | 'BR18';
+type Rating = 'free' | 'br_0' | 'br_10' | 'br_12' | 'br_14' | 'br_16' | 'br_18';
 
 export type GameDetailsProps = {
   releaseDate: string;
@@ -24,12 +24,13 @@ const platformsIcons = {
 };
 
 const ratings = {
-  BR0: 'FREE',
-  BR10: '10+',
-  BR12: '12+',
-  BR14: '14+',
-  BR16: '16+',
-  BR18: '18+',
+  free: 'FREE',
+  br_0: 'FREE',
+  br_10: '10+',
+  br_12: '12+',
+  br_14: '14+',
+  br_16: '16+',
+  br_18: '18+',
 };
 
 const GameDetails = ({ releaseDate, developer, publisher, platforms, rating, genres }: GameDetailsProps) => (
