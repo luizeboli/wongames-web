@@ -6,6 +6,7 @@ import GameCard from '.';
 
 const props = {
   title: 'Population Zero',
+  slug: 'population-zero',
   developer: 'Rockstar Games',
   img: 'https://source.unsplash.com/user/willianjusten/300x140',
   price: 'R$ 235,00',
@@ -22,6 +23,8 @@ describe('<GameCard />', () => {
     expect(screen.getByRole('img', { name: /Population Zero/i })).toBeInTheDocument();
 
     expect(screen.getByLabelText(/add to wishlist/i)).toBeInTheDocument();
+
+    expect(screen.getByRole('link', { name: props.title })).toHaveAttribute('href', `/game/${props.slug}`);
   });
 
   it('should render price in label', () => {

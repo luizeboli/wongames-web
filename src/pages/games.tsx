@@ -22,6 +22,7 @@ export async function getStaticProps() {
     props: {
       games: data.games.map((game) => ({
         title: game.name,
+        slug: game.slug,
         developer: game.developers[0]?.name ?? null,
         img: game.cover?.url,
         price: new Intl.NumberFormat('en', {
