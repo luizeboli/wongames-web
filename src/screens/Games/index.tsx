@@ -1,11 +1,9 @@
-import { useQuery } from '@apollo/client';
 import { KeyboardArrowDown as ArrowDown } from '@styled-icons/material-outlined/KeyboardArrowDown';
 
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar';
 import GameCard from 'components/GameCard';
 import { Grid } from 'components/Grid';
-import { QueryGames, QueryGamesVariables } from 'graphql/generated/QueryGames';
-import { QUERY_GAMES } from 'graphql/queries/games';
+import { useQueryGames } from 'graphql/queries/games';
 import Layout from 'screens/Layout';
 
 import * as S from './styles';
@@ -15,7 +13,7 @@ export type GamesScreenProps = {
 };
 
 const GamesScreen = ({ filterItems }: GamesScreenProps) => {
-  const { data, loading, fetchMore } = useQuery<QueryGames, QueryGamesVariables>(QUERY_GAMES, { variables: { limit: 15 } });
+  const { data, loading, fetchMore } = useQueryGames({ variables: { limit: 15 } });
 
   const handleFilter = () => {
     return;
