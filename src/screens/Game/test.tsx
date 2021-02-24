@@ -16,6 +16,7 @@ const props: GameScreenProps = {
   gallery: galleryMock,
   description: `<h1>Custom HTML</h1>`,
   gameDetails: gameDetailsMock as GameDetailsProps,
+  upcomingTitle: 'Título',
   upcomingGames: gamesMock,
   upcomingHighlight: highlightMock,
   recommendedTitle: 'Título',
