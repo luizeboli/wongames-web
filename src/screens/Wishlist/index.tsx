@@ -12,9 +12,10 @@ export type WishlistScreenProps = {
   games?: GameCardProps[];
   recommendedGames: GameCardProps[];
   recommendedHighlight: HighlightProps;
+  recommendedTitle: string;
 };
 
-const Wishlist = ({ games = [], recommendedGames, recommendedHighlight }: WishlistScreenProps) => (
+const Wishlist = ({ games = [], recommendedGames, recommendedHighlight, recommendedTitle }: WishlistScreenProps) => (
   <Layout>
     <Container>
       <Heading lineLeft lineColor="secondary">
@@ -34,7 +35,7 @@ const Wishlist = ({ games = [], recommendedGames, recommendedHighlight }: Wishli
       <Divider />
     </Container>
 
-    <Showcase title="You may like these games" games={recommendedGames} highlight={recommendedHighlight} />
+    <Showcase title={recommendedTitle} games={recommendedGames} highlight={recommendedHighlight} />
   </Layout>
 );
 
