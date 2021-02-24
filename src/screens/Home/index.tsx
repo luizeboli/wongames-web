@@ -27,7 +27,6 @@ const Home = ({
   mostPopularGames,
   upcomingGames,
   upcomingHighlight,
-  upcomingMoreGames,
   freeGames,
   freeHighlight,
 }: HomeScreenProps) => (
@@ -47,8 +46,7 @@ const Home = ({
     </S.SectionMostPopular>
 
     <S.SectionUpcoming>
-      <Showcase title="Upcoming" games={upcomingGames} />
-      <Showcase highlight={upcomingHighlight} games={upcomingMoreGames} />
+      <Showcase title="Upcoming" highlight={upcomingHighlight} games={upcomingGames} />
     </S.SectionUpcoming>
 
     <S.SectionFreeGames>

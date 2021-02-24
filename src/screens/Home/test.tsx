@@ -44,6 +44,6 @@ describe('<Home />', () => {
     renderWithTheme(<Home {...props} />);
 
     expect(screen.getByTestId('mock banner slider')).toBeInTheDocument();
-    expect(screen.getAllByTestId('mock showcase')).toHaveLength(5);
+    expect(screen.getAllByTestId('mock showcase')).toHaveLength(4);
   });
 });
