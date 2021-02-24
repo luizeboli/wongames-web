@@ -1,4 +1,3 @@
-import gameCardSliderMock from 'components/GameCardSlider/mock';
 import highlightMock from 'components/Highlight/mock';
 import { QueryHome } from 'graphql/generated/QueryHome';
 import { QUERY_HOME } from 'graphql/queries/home';
@@ -12,7 +11,7 @@ export default function Index(props: HomeScreenProps) {
 export async function getStaticProps() {
   const apolloClient = initializeApollo();
   const {
-    data: { banners, newGames, upcomingGames, freeGames },
+    data: { banners, newGames, upcomingGames, freeGames, sections },
   } = await apolloClient.query<QueryHome>({ query: QUERY_HOME });
 
   return {
@@ -40,7 +39,16 @@ export async function getStaticProps() {
         price: game.price,
       })),
       mostPopularHighlight: highlightMock,
-      mostPopularGames: gameCardSliderMock,
+      mostPopularGames: sections!.popularGames!.games.map((game) => ({
+        title: game.name,
+        slug: game.slug,
+        cover: game.cover?.url,
+        ...(!!game.developers.length && {
+          developer: game.developers[0].name,
+        }),
+        img: game.cover?.url,
+        price: game.price,
+      })),
       upcomingGames: upcomingGames.map((game) => ({
         title: game.name,
         slug: game.slug,
