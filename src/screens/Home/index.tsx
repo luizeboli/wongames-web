@@ -15,9 +15,12 @@ export type HomeScreenProps = {
   mostPopularGames: GameCardProps[];
   upcomingGames: GameCardProps[];
   upcomingHighlight: HighlightProps;
-  upcomingMoreGames: GameCardProps[];
   freeGames: GameCardProps[];
   freeHighlight: HighlightProps;
+  newGamesTitle: string;
+  mostPopularGamesTitle: string;
+  upcomingGamesTitle: string;
+  freeGamesTitle: string;
 };
 
 const Home = ({
@@ -29,6 +32,10 @@ const Home = ({
   upcomingHighlight,
   freeGames,
   freeHighlight,
+  newGamesTitle,
+  mostPopularGamesTitle,
+  upcomingGamesTitle,
+  freeGamesTitle,
 }: HomeScreenProps) => (
   <Layout>
     <Container>
@@ -38,19 +45,19 @@ const Home = ({
     </Container>
 
     <S.SectionNews>
-      <Showcase title="News" games={newGames} color="black" />
+      <Showcase title={newGamesTitle} games={newGames} color="black" />
     </S.SectionNews>
 
     <S.SectionMostPopular>
-      <Showcase title="Most Popular" highlight={mostPopularHighlight} games={mostPopularGames} />
+      <Showcase title={mostPopularGamesTitle} highlight={mostPopularHighlight} games={mostPopularGames} />
     </S.SectionMostPopular>
 
     <S.SectionUpcoming>
-      <Showcase title="Upcoming" highlight={upcomingHighlight} games={upcomingGames} />
+      <Showcase title={upcomingGamesTitle} highlight={upcomingHighlight} games={upcomingGames} />
     </S.SectionUpcoming>
 
     <S.SectionFreeGames>
-      <Showcase title="Free Games" highlight={freeHighlight} games={freeGames} />
+      <Showcase title={freeGamesTitle} highlight={freeHighlight} games={freeGames} />
     </S.SectionFreeGames>
   </Layout>
 );
