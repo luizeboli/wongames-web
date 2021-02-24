@@ -5,9 +5,12 @@ import gamesMock from 'components/GameCardSlider/mock';
 import highlightMock from 'components/Highlight/mock';
 import { QueryGameBySlug, QueryGameBySlugVariables } from 'graphql/generated/QueryGameBySlug';
 import { QueryGames, QueryGamesVariables } from 'graphql/generated/QueryGames';
+import { QueryRecommended } from 'graphql/generated/QueryRecommended';
 import { QUERY_GAME_BY_SLUG, QUERY_GAMES } from 'graphql/queries/games';
+import { QUERY_RECOMMENDED } from 'graphql/queries/recommended';
 import Game, { GameScreenProps } from 'screens/Game';
 import { initializeApollo } from 'utils/apollo';
+import { gamesMapper } from 'utils/mappers';
 
 const apolloClient = initializeApollo();
 
@@ -37,6 +40,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return { notFound: true };
   }
 
+  const { data: recommendedData } = await apolloClient.query<QueryRecommended>({ query: QUERY_RECOMMENDED });
+
   const game = data.games[0];
 
   return {
@@ -53,13 +58,16 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         developer: game.developers[0]?.name,
         releaseDate: game.release_date,
         platforms: game.platforms.map((platform) => platform.name),
-        publisher: game.publisher?.name,
+        ...(!!game.publisher && {
+          publisher: game.publisher?.name,
+        }),
         rating: game.rating,
         genres: game.categories.map((category) => category.name),
       },
       upcomingGames: gamesMock,
       upcomingHighlight: highlightMock,
-      recommendedGames: gamesMock,
+      recommendedTitle: recommendedData.recommended?.section?.title,
+      recommendedGames: gamesMapper(recommendedData.recommended?.section?.games),
     },
     revalidate: 300,
   };

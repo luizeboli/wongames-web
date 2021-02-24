@@ -1,11 +1,8 @@
 import filterItemsMock from 'components/ExploreSidebar/mock';
 import { QueryGames, QueryGamesVariables } from 'graphql/generated/QueryGames';
-import { QueryRecommended } from 'graphql/generated/QueryRecommended';
 import { QUERY_GAMES } from 'graphql/queries/games';
-import { QUERY_RECOMMENDED } from 'graphql/queries/recommended';
 import GamesScreen, { GamesScreenProps } from 'screens/Games';
 import { initializeApollo } from 'utils/apollo';
-import { gamesMapper } from 'utils/mappers';
 
 export default function GamesPage(props: GamesScreenProps) {
   return <GamesScreen {...props} />;
@@ -21,8 +18,6 @@ export async function getStaticProps() {
     },
   });
 
-  const { data: recommendedData } = await apolloClient.query<QueryRecommended>({ query: QUERY_RECOMMENDED });
-
   return {
     props: {
       games: data.games.map((game) => ({
@@ -33,8 +28,6 @@ export async function getStaticProps() {
         price: game.price,
       })),
       filterItems: filterItemsMock,
-      recommendedTitle: recommendedData.recommended?.section?.title,
-      recommendedGames: gamesMapper(recommendedData.recommended?.section?.games),
     },
     revalidate: 300,
   };

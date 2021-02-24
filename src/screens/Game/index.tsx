@@ -18,6 +18,7 @@ export type GameScreenProps = {
   gameDetails: GameDetailsProps;
   upcomingGames: GameCardProps[];
   upcomingHighlight: HighlightProps;
+  recommendedTitle: string;
   recommendedGames: GameCardProps[];
 };
 
@@ -29,6 +30,7 @@ const Game = ({
   gameDetails,
   upcomingGames,
   upcomingHighlight,
+  recommendedTitle,
   recommendedGames,
 }: GameScreenProps) => (
   <Layout>
@@ -55,7 +57,7 @@ const Game = ({
       </S.SectionGameDetails>
 
       <Showcase title="Upcoming" games={upcomingGames} highlight={upcomingHighlight} />
-      <Showcase title="Recommended games" games={recommendedGames} />
+      <Showcase title={recommendedTitle} games={recommendedGames} />
     </S.Main>
   </Layout>
 );
