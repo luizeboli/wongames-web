@@ -12,7 +12,7 @@ export default function Index(props: HomeScreenProps) {
 export async function getStaticProps() {
   const apolloClient = initializeApollo();
   const {
-    data: { banners, newGames },
+    data: { banners, newGames, upcomingGames, freeGames },
   } = await apolloClient.query<QueryHome>({ query: QUERY_HOME });
 
   return {
@@ -29,22 +29,39 @@ export async function getStaticProps() {
           ribbonSize: banner.ribbon.size,
         }),
       })),
-      newGames: newGames.map((newGame) => ({
-        title: newGame.name,
-        slug: newGame.slug,
-        cover: newGame.cover?.url,
-        ...(!!newGame.developers.length && {
-          developer: newGame.developers[0].name,
+      newGames: newGames.map((game) => ({
+        title: game.name,
+        slug: game.slug,
+        cover: game.cover?.url,
+        ...(!!game.developers.length && {
+          developer: game.developers[0].name,
         }),
-        img: newGame.cover?.url,
-        price: newGame.price,
+        img: game.cover?.url,
+        price: game.price,
       })),
       mostPopularHighlight: highlightMock,
       mostPopularGames: gameCardSliderMock,
-      upcomingGames: gameCardSliderMock,
+      upcomingGames: upcomingGames.map((game) => ({
+        title: game.name,
+        slug: game.slug,
+        cover: game.cover?.url,
+        ...(!!game.developers.length && {
+          developer: game.developers[0].name,
+        }),
+        img: game.cover?.url,
+        price: game.price,
+      })),
       upcomingHighlight: highlightMock,
-      upcomingMoreGames: gameCardSliderMock,
-      freeGames: gameCardSliderMock,
+      freeGames: freeGames.map((game) => ({
+        title: game.name,
+        slug: game.slug,
+        cover: game.cover?.url,
+        ...(!!game.developers.length && {
+          developer: game.developers[0].name,
+        }),
+        img: game.cover?.url,
+        price: game.price,
+      })),
       freeHighlight: highlightMock,
     },
     revalidate: 60,
