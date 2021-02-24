@@ -18,6 +18,7 @@ const props: GameScreenProps = {
   gameDetails: gameDetailsMock as GameDetailsProps,
   upcomingGames: gamesMock,
   upcomingHighlight: highlightMock,
+  recommendedTitle: 'Título',
   recommendedGames: gamesMock,
 };
 

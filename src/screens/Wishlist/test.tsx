@@ -11,6 +11,7 @@ import Wishlist from '.';
 const props = {
   games: gamesMock,
   recommendedHighlight: highlightMock,
+  recommendedTitle: 'Título',
   recommendedGames: gamesMock,
 };
 
@@ -32,7 +33,7 @@ describe('<Wishlist />', () => {
   });
 
   it('should render empty when there are no games', () => {
-    renderWithTheme(<Wishlist recommendedGames={gamesMock} recommendedHighlight={highlightMock} />);
+    renderWithTheme(<Wishlist recommendedGames={gamesMock} recommendedHighlight={highlightMock} recommendedTitle="Título" />);
 
     expect(screen.queryByText(/population zero/i)).not.toBeInTheDocument();
 
