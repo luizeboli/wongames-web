@@ -7,6 +7,16 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum ENUM_COMPONENTPAGERIBBON_COLOR {
+  primary = "primary",
+  secondary = "secondary",
+}
+
+export enum ENUM_COMPONENTPAGERIBBON_SIZE {
+  normal = "normal",
+  small = "small",
+}
+
 export enum ENUM_GAME_RATING {
   br_0 = "br_0",
   br_10 = "br_10",
