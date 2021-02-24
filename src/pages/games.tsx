@@ -28,7 +28,7 @@ export async function getStaticProps() {
         price: game.price,
       })),
       filterItems: filterItemsMock,
-      revalidate: 300,
     },
+    revalidate: 300,
   };
 }

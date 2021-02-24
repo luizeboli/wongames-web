@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       upcomingGames: gamesMock,
       upcomingHighlight: highlightMock,
       recommendedGames: gamesMock,
-      revalidate: 300,
     },
+    revalidate: 300,
   };
 };
