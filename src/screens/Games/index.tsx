@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router';
+import { ParsedUrlQueryInput } from 'querystring';
 import { KeyboardArrowDown as ArrowDown } from '@styled-icons/material-outlined/KeyboardArrowDown';
 
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar';
@@ -5,6 +7,7 @@ import GameCard from 'components/GameCard';
 import { Grid } from 'components/Grid';
 import { useQueryGames } from 'graphql/queries/games';
 import Layout from 'screens/Layout';
+import { parseQueryStringToFilter, parseQueryStringToWhere } from 'utils/filter';
 
 import * as S from './styles';
 
@@ -13,10 +16,17 @@ export type GamesScreenProps = {
 };
 
 const GamesScreen = ({ filterItems }: GamesScreenProps) => {
-  const { data, loading, fetchMore } = useQueryGames({ variables: { limit: 15 } });
+  const { push, query } = useRouter();
+  const { data, loading, fetchMore } = useQueryGames({
+    variables: { limit: 15, where: parseQueryStringToWhere({ queryString: query, filterItems }), sort: query.sort as string | null },
+  });
 
-  const handleFilter = () => {
-    return;
+  const handleFilter = (items: ParsedUrlQueryInput) => {
+    // Push has an option to preserve scroll: { scroll: false }
+    push({
+      pathname: '/games',
+      query: items,
+    });
   };
 
   const handleShowMore = () => {
@@ -26,7 +36,11 @@ const GamesScreen = ({ filterItems }: GamesScreenProps) => {
   return (
     <Layout>
       <S.Main>
-        <ExploreSidebar items={filterItems} onFilter={handleFilter} />
+        <ExploreSidebar
+          initialValues={parseQueryStringToFilter({ queryString: query, filterItems })}
+          items={filterItems}
+          onFilter={handleFilter}
+        />
 
         {loading ? (
           <p>Loading</p>
