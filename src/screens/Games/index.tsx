@@ -23,6 +23,8 @@ const GamesScreen = ({ filterItems }: GamesScreenProps) => {
     variables: { limit: 15, where: parseQueryStringToWhere({ queryString: query, filterItems }), sort: query.sort as string | null },
   });
 
+  const hasMoreGames = (data?.games?.length || 0) < (data?.gamesConnection?.values?.length || 0);
+
   const handleFilter = (items: ParsedUrlQueryInput) => {
     // Push has an option to preserve scroll: { scroll: false }
     push({
@@ -60,16 +62,18 @@ const GamesScreen = ({ filterItems }: GamesScreenProps) => {
                 ))}
               </Grid>
 
-              <S.ShowMore>
-                {loading ? (
-                  <S.ShowMoreLoading src="/img/dots.svg" alt="Loading more games" />
-                ) : (
-                  <S.ShowMoreButton role="button" onClick={handleShowMore}>
-                    <p>Show More</p>
-                    <ArrowDown size={35} />
-                  </S.ShowMoreButton>
-                )}
-              </S.ShowMore>
+              {hasMoreGames && (
+                <S.ShowMore>
+                  {loading ? (
+                    <S.ShowMoreLoading src="/img/dots.svg" alt="Loading more games" />
+                  ) : (
+                    <S.ShowMoreButton role="button" onClick={handleShowMore}>
+                      <p>Show More</p>
+                      <ArrowDown size={35} />
+                    </S.ShowMoreButton>
+                  )}
+                </S.ShowMore>
+              )}
             </>
           ) : (
             <Empty title=":(" description="We didn't find any games with this filter" />
