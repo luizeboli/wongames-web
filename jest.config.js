@@ -9,6 +9,9 @@ module.exports = {
     '!src/styles/**/*.ts',
     '!src/utils/apollo.ts',
     '!src/types/**/*.ts',
+    '!src/graphql/**/*.ts',
+    '!src/**/mock.ts',
+    '!src/utils/apolloCache.ts'
   ],
   setupFilesAfterEnv: ['<rootDir>/.jest/setup.ts'],
   modulePaths: ['<rootDir>/src/', '<rootDir>/.jest/'],
