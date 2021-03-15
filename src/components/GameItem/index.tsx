@@ -12,7 +12,7 @@ export type PaymentInfoProps = {
 };
 
 export type GameItemProps = {
-  img: string;
+  img: string | undefined;
   title: string;
   price: number;
   downloadLink?: string;
@@ -22,9 +22,11 @@ export type GameItemProps = {
 const GameItem = ({ img, title, price, downloadLink, paymentInfo }: GameItemProps) => (
   <S.Container>
     <S.GameContent>
-      <S.ImageBox>
-        <img src={img} alt={title} />
-      </S.ImageBox>
+      {!!img && (
+        <S.ImageBox>
+          <img src={img} alt={title} />
+        </S.ImageBox>
+      )}
 
       <S.Content>
         <S.Title>
