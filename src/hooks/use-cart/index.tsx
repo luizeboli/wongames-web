@@ -22,6 +22,7 @@ export type CartContextData = {
   addToCart: (id: string) => void;
   removeFromCart: (id: string) => void;
   clearCart: () => void;
+  loading: boolean;
 };
 
 export const CartContextDefaultValues = {
@@ -32,6 +33,7 @@ export const CartContextDefaultValues = {
   addToCart: () => null,
   removeFromCart: () => null,
   clearCart: () => null,
+  loading: false,
 };
 
 export const CartContext = createContext<CartContextData>(CartContextDefaultValues);
@@ -55,7 +57,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     setStorageItem(CART_KEY, cartItems);
   }, [cartItems]);
 
-  const { data } = useQueryGames({
+  const { data, loading } = useQueryGames({
     skip: !cartItems.length,
     variables: {
       where: { id: cartItems },
@@ -93,6 +95,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
         addToCart,
         removeFromCart,
         clearCart,
+        loading,
       }}
     >
       {children}
