@@ -52,6 +52,7 @@ const GamesScreen = ({ filterItems }: GamesScreenProps) => {
               <Grid>
                 {data?.games.map((game) => (
                   <GameCard
+                    id={game.id}
                     key={game.name}
                     title={game.name}
                     slug={game.slug}
