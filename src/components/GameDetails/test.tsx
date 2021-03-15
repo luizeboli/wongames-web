@@ -1,6 +1,4 @@
-import { screen } from '@testing-library/react';
-
-import { renderWithTheme } from 'utils/tests/helpers';
+import { render, screen } from 'utils/test-utils';
 
 import gameMock from './mock';
 
@@ -8,7 +6,7 @@ import GameDetails from '.';
 
 describe('<GameDetails />', () => {
   it('should render the blocks', () => {
-    renderWithTheme(<GameDetails {...gameMock} />);
+    render(<GameDetails {...gameMock} />);
 
     expect(screen.getByRole('heading', { name: /developer/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /release date/i })).toBeInTheDocument();
@@ -19,7 +17,7 @@ describe('<GameDetails />', () => {
   });
 
   it('should render platform icons', () => {
-    renderWithTheme(<GameDetails {...gameMock} />);
+    render(<GameDetails {...gameMock} />);
 
     expect(screen.getByRole('img', { name: /windows/i })).toBeInTheDocument();
     expect(screen.getByRole('img', { name: /linux/i })).toBeInTheDocument();
@@ -27,31 +25,31 @@ describe('<GameDetails />', () => {
   });
 
   it('should rendser the formatted date', () => {
-    renderWithTheme(<GameDetails {...gameMock} />);
+    render(<GameDetails {...gameMock} />);
 
     expect(screen.getByText('Nov 21, 2020')).toBeInTheDocument();
   });
 
   it('should render free rating when BR0', () => {
-    renderWithTheme(<GameDetails {...gameMock} />);
+    render(<GameDetails {...gameMock} />);
 
     expect(screen.getByText(/free/i)).toBeInTheDocument();
   });
 
   it('should render 18+ rating when BR18', () => {
-    renderWithTheme(<GameDetails {...gameMock} rating="br_18" />);
+    render(<GameDetails {...gameMock} rating="br_18" />);
 
     expect(screen.getByText(/18\+/)).toBeInTheDocument();
   });
 
   it('should render a list of genres', () => {
-    renderWithTheme(<GameDetails {...gameMock} />);
+    render(<GameDetails {...gameMock} />);
 
     expect(screen.getByText(/role-playing \/ action \/ adventure/i)).toBeInTheDocument();
   });
 
   it('should render the publisher', () => {
-    renderWithTheme(<GameDetails {...gameMock} />);
+    render(<GameDetails {...gameMock} />);
 
     expect(screen.getByText(/publigamer/i)).toBeInTheDocument();
   });

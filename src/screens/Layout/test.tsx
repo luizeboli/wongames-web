@@ -1,6 +1,4 @@
-import { screen } from '@testing-library/react';
-
-import { renderWithTheme } from 'utils/tests/helpers';
+import { render, screen } from 'utils/test-utils';
 
 import Layout from '.';
 
@@ -24,7 +22,7 @@ jest.mock('components/Footer', () => {
 
 describe('<Layout />', () => {
   it('should render menu, children and footer', () => {
-    renderWithTheme(
+    render(
       <Layout>
         <h1>Heading</h1>
       </Layout>,

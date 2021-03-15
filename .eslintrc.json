@@ -51,7 +51,7 @@
           {
             "groups": [
               ["^react", "^\\w", "^@+\\w"],
-              ["^(components|styles|utils|graphql|types|screens|pages)"],
+              ["^(components|styles|utils|graphql|types|screens|pages|hooks)"],
               ["^\\.\\./", "^\\./"],
               ["^\\u0000"]
             ]

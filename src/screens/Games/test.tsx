@@ -1,10 +1,9 @@
 import { MockedProvider } from '@apollo/client/testing';
-import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import filterItemsMock from 'components/ExploreSidebar/mock';
 import apolloCache from 'utils/apolloCache';
-import { renderWithTheme } from 'utils/tests/helpers';
+import { render, screen } from 'utils/test-utils';
 
 import { fetchMoreMock, gamesMock, noGamesMock } from './mock';
 
@@ -31,7 +30,7 @@ jest.mock('screens/Layout', () => ({
 
 describe('<Games />', () => {
   it('should render sections', async () => {
-    renderWithTheme(
+    render(
       <MockedProvider mocks={[gamesMock]} addTypename={false}>
         <Games filterItems={filterItemsMock} />
       </MockedProvider>,
@@ -46,7 +45,7 @@ describe('<Games />', () => {
   });
 
   it('should render more games when show more button is clicked', async () => {
-    renderWithTheme(
+    render(
       // Should pass mocks data in the same order as requests are done
       <MockedProvider mocks={[gamesMock, fetchMoreMock]} cache={apolloCache}>
         <Games filterItems={filterItemsMock} />
@@ -61,7 +60,7 @@ describe('<Games />', () => {
   });
 
   it('should push router when selecting a filter', async () => {
-    renderWithTheme(
+    render(
       <MockedProvider mocks={[gamesMock, fetchMoreMock]} cache={apolloCache}>
         <Games filterItems={filterItemsMock} />
       </MockedProvider>,
@@ -75,7 +74,7 @@ describe('<Games />', () => {
   });
 
   it('should render empty when no games found', async () => {
-    renderWithTheme(
+    render(
       <MockedProvider mocks={[noGamesMock]} addTypename={false}>
         <Games filterItems={filterItemsMock} />
       </MockedProvider>,

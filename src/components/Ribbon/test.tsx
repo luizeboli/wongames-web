@@ -1,18 +1,16 @@
-import { screen } from '@testing-library/react';
-
-import { renderWithTheme } from 'utils/tests/helpers';
+import { render, screen } from 'utils/test-utils';
 
 import Ribbon from '.';
 
 describe('<Ribbon />', () => {
   it('should render the text correctly', () => {
-    renderWithTheme(<Ribbon>Hot deal</Ribbon>);
+    render(<Ribbon>Hot deal</Ribbon>);
 
     expect(screen.getByText(/hot deal/i)).toBeInTheDocument();
   });
 
   it('should render with primary color by default', () => {
-    renderWithTheme(<Ribbon>Hot deal</Ribbon>);
+    render(<Ribbon>Hot deal</Ribbon>);
 
     expect(screen.getByText(/hot deal/i)).toHaveStyle({
       backgroundColor: '#f231a5',
@@ -20,7 +18,7 @@ describe('<Ribbon />', () => {
   });
 
   it('should render with secondary color', () => {
-    renderWithTheme(<Ribbon color="secondary">Hot deal</Ribbon>);
+    render(<Ribbon color="secondary">Hot deal</Ribbon>);
 
     expect(screen.getByText(/hot deal/i)).toHaveStyle({
       backgroundColor: '#3cd3c1',
@@ -28,7 +26,7 @@ describe('<Ribbon />', () => {
   });
 
   it('should render the normal size by default', () => {
-    renderWithTheme(<Ribbon>Hot deal</Ribbon>);
+    render(<Ribbon>Hot deal</Ribbon>);
 
     expect(screen.getByText(/hot deal/i)).toHaveStyle({
       height: '3.6rem',
@@ -37,7 +35,7 @@ describe('<Ribbon />', () => {
   });
 
   it('should render the small size', () => {
-    renderWithTheme(<Ribbon size="small">Hot deal</Ribbon>);
+    render(<Ribbon size="small">Hot deal</Ribbon>);
 
     expect(screen.getByText(/hot deal/i)).toHaveStyle({
       height: '2.6rem',

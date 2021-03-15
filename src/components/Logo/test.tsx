@@ -1,13 +1,11 @@
-import { screen } from '@testing-library/react';
-
-import { renderWithTheme } from 'utils/tests/helpers';
+import { render, screen } from 'utils/test-utils';
 
 import Logo from '.';
 
 describe('<Logo />', () => {
   it('should render a white label by default', () => {
     // Render the component
-    renderWithTheme(<Logo />);
+    render(<Logo />);
 
     // Select element to be tested
     // Assert
@@ -17,13 +15,13 @@ describe('<Logo />', () => {
   });
 
   it('should render the logo with id passed', () => {
-    const { container } = renderWithTheme(<Logo id="myId" />);
+    const { container } = render(<Logo id="myId" />);
 
     expect(container.querySelector('#paint0_linear_myId')).toBeInTheDocument();
   });
 
   it('should render a black label when color is passed', () => {
-    renderWithTheme(<Logo color="black" />);
+    render(<Logo color="black" />);
 
     expect(screen.getByLabelText(/Won Games/i).parentElement).toHaveStyle({
       color: '#030517',
@@ -31,7 +29,7 @@ describe('<Logo />', () => {
   });
 
   it('should render a normal logo when size is default', () => {
-    renderWithTheme(<Logo size="large" />);
+    render(<Logo size="large" />);
 
     expect(screen.getByLabelText(/Won Games/i).parentElement).toHaveStyle({
       width: '20rem',
@@ -39,7 +37,7 @@ describe('<Logo />', () => {
   });
 
   it('should render a bigger logo', () => {
-    renderWithTheme(<Logo size="large" />);
+    render(<Logo size="large" />);
 
     expect(screen.getByLabelText(/Won Games/i).parentElement).toHaveStyle({
       width: '20rem',
@@ -47,7 +45,7 @@ describe('<Logo />', () => {
   });
 
   it('should render a bigger logo without text and with pointer-events none on SVG if hideOnMobile is true', () => {
-    renderWithTheme(<Logo hideTextOnMobile />);
+    render(<Logo hideTextOnMobile />);
 
     const containerElement = screen.getByLabelText(/Won Games/i).parentElement;
 

@@ -1,13 +1,11 @@
-import { screen } from '@testing-library/react';
-
-import { renderWithTheme } from 'utils/tests/helpers';
+import { render, screen } from 'utils/test-utils';
 
 import Heading from '.';
 
 describe('<Heading />', () => {
   it('should render a white heading by default', () => {
     // Render the component
-    renderWithTheme(<Heading>Won Games Title</Heading>);
+    render(<Heading>Won Games Title</Heading>);
 
     // Select element to be tested
     // Assert
@@ -17,7 +15,7 @@ describe('<Heading />', () => {
   });
 
   it('should render a black heading when color is passed', () => {
-    renderWithTheme(<Heading color="black">Won Games Title</Heading>);
+    render(<Heading color="black">Won Games Title</Heading>);
 
     expect(screen.getByRole('heading', { name: /Won Games Title/i })).toHaveStyle({
       color: '#030517',
@@ -25,7 +23,7 @@ describe('<Heading />', () => {
   });
 
   it('should render a heading with a line to the left side', () => {
-    renderWithTheme(<Heading lineLeft>Won Games Title</Heading>);
+    render(<Heading lineLeft>Won Games Title</Heading>);
 
     expect(screen.getByRole('heading', { name: /Won Games Title/i })).toHaveStyle({
       'padding-left': '0.8rem',
@@ -34,7 +32,7 @@ describe('<Heading />', () => {
   });
 
   it('should render a heading with a bottom line', () => {
-    renderWithTheme(<Heading lineBottom>Won Games Title</Heading>);
+    render(<Heading lineBottom>Won Games Title</Heading>);
 
     expect(screen.getByRole('heading', { name: /Won Games Title/i })).toHaveStyleRule('border-bottom', '0.5rem solid #F231A5', {
       modifier: '::after',
@@ -42,7 +40,7 @@ describe('<Heading />', () => {
   });
 
   it('should render a small sized heading', () => {
-    renderWithTheme(<Heading size="small">Won Games Title</Heading>);
+    render(<Heading size="small">Won Games Title</Heading>);
 
     expect(screen.getByRole('heading', { name: /Won Games Title/i })).toHaveStyle({
       'font-size': '1.6rem',
@@ -54,7 +52,7 @@ describe('<Heading />', () => {
   });
 
   it('should render a huge sized heading', () => {
-    renderWithTheme(<Heading size="huge">Won Games Title</Heading>);
+    render(<Heading size="huge">Won Games Title</Heading>);
 
     expect(screen.getByRole('heading', { name: /Won Games Title/i })).toHaveStyle({
       'font-size': '5.2rem',
@@ -62,7 +60,7 @@ describe('<Heading />', () => {
   });
 
   it('should render a heading with a primary color bottom line', () => {
-    renderWithTheme(
+    render(
       <Heading lineColor="primary" lineBottom lineLeft>
         Won Games Title
       </Heading>,
@@ -78,7 +76,7 @@ describe('<Heading />', () => {
   });
 
   it('should render a heading with a secondary color bottom line', () => {
-    renderWithTheme(
+    render(
       <Heading lineColor="secondary" lineBottom lineLeft>
         Won Games Title
       </Heading>,

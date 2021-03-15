@@ -1,8 +1,6 @@
-import { screen } from '@testing-library/react';
-
 import gamesMock from 'components/GameCardSlider/mock';
 import highlightMock from 'components/Highlight/mock';
-import { renderWithTheme } from 'utils/tests/helpers';
+import { render, screen } from 'utils/test-utils';
 
 import 'matchMediaMock';
 
@@ -24,7 +22,7 @@ jest.mock('components/Showcase', () => ({
 
 describe('<Wishlist />', () => {
   it('should render correctly', () => {
-    renderWithTheme(<Wishlist {...props} />);
+    render(<Wishlist {...props} />);
 
     expect(screen.getByRole('heading', { name: /wishlist/i })).toBeInTheDocument();
 
@@ -33,7 +31,7 @@ describe('<Wishlist />', () => {
   });
 
   it('should render empty when there are no games', () => {
-    renderWithTheme(<Wishlist recommendedGames={gamesMock} recommendedHighlight={highlightMock} recommendedTitle="Título" />);
+    render(<Wishlist recommendedGames={gamesMock} recommendedHighlight={highlightMock} recommendedTitle="Título" />);
 
     expect(screen.queryByText(/population zero/i)).not.toBeInTheDocument();
 

@@ -1,6 +1,4 @@
-import { screen } from '@testing-library/react';
-
-import { renderWithTheme } from 'utils/tests/helpers';
+import { render, screen } from 'utils/test-utils';
 
 import * as S from './styles';
 
@@ -16,7 +14,7 @@ const props = {
 
 describe('<Highlight />', () => {
   it('should render correctly', () => {
-    const { container } = renderWithTheme(<Highlight {...props} />);
+    const { container } = render(<Highlight {...props} />);
 
     expect(screen.getByRole('heading', { name: /Heading 1/i })).toBeInTheDocument();
 
@@ -28,7 +26,7 @@ describe('<Highlight />', () => {
   });
 
   it('should render background image', () => {
-    const { container } = renderWithTheme(<Highlight {...props} />);
+    const { container } = render(<Highlight {...props} />);
 
     expect(container.firstChild).toHaveStyle({
       backgroundImage: `url(${props.backgroundImage})`,
@@ -36,13 +34,13 @@ describe('<Highlight />', () => {
   });
 
   it('should render float image', () => {
-    renderWithTheme(<Highlight {...props} floatImage="/float-image.png" />);
+    render(<Highlight {...props} floatImage="/float-image.png" />);
 
     expect(screen.getByRole('img', { name: props.title })).toHaveAttribute('src', '/float-image.png');
   });
 
   it('should render a float image aligned on left by default', () => {
-    const { container } = renderWithTheme(<Highlight {...props} floatImage="/float-image.png" />);
+    const { container } = render(<Highlight {...props} floatImage="/float-image.png" />);
 
     expect(container.firstChild).toHaveStyleRule('grid-template-areas', "'floatimage container'");
 
@@ -52,7 +50,7 @@ describe('<Highlight />', () => {
   });
 
   it('should render a float image aligned on right', () => {
-    const { container } = renderWithTheme(<Highlight {...props} floatImage="/float-image.png" alignment="left" />);
+    const { container } = render(<Highlight {...props} floatImage="/float-image.png" alignment="left" />);
 
     expect(container.firstChild).toHaveStyleRule('grid-template-areas', "'container floatimage'");
 
