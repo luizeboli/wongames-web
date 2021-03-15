@@ -2,8 +2,10 @@ import { createContext, ReactNode, useContext, useEffect, useState } from 'react
 
 import { useQueryGames } from 'graphql/queries/games';
 import formatPrice from 'utils/formatPrice';
-import { getStorageItem } from 'utils/localStorage';
+import { getStorageItem, setStorageItem } from 'utils/localStorage';
 import { cartMapper } from 'utils/mappers';
+
+const CART_KEY = 'cartItems';
 
 type CartItem = {
   id: string;
@@ -16,12 +18,20 @@ export type CartContextData = {
   items: CartItem[];
   quantity: number;
   total: string;
+  isInCart: (id: string) => boolean;
+  addToCart: (id: string) => void;
+  removeFromCart: (id: string) => void;
+  clearCart: () => void;
 };
 
 export const CartContextDefaultValues = {
   items: [],
   quantity: 0,
   total: '$0.00',
+  isInCart: () => false,
+  addToCart: () => null,
+  removeFromCart: () => null,
+  clearCart: () => null,
 };
 
 export const CartContext = createContext<CartContextData>(CartContextDefaultValues);
@@ -34,12 +44,16 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   const [cartItems, setCartItems] = useState<string[]>([]);
 
   useEffect(() => {
-    const data = getStorageItem('cartItems');
+    const data = getStorageItem(CART_KEY);
 
     if (data) {
       setCartItems(data);
     }
   }, []);
+
+  useEffect(() => {
+    setStorageItem(CART_KEY, cartItems);
+  }, [cartItems]);
 
   const { data } = useQueryGames({
     skip: !cartItems.length,
@@ -53,8 +67,34 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       return acc + game.price;
     }, 0) || 0;
 
+  const isInCart = (id: string) => (id ? cartItems.includes(id) : false);
+
+  const addToCart = (id: string) => {
+    const newCartItems = [...cartItems, id];
+    setCartItems(newCartItems);
+  };
+
+  const removeFromCart = (id: string) => {
+    const newCartItems = cartItems.filter((cartId) => cartId !== id);
+    setCartItems(newCartItems);
+  };
+
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   return (
-    <CartContext.Provider value={{ items: cartMapper(data?.games), quantity: cartItems.length, total: formatPrice(totalPrice) }}>
+    <CartContext.Provider
+      value={{
+        items: cartMapper(data?.games),
+        quantity: cartItems.length,
+        total: formatPrice(totalPrice),
+        isInCart,
+        addToCart,
+        removeFromCart,
+        clearCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
