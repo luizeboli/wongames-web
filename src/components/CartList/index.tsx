@@ -14,8 +14,6 @@ export type CartListProps = {
 const CartList = ({ hasButton = false }: CartListProps) => {
   const { items, total } = useCart();
 
-  console.log({ total });
-
   return (
     <S.Container isEmpty={!items.length}>
       {items.length ? (
