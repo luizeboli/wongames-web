@@ -28,7 +28,9 @@ const CartList = ({ hasButton = false }: CartListProps) => {
       {items.length ? (
         <>
           {items.map((item) => (
-            <GameItem key={item.title} {...item} />
+            <S.GamesList key={item.title}>
+              <GameItem {...item} />
+            </S.GamesList>
           ))}
 
           <S.Footer>
