@@ -5,7 +5,7 @@ import { signIn } from 'next-auth/client';
 import { Email, Lock } from '@styled-icons/material-outlined';
 
 import Button from 'components/Button';
-import { FormLink, FormWrapper } from 'components/Form';
+import { FormLink, FormLoading, FormWrapper } from 'components/Form';
 import TextField from 'components/TextField';
 
 import * as S from './styles';
@@ -15,6 +15,8 @@ const FormSignIn = () => {
     email: '',
     password: '',
   });
+  const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
 
   const handleInput = (inputName: string, value: string) => {
@@ -22,6 +24,7 @@ const FormSignIn = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    setIsLoading(true);
     e.preventDefault();
 
     const result = await signIn('credentials', { ...values, redirect: false, callbackUrl: '/' });
@@ -31,6 +34,7 @@ const FormSignIn = () => {
     }
 
     console.error('erro');
+    setIsLoading(false);
   };
 
   return (
@@ -52,8 +56,8 @@ const FormSignIn = () => {
 
       <S.ForgotPassword href="#">Forgot your password?</S.ForgotPassword>
 
-      <Button type="submit" size="large" fullWidth>
-        Sign In
+      <Button type="submit" size="large" disabled={isLoading} fullWidth>
+        {isLoading ? <FormLoading /> : 'Sign In'}
       </Button>
 
       <FormLink>
