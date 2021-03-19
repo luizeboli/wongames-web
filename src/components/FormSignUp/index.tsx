@@ -16,7 +16,7 @@ const FormSignUp = () => {
     password: '',
   });
 
-  const [createUser, { data }] = useMutation(MUTATION_REGISTER);
+  const [createUser] = useMutation(MUTATION_REGISTER);
 
   const handleInput = (inputName: string, value: string) => {
     setValues((prev) => ({ ...prev, [inputName]: value }));
