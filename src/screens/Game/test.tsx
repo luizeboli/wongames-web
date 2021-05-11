@@ -21,6 +21,13 @@ const props: GameScreenProps = {
   recommendedGames: gamesMock,
 };
 
+jest.mock('screens/Layout', () => ({
+  _esModule: true,
+  default: function Mock({ children }: { children: React.ReactNode }) {
+    return <div data-testid="Mock Layout">{children}</div>;
+  },
+}));
+
 jest.mock('components/Menu', () => ({
   __esModule: true,
   default: function Mock() {

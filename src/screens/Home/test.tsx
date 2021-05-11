@@ -22,6 +22,13 @@ const props = {
   freeGamesTitle: 'Título',
 };
 
+jest.mock('screens/Layout', () => ({
+  _esModule: true,
+  default: function Mock({ children }: { children: React.ReactNode }) {
+    return <div data-testid="Mock Layout">{children}</div>;
+  },
+}));
+
 jest.mock('components/Showcase', () => {
   return {
     __esModule: true,
