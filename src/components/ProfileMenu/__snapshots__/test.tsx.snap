@@ -157,7 +157,7 @@ exports[`<ProfileMenu /> should render the menu 1`] = `
   </a>
   <a
     class="c1"
-    href="/logout"
+    role="button"
     title="Sign out"
   >
     <svg
