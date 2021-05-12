@@ -20,7 +20,6 @@ const FormForgotPassword = () => {
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
-    console.log('submit');
     event.preventDefault();
     setLoading(true);
 
