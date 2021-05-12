@@ -48,7 +48,7 @@ const FormSignUp = () => {
 
     setFieldError({});
 
-    createUser({ variables: { input: { ...values } } });
+    createUser({ variables: { input: { username: values.username, email: values.email, password: values.password } } });
   };
 
   return (
