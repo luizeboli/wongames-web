@@ -9,8 +9,10 @@ let apolloClient: ApolloClient<NormalizedCacheObject | null>;
 
 function createApolloClient(session?: Session | null) {
   const httpLink = new HttpLink({ uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql` });
-  const authLink = setContext((_, { headers }) => {
-    const Authorization = session?.jwt ? `Bearer ${session.jwt}` : '';
+  const authLink = setContext((_, { headers, session: clientSession }) => {
+    const jwt = session?.jwt || clientSession?.jwt || '';
+    const Authorization = jwt ? `Bearer ${jwt}` : '';
+
     return { headers: { ...headers, Authorization } };
   });
 
