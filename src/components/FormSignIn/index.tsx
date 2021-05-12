@@ -20,7 +20,7 @@ const FormSignIn = () => {
   const [formError, setFormError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const router = useRouter();
+  const { push, query } = useRouter();
 
   const handleInput = (inputName: string, value: string) => {
     setValues((prev) => ({ ...prev, [inputName]: value }));
@@ -40,10 +40,14 @@ const FormSignIn = () => {
 
     setFieldError({});
 
-    const result = await signIn('credentials', { ...values, redirect: false, callbackUrl: '/' });
+    const result = await signIn('credentials', {
+      ...values,
+      redirect: false,
+      callbackUrl: `${window.location.origin}${query?.callbackUrl}`,
+    });
 
     if (result?.url) {
-      return router.push(result.url);
+      return push(result.url);
     }
 
     setFormError('username or password is invalid');
