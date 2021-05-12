@@ -7,11 +7,10 @@ import apolloCache from './apolloCache';
 
 let apolloClient: ApolloClient<NormalizedCacheObject | null>;
 
-function createApolloClient(session?: Session) {
+function createApolloClient(session?: Session | null) {
   const httpLink = new HttpLink({ uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql` });
   const authLink = setContext((_, { headers }) => {
-    const Authorization = session?.accessToken ? `Bearer ${session.accessToken}` : '';
-
+    const Authorization = session?.jwt ? `Bearer ${session.jwt}` : '';
     return { headers: { ...headers, Authorization } };
   });
 
@@ -22,7 +21,7 @@ function createApolloClient(session?: Session) {
   });
 }
 
-export function initializeApollo(initialState = null, session?: Session) {
+export function initializeApollo(initialState = null, session?: Session | null) {
   const apolloClientGlobal = apolloClient ?? createApolloClient(session);
 
   if (initialState) {
@@ -37,7 +36,7 @@ export function initializeApollo(initialState = null, session?: Session) {
   return apolloClient;
 }
 
-export function useApollo(initialState = null, session?: Session) {
+export function useApollo(initialState = null, session?: Session | null) {
   const store = useMemo(() => initializeApollo(initialState, session), [initialState, session]);
   return store;
 }
