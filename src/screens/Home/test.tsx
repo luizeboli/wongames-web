@@ -23,7 +23,7 @@ const props = {
 };
 
 jest.mock('screens/Layout', () => ({
-  _esModule: true,
+  __esModule: true,
   default: function Mock({ children }: { children: React.ReactNode }) {
     return <div data-testid="Mock Layout">{children}</div>;
   },
