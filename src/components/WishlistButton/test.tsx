@@ -12,7 +12,7 @@ useSession.mockImplementation(() => [session]);
 
 describe('<WishlistButton />', () => {
   it('should render a button to add in wishlist', () => {
-    render(<WishlistButton id="1" />);
+    render(<WishlistButton gameId="1" />);
 
     expect(screen.getByLabelText(/add to wishlist/i)).toBeInTheDocument();
   });
@@ -23,7 +23,7 @@ describe('<WishlistButton />', () => {
       isInWishlist: () => true,
     };
 
-    render(<WishlistButton id="1" />, { wishlistProviderProps });
+    render(<WishlistButton gameId="1" />, { wishlistProviderProps });
 
     expect(screen.getByLabelText(/remove from wishlist/i)).toBeInTheDocument();
   });
@@ -34,7 +34,7 @@ describe('<WishlistButton />', () => {
       isInWishlist: () => false,
     };
 
-    render(<WishlistButton id="1" hasText />, { wishlistProviderProps });
+    render(<WishlistButton gameId="1" hasText />, { wishlistProviderProps });
 
     expect(screen.getByText(/add to wishlist/i)).toBeInTheDocument();
   });
@@ -45,7 +45,7 @@ describe('<WishlistButton />', () => {
       isInWishlist: () => true,
     };
 
-    render(<WishlistButton id="1" hasText />, { wishlistProviderProps });
+    render(<WishlistButton gameId="1" hasText />, { wishlistProviderProps });
 
     expect(screen.getByText(/remove from wishlist/i)).toBeInTheDocument();
   });
@@ -60,7 +60,7 @@ describe('<WishlistButton />', () => {
       isInWishlist: () => true,
     };
 
-    render(<WishlistButton id="1" />, { wishlistProviderProps });
+    render(<WishlistButton gameId="1" />, { wishlistProviderProps });
 
     expect(screen.queryByText(/remove from wishlist/i)).not.toBeInTheDocument();
   });
@@ -71,7 +71,7 @@ describe('<WishlistButton />', () => {
       addToWishlist: jest.fn(),
     };
 
-    render(<WishlistButton id="1" hasText />, { wishlistProviderProps });
+    render(<WishlistButton gameId="1" hasText />, { wishlistProviderProps });
 
     act(() => {
       userEvent.click(screen.getByText(/add to wishlist/i));
@@ -87,7 +87,7 @@ describe('<WishlistButton />', () => {
       removeFromWishlist: jest.fn(),
     };
 
-    render(<WishlistButton id="1" hasText />, { wishlistProviderProps });
+    render(<WishlistButton gameId="1" hasText />, { wishlistProviderProps });
 
     act(() => {
       userEvent.click(screen.getByText(/remove from wishlist/i));
