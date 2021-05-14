@@ -1,5 +1,7 @@
 import { render, screen } from 'utils/test-utils';
 
+import 'session.mock.ts';
+
 import GameInfo from '.';
 
 const props = {
@@ -22,6 +24,6 @@ describe('<GameInfo />', () => {
     render(<GameInfo {...props} />);
 
     expect(screen.getByRole('button', { name: /add to cart/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /wishlist/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /add to wishlist/i })).toBeInTheDocument();
   });
 });

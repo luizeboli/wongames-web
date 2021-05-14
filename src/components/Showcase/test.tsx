@@ -3,6 +3,7 @@ import highlightMock from 'components/Highlight/mock';
 import { render, screen } from 'utils/test-utils';
 
 import 'matchMediaMock';
+import 'session.mock.ts';
 
 import Showcase from '.';
 

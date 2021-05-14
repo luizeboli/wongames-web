@@ -2,6 +2,7 @@ import { render, screen } from 'utils/test-utils';
 
 import items from './mock';
 
+import 'session.mock.ts';
 import 'matchMediaMock';
 
 import GameCardSlider from '.';

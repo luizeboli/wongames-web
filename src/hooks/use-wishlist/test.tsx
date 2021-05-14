@@ -5,12 +5,9 @@ import { act, waitFor } from 'utils/test-utils';
 
 import { createWishlistMock, removeWishlistMock, updateWishlistMock, wishlistMappedGames, wishlistMock } from './mock';
 
-import WishlistProvider, { useWishlist } from '.';
+import 'session.mock.ts';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const useSession = jest.spyOn(require('next-auth/client'), 'useSession');
-const session = { jwt: '123', user: { email: 'test@email.com' } };
-useSession.mockImplementation(() => [session]);
+import WishlistProvider, { useWishlist } from '.';
 
 describe('useWishlist', () => {
   it('should return wishlist items', async () => {

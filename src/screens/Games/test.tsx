@@ -7,6 +7,8 @@ import { render, screen } from 'utils/test-utils';
 
 import { fetchMoreMock, gamesMock, noGamesMock } from './mock';
 
+import 'session.mock.ts';
+
 import Games from '.';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
