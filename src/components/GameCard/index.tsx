@@ -11,8 +11,8 @@ export type GameCardProps = {
   id: string;
   title: string;
   slug: string;
-  developer: string;
-  img: string;
+  developer?: string;
+  img?: string;
   price: number;
   promotionalPrice?: number;
   favorite?: boolean;

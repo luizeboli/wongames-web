@@ -1,18 +1,45 @@
 import { MockedProvider } from '@apollo/client/testing';
 import { renderHook } from '@testing-library/react-hooks';
 
-import { wishlistMock } from './mock';
+import { wishlistItems, wishlistMock } from './mock';
 
 import WishlistProvider, { useWishlist } from '.';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const useSession = jest.spyOn(require('next-auth/client'), 'useSession');
+const session = { jwt: 123, user: { email: 'test@email.com' } };
+useSession.mockImplementation(() => [session]);
+
 describe('useWishlist', () => {
-  it('should return wishlist items', () => {
+  it('should return wishlist items', async () => {
     const wrapper = ({ children }: { children: React.ReactNode }) => (
       <MockedProvider mocks={[wishlistMock]}>
         <WishlistProvider>{children}</WishlistProvider>
       </MockedProvider>
     );
 
-    const { result } = renderHook(() => useWishlist(), { wrapper });
+    const { result, waitForNextUpdate } = renderHook(() => useWishlist(), { wrapper });
+
+    expect(result.current.loading).toBe(true);
+
+    await waitForNextUpdate();
+
+    expect(result.current.items).toStrictEqual([wishlistItems[0], wishlistItems[1]]);
+  });
+
+  it('should check if game is in wishlist', async () => {
+    const wrapper = ({ children }: { children: React.ReactNode }) => (
+      <MockedProvider mocks={[wishlistMock]}>
+        <WishlistProvider>{children}</WishlistProvider>
+      </MockedProvider>
+    );
+
+    const { result, waitForNextUpdate } = renderHook(() => useWishlist(), { wrapper });
+
+    await waitForNextUpdate();
+
+    expect(result.current.isInWishlist('1')).toBe(true);
+    expect(result.current.isInWishlist('2')).toBe(true);
+    expect(result.current.isInWishlist('5')).toBe(false);
   });
 });

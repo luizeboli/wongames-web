@@ -7,7 +7,7 @@ const gameMock = (id: string) => ({
   price: 10.5,
   developers: [{ name: 'sample developer' }],
   cover: {
-    src: '/sample-game.jpg',
+    url: '/sample-game.jpg',
   },
   __typename: 'Game',
 });
@@ -32,29 +32,4 @@ export const wishlistMock = {
   },
 };
 
-export const wishlistItems = [
-  {
-    id: '1',
-    title: 'Sample Game 1',
-    slug: 'sample-game-1',
-    developer: 'sample developer',
-    img: 'http://localhost:1337/sample-game.jpg',
-    price: 10.5,
-  },
-  {
-    id: '2',
-    title: 'Sample Game 2',
-    slug: 'sample-game-2',
-    developer: 'sample developer',
-    img: 'http://localhost:1337/sample-game.jpg',
-    price: 10.5,
-  },
-  {
-    id: '3',
-    title: 'Sample Game 3',
-    slug: 'sample-game-3',
-    developer: 'sample developer',
-    img: 'http://localhost:1337/sample-game.jpg',
-    price: 10.5,
-  },
-];
+export const wishlistItems = [gameMock('1'), gameMock('2'), gameMock('3')];
