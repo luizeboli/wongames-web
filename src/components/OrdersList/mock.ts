@@ -1,5 +1,6 @@
 export default [
   {
+    id: '1',
     img: 'https://source.unsplash.com/user/willianjusten/151x70',
     title: 'Red Dead Redemption 2',
     slug: 'red-dead-redemption-2',
@@ -13,6 +14,7 @@ export default [
     },
   },
   {
+    id: '2',
     img: 'https://source.unsplash.com/user/willianjusten/151x70',
     title: 'Red Dead Redemption 2',
     slug: 'red-dead-redemption-2',

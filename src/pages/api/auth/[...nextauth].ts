@@ -1,6 +1,8 @@
 import NextAuth from 'next-auth';
-import { GenericObject, NextApiRequest, NextApiResponse } from 'next-auth/_utils';
+import { NextApiRequest, NextApiResponse } from 'next-auth/internals/utils';
 import Providers from 'next-auth/providers';
+
+type GenericObject = { [key: string]: unknown };
 
 const options = {
   pages: {
@@ -10,7 +12,7 @@ const options = {
     Providers.Credentials({
       name: 'Sign-In',
       credentials: {},
-      async authorize({ email, password }) {
+      async authorize({ email, password }: { email: string; password: string }) {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/local`, {
           method: 'POST',
           body: new URLSearchParams({ identifier: email, password }),

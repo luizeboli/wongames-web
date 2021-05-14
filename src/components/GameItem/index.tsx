@@ -13,7 +13,7 @@ export type PaymentInfoProps = {
 
 export type GameItemProps = {
   id: string;
-  img: string;
+  img?: string;
   title: string;
   price: string;
   downloadLink?: string;
