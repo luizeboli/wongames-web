@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import Button from 'components/Button';
 import Ribbon, { RibbonColors, RibbonSizes } from 'components/Ribbon';
 
@@ -21,7 +23,10 @@ const Banner = ({ img, title, subtitle, buttonLabel, buttonLink, ribbon, ribbonS
         {ribbon}
       </Ribbon>
     )}
-    <S.Image src={img} role="image" aria-label={title} />
+
+    <S.ImageWrapper>
+      <Image src={img} alt={title} layout="fill" objectFit="cover" />
+    </S.ImageWrapper>
 
     <S.Caption>
       <S.Title>{title}</S.Title>

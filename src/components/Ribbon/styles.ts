@@ -46,6 +46,7 @@ export const Container = styled.div<Omit<RibbonProps, 'children'>>`
     align-items: center;
     font-weight: ${theme.font.bold};
     color: ${theme.colors.white};
+    z-index: ${theme.layers.base};
 
     &::before {
       content: '';
