@@ -74,6 +74,7 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
 
     if (freeGames) {
       saveOrder();
+      clearCart();
       router.push('/success');
       return;
     }
