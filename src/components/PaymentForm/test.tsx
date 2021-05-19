@@ -82,7 +82,7 @@ describe('<PaymentForm />', () => {
     expect(createPaymentIntent).toHaveBeenCalled();
 
     await waitFor(() => {
-      expect(screen.getByText(/Only free games, click buy and enjoy!/i)).toBeInTheDocument();
+      expect(screen.getByText(/Only free games in the cart, click buy and enjoy/i)).toBeInTheDocument();
     });
   });
 
