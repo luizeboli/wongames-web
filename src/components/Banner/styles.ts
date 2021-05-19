@@ -20,10 +20,6 @@ export const Container = styled.div`
   `}
 `;
 
-type ImageProps = {
-  src: string;
-};
-
 export const ImageWrapper = styled.div`
   ${({ theme }) => css`
     width: 100%;
