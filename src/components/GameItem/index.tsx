@@ -6,8 +6,8 @@ import * as S from './styles';
 
 export type PaymentInfoProps = {
   number: string;
-  flag: string;
-  img: string;
+  flag: string | null;
+  img: string | null;
   purchaseDate: string;
 };
 
@@ -51,7 +51,7 @@ const GameItem = ({ id, img, title, price, downloadLink, paymentInfo }: GameItem
           <p>{paymentInfo.purchaseDate}</p>
           <S.CardInfo>
             <span>{paymentInfo.number}</span>
-            {!!paymentInfo.img && <img src={paymentInfo.img} alt={paymentInfo.flag} />}
+            {!!paymentInfo.img && !!paymentInfo.flag && <img src={paymentInfo.img} alt={paymentInfo.flag} />}{' '}
           </S.CardInfo>
         </S.PaymentContent>
       )}
