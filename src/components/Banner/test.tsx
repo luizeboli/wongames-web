@@ -16,7 +16,7 @@ describe('<Banner />', () => {
 
     expect(screen.getByRole('heading', { name: /Game Title/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /Game Subtitle/i })).toBeInTheDocument();
-    expect(screen.getByRole('image')).toHaveAttribute('src', 'image-source');
+    expect(screen.getByRole('img')).toHaveAttribute('src', 'image-source');
     expect(screen.getByRole('link', { name: /Buy Now/i })).toBeInTheDocument();
     expect(container.firstChild).toMatchSnapshot();
   });
