@@ -1,4 +1,4 @@
-import { Session } from 'next-auth/client';
+import { Session } from 'next-auth';
 
 import items from 'components/CartList/mock';
 import { CartContextData, CartContextDefaultValues } from 'hooks/use-cart';
