@@ -39,7 +39,7 @@ type CreatePaymentProps = {
 export const createPayment = ({ items, paymentIntent, token }: CreatePaymentProps) => {
   return fetcher({
     url: '/orders',
-    body: JSON.stringify({ cart: items, paymentIntentId: paymentIntent?.amount, paymentMethod: paymentIntent?.payment_method }),
+    body: JSON.stringify({ cart: items, paymentIntentId: paymentIntent?.id, paymentMethod: paymentIntent?.payment_method }),
     token,
   });
 };
