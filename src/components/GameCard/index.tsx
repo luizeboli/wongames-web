@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 import CartButton from 'components/CartButton';
@@ -12,7 +13,7 @@ export type GameCardProps = {
   title: string;
   slug: string;
   developer?: string;
-  img?: string;
+  img: string;
   price: number;
   promotionalPrice?: number;
   ribbon?: React.ReactNode;
@@ -40,7 +41,7 @@ const GameCard = ({
     )}
     <Link href={`game/${slug}`} passHref>
       <S.ImageBox>
-        <img src={img} alt={title} />
+        <Image src={img} alt={title} layout="fill" objectFit="cover" />
       </S.ImageBox>
     </Link>
     <S.Content>
