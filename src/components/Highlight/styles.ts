@@ -3,7 +3,7 @@ import media from 'styled-media-query';
 
 import { HighlightProps } from '.';
 
-type WrapperProps = Pick<HighlightProps, 'backgroundImage' | 'alignment'>;
+type WrapperProps = Pick<HighlightProps, 'alignment'>;
 
 const wrapperModifiers = {
   right: () => css`
@@ -22,20 +22,21 @@ const wrapperModifiers = {
       text-align: left;
     }
 
-    ${FloatImage} {
+    ${FloatImageWrapper} {
       justify-self: flex-end;
     }
   `,
 };
 
 export const Wrapper = styled.section<WrapperProps>`
-  ${({ backgroundImage, alignment }) => css`
+  ${({ alignment }) => css`
     position: relative;
     height: 23rem;
-    background-image: url(${backgroundImage});
-    background-position: center;
-    background-size: cover;
     display: grid;
+
+    img {
+      position: absolute;
+    }
 
     &::after {
       content: '';
@@ -91,7 +92,7 @@ export const Subtitle = styled.h3`
   `}
 `;
 
-export const FloatImage = styled.img`
+export const FloatImageWrapper = styled.div`
   ${({ theme }) => css`
     grid-area: floatimage;
     align-self: flex-end;
@@ -99,6 +100,10 @@ export const FloatImage = styled.img`
 
     max-height: 23rem;
     max-width: 100%;
+
+    img {
+      position: relative;
+    }
 
     ${media.greaterThan('medium')`
       max-height: 32rem;
