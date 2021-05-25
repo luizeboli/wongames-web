@@ -1,3 +1,5 @@
+import { NextSeo } from 'next-seo';
+
 import { Divider } from 'components/Divider';
 import Gallery, { GalleryImageProps } from 'components/Gallery';
 import { GameCardProps } from 'components/GameCard';
@@ -11,6 +13,7 @@ import Layout from 'screens/Layout';
 import * as S from './styles';
 
 export type GameScreenProps = {
+  slug: string;
   cover: string;
   gameInfo: GameInfoProps;
   gallery?: GalleryImageProps[];
@@ -24,6 +27,7 @@ export type GameScreenProps = {
 };
 
 const Game = ({
+  slug,
   cover,
   gameInfo,
   gallery,
@@ -36,6 +40,23 @@ const Game = ({
   recommendedGames,
 }: GameScreenProps) => (
   <Layout>
+    <NextSeo
+      title={`${gameInfo.title} - Won Games`}
+      description={gameInfo.description}
+      canonical={`https://wongames.willianjusten.com.br/game/${slug}`}
+      openGraph={{
+        url: `https://wongames.willianjusten.com.br/game/${slug}`,
+        title: `${gameInfo.title} - Won Games`,
+        description: gameInfo.description,
+        images: [
+          {
+            url: cover,
+            alt: `${gameInfo.title}`,
+          },
+        ],
+      }}
+    />
+
     <S.Cover src={cover} role="image" aria-label="cover" />
 
     <S.Main>

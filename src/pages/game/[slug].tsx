@@ -53,6 +53,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: {
+      slug: params?.slug,
       cover: game.cover?.src,
       gameInfo: {
         id: game.id,
