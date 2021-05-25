@@ -4,12 +4,13 @@ exports[`<Highlight /> should render correctly 1`] = `
 .c0 {
   position: relative;
   height: 23rem;
-  background-image: url(/img/red-dead-img.jpg);
-  background-position: center;
-  background-size: cover;
   display: grid;
   grid-template-areas: 'floatimage container';
   grid-template-columns: 1.3fr 2fr;
+}
+
+.c0 img {
+  position: absolute;
 }
 
 .c0::after {
@@ -103,6 +104,11 @@ exports[`<Highlight /> should render correctly 1`] = `
   <section
     class="c0"
   >
+    <img
+      alt="Heading 1"
+      layout="fill"
+      src="/img/red-dead-img.jpg"
+    />
     <div
       class="c1 c2"
     >
