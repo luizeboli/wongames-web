@@ -1,6 +1,6 @@
 {
-  "name": "Hypa NextJS - Boilerplate",
-  "short_name": "Hypa NextJS",
+  "name": "Won Games",
+  "short_name": "Won Games",
   "icons": [
     {
       "src": "/img/icon-192.png",
@@ -14,7 +14,7 @@
     }
   ],
   "background_color": "#06092B",
-  "description": "A boilerplate with TypeScript, React, NextJS and styled-components.",
+  "description": "The best game store for your necessities!",
   "display": "fullscreen",
   "start_url": "/",
   "theme_color": "#06092B"
