@@ -8,7 +8,7 @@ export type TextContentProps = {
 };
 
 const TextContent = ({ title, body }: TextContentProps) => (
-  <S.Container>
+  <S.Container data-cy="game-content">
     {!!title && (
       <Heading lineLeft lineColor="secondary">
         {title}

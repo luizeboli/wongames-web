@@ -34,7 +34,7 @@ const ratings = {
 };
 
 const GameDetails = ({ releaseDate, developer, publisher, platforms, rating, genres }: GameDetailsProps) => (
-  <S.Wrapper>
+  <S.Wrapper data-cy="game-details">
     <MediaMatch greaterThan="small">
       <Heading lineLeft lineColor="secondary">
         Game Details

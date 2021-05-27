@@ -15,7 +15,7 @@ export type HighlightProps = {
 };
 
 const Highlight = ({ title, subtitle, buttonLabel, buttonLink, backgroundImage, floatImage, alignment = 'right' }: HighlightProps) => (
-  <S.Wrapper alignment={alignment}>
+  <S.Wrapper alignment={alignment} data-cy="highlight">
     <Image src={backgroundImage} alt={title} layout="fill" objectFit="cover" />
     {!!floatImage && (
       <S.FloatImageWrapper>
