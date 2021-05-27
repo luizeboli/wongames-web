@@ -39,7 +39,7 @@ declare namespace Cypress {
      *
      * @example cy.signIn(user)
      */
-    signIn(user): Chainable<Window>;
+    signIn(user?): Chainable<Window>;
 
     /**
      * Search in current page for a Game Card and click add to cart button

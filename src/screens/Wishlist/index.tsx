@@ -23,7 +23,7 @@ const Wishlist = ({ recommendedGames, recommendedHighlight, recommendedTitle }: 
 
   return (
     <Layout>
-      <Container>
+      <Container data-cy="wishlist">
         <Heading lineLeft lineColor="secondary">
           Wishlist
         </Heading>

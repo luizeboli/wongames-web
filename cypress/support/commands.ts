@@ -63,7 +63,7 @@ Cypress.Commands.add('signUp', (user) => {
   cy.findByRole('button', { name: /sign up now/i }).click();
 });
 
-Cypress.Commands.add('signIn', (user) => {
+Cypress.Commands.add('signIn', (user = { email: 'e2e@test.com', password: '12345678' }) => {
   cy.findByPlaceholderText(/e-mail/i).type(user.email);
   cy.findByPlaceholderText(/^password/i).type(user.password);
   cy.findByRole('button', { name: /sign in/i }).click();
