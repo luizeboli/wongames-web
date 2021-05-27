@@ -40,5 +40,19 @@ declare namespace Cypress {
      * @example cy.signIn(user)
      */
     signIn(user): Chainable<Window>;
+
+    /**
+     * Search in current page for a Game Card and click add to cart button
+     *
+     * @example cy.addGameToCartByIndex(1)
+     */
+    addGameToCartByIndex(index: string | number): Chainable<Element>;
+
+    /**
+     * Search in current page for a Game Card and click remove from cart button
+     *
+     * @example cy.removeFromCartByIndex(1)
+     */
+    removeFromCartByIndex(index: string | number): Chainable<Element>;
   }
 }

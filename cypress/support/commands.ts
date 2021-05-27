@@ -68,3 +68,19 @@ Cypress.Commands.add('signIn', (user) => {
   cy.findByPlaceholderText(/^password/i).type(user.password);
   cy.findByRole('button', { name: /sign in/i }).click();
 });
+
+Cypress.Commands.add('addGameToCartByIndex', (index) => {
+  cy.getByDataCy('game-card')
+    .eq(index)
+    .within(() => {
+      cy.findByRole('button', { name: /add to cart/i }).click();
+    });
+});
+
+Cypress.Commands.add('removeGameFromCartByIndex', (index) => {
+  cy.getByDataCy('game-card')
+    .eq(index)
+    .within(() => {
+      cy.findByRole('button', { name: /remove from cart/i }).click();
+    });
+});
