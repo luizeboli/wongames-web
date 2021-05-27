@@ -1,9 +1,11 @@
 /// <reference path="../support/index.d.ts" />
 
 describe('Game Page', () => {
-  it('should render game page sections with API data', () => {
-    cy.visit('/game/biomutant');
+  before(() => {
+        cy.visit('/game/biomutant');
+  })
 
+  it('should render game page sections with API data', () => {
     cy.getByDataCy('game-info').within(() => {
       cy.findByRole('heading', { name: /Biomutant/i }).should('exist');
       cy.findByText(
@@ -41,4 +43,30 @@ describe('Game Page', () => {
     cy.shouldRenderShowcase({ name: 'These are the upcoming games', highlight: true });
     cy.shouldRenderShowcase({ name: 'These are the recommended', highlight: false });
   });
+
+  it('should add and remove game from cart', () => {
+    cy.getByDataCy('game-info').within(() => {
+      cy.findByRole('button', { name: /add to cart/i }).click();
+      cy.findByRole('button', { name: /remove from cart/i }).should('exist');
+    })
+
+    cy.findAllByLabelText(/cart items/i).first().should('have.text', '1').click();
+    
+    cy.getByDataCy('cart-list').within(() => {
+      cy.findByRole('heading', { name: /biomutant/i}).should('exist')
+    })
+
+    cy.findAllByLabelText(/cart items/i)
+      .first()
+      .click();
+
+    cy.getByDataCy('game-info').within(() => {
+      cy.findByRole('button', { name: /remove from cart/i }).click();
+      cy.findByRole('button', { name: /add to cart/i }).should('exist');
+
+      cy.findAllByLabelText(/cart items/i)
+        .first()
+        .should('not.exist')
+    });
+  })
 });
