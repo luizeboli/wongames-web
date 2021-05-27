@@ -68,8 +68,6 @@ describe('Game Page', () => {
       cy.findByRole('button', { name: /add to cart/i }).should('exist');
     });
 
-    cy.findAllByLabelText(/cart items/i)
-      .first()
-      .should('not.exist');
+    cy.findAllByLabelText(/cart items/i).should('not.exist');
   })
 });
