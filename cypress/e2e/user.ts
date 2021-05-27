@@ -13,6 +13,7 @@ describe('User', () => {
 
   it('should sign in and sign out', () => {
     cy.signIn(user);
+    cy.url().should('eq', `${Cypress.config().baseUrl}/`);
 
     cy.findByText(user.username).should('exist').click();
     cy.findByText(/sign out/i).click();
