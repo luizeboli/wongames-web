@@ -53,3 +53,19 @@ Cypress.Commands.add('gamePriceShould', (selector, value) => {
     .then(parseFloat)
     .should(selector, value);
 });
+
+Cypress.Commands.add('signUp', (user) => {
+  cy.visit('/sign-up');
+  cy.findByPlaceholderText(/username/i).type(user.username);
+  cy.findByPlaceholderText(/e-mail/i).type(user.email);
+  cy.findByPlaceholderText(/^password/i).type(user.password);
+  cy.findByPlaceholderText(/confirm password/i).type(user.password);
+  cy.findByRole('button', { name: /sign up now/i }).click();
+});
+
+Cypress.Commands.add('signIn', (user) => {
+  cy.visit('/sign-in');
+  cy.findByPlaceholderText(/e-mail/i).type(user.email);
+  cy.findByPlaceholderText(/^password/i).type(user.password);
+  cy.findByRole('button', { name: /sign in/i }).click();
+});

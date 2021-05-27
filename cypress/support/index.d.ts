@@ -23,8 +23,22 @@ declare namespace Cypress {
     /**
      * Check for game price using selector
      *
-     * @example cy.shouldRenderShowcase()
+     * @example cy.gamePriceShould('be.lt', 0)
      */
-    gamePriceShould(selector: string, value: string | number): Chainable<Element>;
+    gamePriceShould(selector: string, value: string | number): Chainable<Window>;
+
+    /**
+     * Sign up
+     *
+     * @example cy.signUp(user)
+     */
+    signUp(user): Chainable<Window>;
+
+    /**
+     * Sign up
+     *
+     * @example cy.signIn(user)
+     */
+    signIn(user): Chainable<Window>;
   }
 }
