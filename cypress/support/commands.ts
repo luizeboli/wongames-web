@@ -45,3 +45,11 @@ Cypress.Commands.add('shouldRenderShowcase', ({ name, highlight = false }) => {
     cy.getByDataCy('game-card').should('have.length.gte', 0);
   });
 });
+
+Cypress.Commands.add('gamePriceShould', (selector, value) => {
+  cy.findByText(/^\$\d+(\.\d{1,2})?/)
+    .invoke('text')
+    .then(($el) => $el.replace('$', ''))
+    .then(parseFloat)
+    .should(selector, value);
+});

@@ -19,5 +19,12 @@ declare namespace Cypress {
      * @example cy.shouldRenderShowcase()
      */
     shouldRenderShowcase(attrs: ShowcaseAttributes): Chainable<Element>;
+
+    /**
+     * Check for game price using selector
+     *
+     * @example cy.shouldRenderShowcase()
+     */
+    gamePriceShould(selector: string, value: string | number): Chainable<Element>;
   }
 }
