@@ -50,7 +50,10 @@ describe('Game Page', () => {
       cy.findByRole('button', { name: /remove from cart/i }).should('exist');
     })
 
-    cy.findAllByLabelText(/cart items/i).first().should('have.text', '1').click();
+    cy.findAllByLabelText(/cart items/i)
+      .first()
+      .should('have.text', '1')
+      .click();
     
     cy.getByDataCy('cart-list').within(() => {
       cy.findByRole('heading', { name: /biomutant/i}).should('exist')
@@ -63,10 +66,10 @@ describe('Game Page', () => {
     cy.getByDataCy('game-info').within(() => {
       cy.findByRole('button', { name: /remove from cart/i }).click();
       cy.findByRole('button', { name: /add to cart/i }).should('exist');
-
-      cy.findAllByLabelText(/cart items/i)
-        .first()
-        .should('not.exist')
     });
+
+    cy.findAllByLabelText(/cart items/i)
+      .first()
+      .should('not.exist');
   })
 });
