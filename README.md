@@ -18,3 +18,10 @@ This project uses cutting-edge technologies:
 - [Eslint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
 - [Husky](https://github.com/typicode/husky)
+
+## Illustrations
+
+![image](https://user-images.githubusercontent.com/13091635/153026973-57d31da3-596f-47a1-a882-21298a5871dd.png)
+
+![image](https://user-images.githubusercontent.com/13091635/153027080-e3e97c90-9789-499b-8507-3778cb0c784f.png)
+
