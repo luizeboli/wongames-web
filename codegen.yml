@@ -1,0 +1,21 @@
+overwrite: true
+schema: "http://localhost:1337/graphql"
+documents: "src/graphql/**/*.ts"
+generates:
+  src/graphql/generated/index.tsx:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      withHooks: true
+      dedupeFragments: true
+      dedupeOperationSuffix: true
+      omitOperationSuffix: true
+      typesPrefix: "T"
+      skipTypename: true
+      scalars:
+        JSON: '{ [key: string]: any }'
+hooks:
+  afterAllFileWrite:
+      - eslint --fix

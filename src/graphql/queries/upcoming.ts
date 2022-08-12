@@ -3,17 +3,26 @@ import { gql } from '@apollo/client';
 import { GameFragment } from 'graphql/fragments/game';
 import { HighlightFragment } from 'graphql/fragments/highlight';
 
-export const QUERY_UPCOMING = gql`
+export const QueryUpcoming = gql`
   query QueryUpcoming($date: Date!) {
-    upcomingGames: games(where: { release_date_gt: $date }, sort: "release_date:asc", limit: 12) {
-      ...GameFragment
+    upcomingGames: games(filters: { release_date: { gt: $date } }, pagination: { limit: 12 }, sort: "release_date:asc") {
+      data {
+        id
+        attributes {
+          ...GameFragment
+        }
+      }
     }
 
     showcase: home {
-      upcomingGames {
-        title
-        highlight {
-          ...HighlightFragment
+      data {
+        attributes {
+          upcomingGames {
+            title
+            highlight {
+              ...HighlightFragment
+            }
+          }
         }
       }
     }
