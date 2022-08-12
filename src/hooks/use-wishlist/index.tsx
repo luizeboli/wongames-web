@@ -1,11 +1,8 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { useSession } from 'next-auth/client';
-import { useMutation } from '@apollo/client';
 
 import { GameCardProps } from 'components/GameCard';
-import { QueryWishlist_wishlists_games } from 'graphql/generated/QueryWishlist';
-import { MUTATION_CREATE_WISHLIST, MUTATION_UPDATE_WISHLIST } from 'graphql/mutations/wishlist';
-import { useQueryWishlist } from 'graphql/queries/wishlist';
+import { TQueryWishlist, useMutationCreateWishlist, useMutationUpdateWishlist, useQueryWishlist } from 'graphql/generated';
 import { gamesMapper } from 'utils/mappers';
 
 export type WishlistContextData = {
@@ -33,20 +30,20 @@ export type WishlistProviderProps = {
 const WishlistProvider = ({ children }: WishlistProviderProps) => {
   const [session] = useSession();
   const [wishlistId, setWishlistId] = useState<string | undefined>();
-  const [wishlist, setWishlist] = useState<QueryWishlist_wishlists_games[]>([]);
+  const [wishlist, setWishlist] = useState<TQueryWishlist[]>([]);
 
-  const [createWishlist, { loading: isLoadingCreateWishlist }] = useMutation(MUTATION_CREATE_WISHLIST, {
+  const [createWishlist, { loading: isLoadingCreateWishlist }] = useMutationCreateWishlist({
     context: { session },
     onCompleted: (data) => {
-      setWishlist(data?.createWishlist?.wishlist?.games || []);
-      setWishlistId(data?.createWishlist?.wishlist?.id);
+      setWishlist(data.createWishlist?.data?.attributes?.games || []);
+      setWishlistId(data.createWishlist?.data?.id);
     },
   });
 
-  const [updateWishlist, { loading: isLoadingUpdateWishlist }] = useMutation(MUTATION_UPDATE_WISHLIST, {
+  const [updateWishlist, { loading: isLoadingUpdateWishlist }] = useMutationUpdateWishlist({
     context: { session },
     onCompleted: (data) => {
-      setWishlist(data?.updateWishlist?.wishlist?.games || []);
+      setWishlist(data.updateWishlist?.data?.attributes?.games || []);
     },
   });
 

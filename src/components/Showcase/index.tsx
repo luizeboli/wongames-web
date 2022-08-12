@@ -22,7 +22,7 @@ const Showcase = ({ title, highlight, games, color = 'white' }: ShowcaseProps) =
 
     {!!highlight && <Highlight {...highlight} />}
 
-    {!!games && <GameCardSlider items={games} color={color} />}
+    {!!games?.length && <GameCardSlider items={games} color={color} />}
   </S.Wrapper>
 );
 

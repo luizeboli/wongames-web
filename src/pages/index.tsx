@@ -1,10 +1,11 @@
-import { QueryHome, QueryHomeVariables } from 'graphql/generated/QueryHome';
-import { QUERY_HOME } from 'graphql/queries/home';
+import { TQueryHome, TQueryHomeVariables } from 'graphql/generated';
+import { QueryHome } from 'graphql/queries/home';
 import Home, { HomeScreenProps } from 'screens/Home';
 import { initializeApollo } from 'utils/apollo';
 import { bannersMapper, gamesMapper, highlightMapper } from 'utils/mappers';
 
 export default function Index(props: HomeScreenProps) {
+  console.log({ props });
   return <Home {...props} />;
 }
 
@@ -13,23 +14,29 @@ export async function getStaticProps() {
 
   const apolloClient = initializeApollo();
   const {
-    data: { banners, newGames, upcomingGames, freeGames, sections },
-  } = await apolloClient.query<QueryHome, QueryHomeVariables>({ query: QUERY_HOME, variables: { date: TODAY }, fetchPolicy: 'no-cache' });
+    data: { banners, sections, newGames, freeGames, upcomingGames },
+  } = await apolloClient.query<TQueryHome, TQueryHomeVariables>({
+    query: QueryHome,
+    variables: { date: TODAY },
+    fetchPolicy: 'no-cache',
+  });
+
+  console.log({ upcomingGames });
 
   return {
     props: {
       banners: bannersMapper(banners),
-      newGamesTitle: sections?.newGames?.title,
+      newGamesTitle: sections?.data?.attributes?.newGames?.title,
       newGames: gamesMapper(newGames),
-      mostPopularHighlight: highlightMapper(sections?.popularGames?.highlight),
-      mostPopularGamesTitle: sections?.popularGames?.title,
-      mostPopularGames: gamesMapper(sections!.popularGames!.games),
-      upcomingGamesTitle: sections?.upcomingGames?.title,
+      mostPopularHighlight: highlightMapper(sections?.data?.attributes?.popularGames?.highlight),
+      mostPopularGamesTitle: sections?.data?.attributes?.popularGames?.title,
+      mostPopularGames: gamesMapper(sections?.data?.attributes?.popularGames?.games),
+      upcomingGamesTitle: sections?.data?.attributes?.upcomingGames?.title,
       upcomingGames: gamesMapper(upcomingGames),
-      upcomingHighlight: highlightMapper(sections?.upcomingGames?.highlight),
-      freeGamesTitle: sections?.freeGames?.title,
+      upcomingHighlight: highlightMapper(sections?.data?.attributes?.upcomingGames?.highlight),
+      freeGamesTitle: sections?.data?.attributes?.freeGames?.title,
       freeGames: gamesMapper(freeGames),
-      freeHighlight: highlightMapper(sections?.freeGames?.highlight),
+      freeHighlight: highlightMapper(sections?.data?.attributes?.freeGames?.highlight),
     },
     revalidate: 60,
   };
