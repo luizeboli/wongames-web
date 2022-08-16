@@ -1,5 +1,6 @@
-import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+
+import * as Operations from '..';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -1833,11 +1834,7 @@ export type TMutationUpdateWishlist = {
   } | null;
 };
 
-export type TQueryGamesVariables = Exact<{
-  filters?: InputMaybe<TGameFiltersInput>;
-  pagination?: InputMaybe<TPaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>> | InputMaybe<Scalars['String']>>;
-}>;
+export type TQueryGamesVariables = Exact<{ [key: string]: never }>;
 
 export type TQueryGames = {
   games?: {
@@ -2128,79 +2125,6 @@ export type TQueryWishlist = {
   } | null;
 };
 
-export const BannerFragment = gql`
-  fragment BannerFragment on Banner {
-    image {
-      data {
-        attributes {
-          url
-        }
-      }
-    }
-    title
-    subtitle
-    button {
-      label
-      link
-    }
-    ribbon {
-      text
-      color
-      size
-    }
-  }
-`;
-export const GameFragment = gql`
-  fragment GameFragment on Game {
-    name
-    slug
-    cover {
-      data {
-        attributes {
-          url
-        }
-      }
-    }
-    developers {
-      data {
-        attributes {
-          name
-        }
-      }
-    }
-    price
-  }
-`;
-export const HighlightFragment = gql`
-  fragment HighlightFragment on ComponentPageHighlight {
-    title
-    subtitle
-    background {
-      data {
-        attributes {
-          url
-        }
-      }
-    }
-    floatImage {
-      data {
-        attributes {
-          url
-        }
-      }
-    }
-    buttonLabel
-    buttonLink
-    alignment
-  }
-`;
-export const MutationRegisterDocument = gql`
-  mutation MutationRegister($input: UsersPermissionsRegisterInput!) {
-    register(input: $input) {
-      jwt
-    }
-  }
-`;
 export type TMutationRegisterMutationFn = Apollo.MutationFunction<TMutationRegister, TMutationRegisterVariables>;
 
 /**
@@ -2222,39 +2146,11 @@ export type TMutationRegisterMutationFn = Apollo.MutationFunction<TMutationRegis
  */
 export function useMutationRegister(baseOptions?: Apollo.MutationHookOptions<TMutationRegister, TMutationRegisterVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<TMutationRegister, TMutationRegisterVariables>(MutationRegisterDocument, options);
+  return Apollo.useMutation<TMutationRegister, TMutationRegisterVariables>(Operations.MutationRegister, options);
 }
 export type MutationRegisterHookResult = ReturnType<typeof useMutationRegister>;
 export type MutationRegisterMutationResult = Apollo.MutationResult<TMutationRegister>;
 export type MutationRegisterMutationOptions = Apollo.BaseMutationOptions<TMutationRegister, TMutationRegisterVariables>;
-export const MutationCreateWishlistDocument = gql`
-  mutation MutationCreateWishlist($input: WishlistInput!) {
-    createWishlist(data: $input) {
-      data {
-        id
-        attributes {
-          games {
-            data {
-              id
-              attributes {
-                ...GameFragment
-              }
-            }
-          }
-          user {
-            data {
-              id
-              attributes {
-                username
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  ${GameFragment}
-`;
 export type TMutationCreateWishlistMutationFn = Apollo.MutationFunction<TMutationCreateWishlist, TMutationCreateWishlistVariables>;
 
 /**
@@ -2278,39 +2174,11 @@ export function useMutationCreateWishlist(
   baseOptions?: Apollo.MutationHookOptions<TMutationCreateWishlist, TMutationCreateWishlistVariables>,
 ) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<TMutationCreateWishlist, TMutationCreateWishlistVariables>(MutationCreateWishlistDocument, options);
+  return Apollo.useMutation<TMutationCreateWishlist, TMutationCreateWishlistVariables>(Operations.MutationCreateWishlist, options);
 }
 export type MutationCreateWishlistHookResult = ReturnType<typeof useMutationCreateWishlist>;
 export type MutationCreateWishlistMutationResult = Apollo.MutationResult<TMutationCreateWishlist>;
 export type MutationCreateWishlistMutationOptions = Apollo.BaseMutationOptions<TMutationCreateWishlist, TMutationCreateWishlistVariables>;
-export const MutationUpdateWishlistDocument = gql`
-  mutation MutationUpdateWishlist($id: ID!, $input: WishlistInput!) {
-    updateWishlist(id: $id, data: $input) {
-      data {
-        id
-        attributes {
-          games {
-            data {
-              id
-              attributes {
-                ...GameFragment
-              }
-            }
-          }
-          user {
-            data {
-              id
-              attributes {
-                username
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  ${GameFragment}
-`;
 export type TMutationUpdateWishlistMutationFn = Apollo.MutationFunction<TMutationUpdateWishlist, TMutationUpdateWishlistVariables>;
 
 /**
@@ -2335,24 +2203,11 @@ export function useMutationUpdateWishlist(
   baseOptions?: Apollo.MutationHookOptions<TMutationUpdateWishlist, TMutationUpdateWishlistVariables>,
 ) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<TMutationUpdateWishlist, TMutationUpdateWishlistVariables>(MutationUpdateWishlistDocument, options);
+  return Apollo.useMutation<TMutationUpdateWishlist, TMutationUpdateWishlistVariables>(Operations.MutationUpdateWishlist, options);
 }
 export type MutationUpdateWishlistHookResult = ReturnType<typeof useMutationUpdateWishlist>;
 export type MutationUpdateWishlistMutationResult = Apollo.MutationResult<TMutationUpdateWishlist>;
 export type MutationUpdateWishlistMutationOptions = Apollo.BaseMutationOptions<TMutationUpdateWishlist, TMutationUpdateWishlistVariables>;
-export const QueryGamesDocument = gql`
-  query QueryGames($filters: GameFiltersInput, $pagination: PaginationArg, $sort: [String]) {
-    games(filters: $filters, pagination: $pagination, sort: $sort) {
-      data {
-        id
-        attributes {
-          ...GameFragment
-        }
-      }
-    }
-  }
-  ${GameFragment}
-`;
 
 /**
  * __useQueryGames__
@@ -2366,83 +2221,20 @@ export const QueryGamesDocument = gql`
  * @example
  * const { data, loading, error } = useQueryGames({
  *   variables: {
- *      filters: // value for 'filters'
- *      pagination: // value for 'pagination'
- *      sort: // value for 'sort'
  *   },
  * });
  */
 export function useQueryGames(baseOptions?: Apollo.QueryHookOptions<TQueryGames, TQueryGamesVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<TQueryGames, TQueryGamesVariables>(QueryGamesDocument, options);
+  return Apollo.useQuery<TQueryGames, TQueryGamesVariables>(Operations.QueryGames, options);
 }
 export function useQueryGamesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TQueryGames, TQueryGamesVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<TQueryGames, TQueryGamesVariables>(QueryGamesDocument, options);
+  return Apollo.useLazyQuery<TQueryGames, TQueryGamesVariables>(Operations.QueryGames, options);
 }
 export type QueryGamesHookResult = ReturnType<typeof useQueryGames>;
 export type QueryGamesLazyQueryHookResult = ReturnType<typeof useQueryGamesLazyQuery>;
 export type QueryGamesQueryResult = Apollo.QueryResult<TQueryGames, TQueryGamesVariables>;
-export const QueryGameBySlugDocument = gql`
-  query QueryGameBySlug($slug: String!) {
-    games(filters: { slug: { eq: $slug } }) {
-      data {
-        id
-        attributes {
-          name
-          short_description
-          description
-          price
-          rating
-          release_date
-          gallery {
-            data {
-              attributes {
-                src: url
-                label: alternativeText
-              }
-            }
-          }
-          cover {
-            data {
-              attributes {
-                src: url
-              }
-            }
-          }
-          developers {
-            data {
-              attributes {
-                name
-              }
-            }
-          }
-          publisher {
-            data {
-              attributes {
-                name
-              }
-            }
-          }
-          categories {
-            data {
-              attributes {
-                name
-              }
-            }
-          }
-          platforms {
-            data {
-              attributes {
-                name
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 
 /**
  * __useQueryGameBySlug__
@@ -2462,92 +2254,15 @@ export const QueryGameBySlugDocument = gql`
  */
 export function useQueryGameBySlug(baseOptions: Apollo.QueryHookOptions<TQueryGameBySlug, TQueryGameBySlugVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<TQueryGameBySlug, TQueryGameBySlugVariables>(QueryGameBySlugDocument, options);
+  return Apollo.useQuery<TQueryGameBySlug, TQueryGameBySlugVariables>(Operations.QueryGameBySlug, options);
 }
 export function useQueryGameBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TQueryGameBySlug, TQueryGameBySlugVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<TQueryGameBySlug, TQueryGameBySlugVariables>(QueryGameBySlugDocument, options);
+  return Apollo.useLazyQuery<TQueryGameBySlug, TQueryGameBySlugVariables>(Operations.QueryGameBySlug, options);
 }
 export type QueryGameBySlugHookResult = ReturnType<typeof useQueryGameBySlug>;
 export type QueryGameBySlugLazyQueryHookResult = ReturnType<typeof useQueryGameBySlugLazyQuery>;
 export type QueryGameBySlugQueryResult = Apollo.QueryResult<TQueryGameBySlug, TQueryGameBySlugVariables>;
-export const QueryHomeDocument = gql`
-  query QueryHome($date: Date!) {
-    banners {
-      data {
-        id
-        attributes {
-          ...BannerFragment
-        }
-      }
-    }
-    newGames: games(filters: { release_date: { lte: $date } }, pagination: { limit: 12 }, sort: "release_date:desc") {
-      data {
-        id
-        attributes {
-          ...GameFragment
-        }
-      }
-    }
-    upcomingGames: games(filters: { release_date: { gt: $date } }, pagination: { limit: 12 }, sort: "release_date:asc") {
-      data {
-        id
-        attributes {
-          ...GameFragment
-        }
-      }
-    }
-    freeGames: games(filters: { price: { eq: 0 } }, pagination: { limit: 12 }, sort: "release_date:desc") {
-      data {
-        id
-        attributes {
-          ...GameFragment
-        }
-      }
-    }
-    sections: home {
-      data {
-        attributes {
-          newGames {
-            title
-            highlight {
-              ...HighlightFragment
-            }
-          }
-          popularGames {
-            title
-            highlight {
-              ...HighlightFragment
-            }
-            games(pagination: { limit: 12 }) {
-              data {
-                id
-                attributes {
-                  ...GameFragment
-                }
-              }
-            }
-          }
-          upcomingGames {
-            title
-            highlight {
-              ...HighlightFragment
-            }
-          }
-          freeGames {
-            title
-            highlight {
-              ...HighlightFragment
-            }
-          }
-        }
-      }
-    }
-  }
-  ${BannerFragment}
-  ${GameFragment}
-  ${HighlightFragment}
-`;
 
 /**
  * __useQueryHome__
@@ -2567,38 +2282,15 @@ export const QueryHomeDocument = gql`
  */
 export function useQueryHome(baseOptions: Apollo.QueryHookOptions<TQueryHome, TQueryHomeVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<TQueryHome, TQueryHomeVariables>(QueryHomeDocument, options);
+  return Apollo.useQuery<TQueryHome, TQueryHomeVariables>(Operations.QueryHome, options);
 }
 export function useQueryHomeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TQueryHome, TQueryHomeVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<TQueryHome, TQueryHomeVariables>(QueryHomeDocument, options);
+  return Apollo.useLazyQuery<TQueryHome, TQueryHomeVariables>(Operations.QueryHome, options);
 }
 export type QueryHomeHookResult = ReturnType<typeof useQueryHome>;
 export type QueryHomeLazyQueryHookResult = ReturnType<typeof useQueryHomeLazyQuery>;
 export type QueryHomeQueryResult = Apollo.QueryResult<TQueryHome, TQueryHomeVariables>;
-export const QueryOrdersDocument = gql`
-  query QueryOrders($identifier: ID!) {
-    orders(filters: { user: { id: { eq: $identifier } } }) {
-      data {
-        id
-        attributes {
-          createdAt
-          card_brand
-          card_last4
-          games {
-            data {
-              id
-              attributes {
-                ...GameFragment
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  ${GameFragment}
-`;
 
 /**
  * __useQueryOrders__
@@ -2618,41 +2310,15 @@ export const QueryOrdersDocument = gql`
  */
 export function useQueryOrders(baseOptions: Apollo.QueryHookOptions<TQueryOrders, TQueryOrdersVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<TQueryOrders, TQueryOrdersVariables>(QueryOrdersDocument, options);
+  return Apollo.useQuery<TQueryOrders, TQueryOrdersVariables>(Operations.QueryOrders, options);
 }
 export function useQueryOrdersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TQueryOrders, TQueryOrdersVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<TQueryOrders, TQueryOrdersVariables>(QueryOrdersDocument, options);
+  return Apollo.useLazyQuery<TQueryOrders, TQueryOrdersVariables>(Operations.QueryOrders, options);
 }
 export type QueryOrdersHookResult = ReturnType<typeof useQueryOrders>;
 export type QueryOrdersLazyQueryHookResult = ReturnType<typeof useQueryOrdersLazyQuery>;
 export type QueryOrdersQueryResult = Apollo.QueryResult<TQueryOrders, TQueryOrdersVariables>;
-export const QueryRecommendedDocument = gql`
-  query QueryRecommended {
-    recommended {
-      data {
-        attributes {
-          section {
-            title
-            highlight {
-              ...HighlightFragment
-            }
-            games {
-              data {
-                id
-                attributes {
-                  ...GameFragment
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  ${HighlightFragment}
-  ${GameFragment}
-`;
 
 /**
  * __useQueryRecommended__
@@ -2671,41 +2337,15 @@ export const QueryRecommendedDocument = gql`
  */
 export function useQueryRecommended(baseOptions?: Apollo.QueryHookOptions<TQueryRecommended, TQueryRecommendedVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<TQueryRecommended, TQueryRecommendedVariables>(QueryRecommendedDocument, options);
+  return Apollo.useQuery<TQueryRecommended, TQueryRecommendedVariables>(Operations.QueryRecommended, options);
 }
 export function useQueryRecommendedLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TQueryRecommended, TQueryRecommendedVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<TQueryRecommended, TQueryRecommendedVariables>(QueryRecommendedDocument, options);
+  return Apollo.useLazyQuery<TQueryRecommended, TQueryRecommendedVariables>(Operations.QueryRecommended, options);
 }
 export type QueryRecommendedHookResult = ReturnType<typeof useQueryRecommended>;
 export type QueryRecommendedLazyQueryHookResult = ReturnType<typeof useQueryRecommendedLazyQuery>;
 export type QueryRecommendedQueryResult = Apollo.QueryResult<TQueryRecommended, TQueryRecommendedVariables>;
-export const QueryUpcomingDocument = gql`
-  query QueryUpcoming($date: Date!) {
-    upcomingGames: games(filters: { release_date: { gt: $date } }, pagination: { limit: 12 }, sort: "release_date:asc") {
-      data {
-        id
-        attributes {
-          ...GameFragment
-        }
-      }
-    }
-    showcase: home {
-      data {
-        attributes {
-          upcomingGames {
-            title
-            highlight {
-              ...HighlightFragment
-            }
-          }
-        }
-      }
-    }
-  }
-  ${GameFragment}
-  ${HighlightFragment}
-`;
 
 /**
  * __useQueryUpcoming__
@@ -2725,35 +2365,15 @@ export const QueryUpcomingDocument = gql`
  */
 export function useQueryUpcoming(baseOptions: Apollo.QueryHookOptions<TQueryUpcoming, TQueryUpcomingVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<TQueryUpcoming, TQueryUpcomingVariables>(QueryUpcomingDocument, options);
+  return Apollo.useQuery<TQueryUpcoming, TQueryUpcomingVariables>(Operations.QueryUpcoming, options);
 }
 export function useQueryUpcomingLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TQueryUpcoming, TQueryUpcomingVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<TQueryUpcoming, TQueryUpcomingVariables>(QueryUpcomingDocument, options);
+  return Apollo.useLazyQuery<TQueryUpcoming, TQueryUpcomingVariables>(Operations.QueryUpcoming, options);
 }
 export type QueryUpcomingHookResult = ReturnType<typeof useQueryUpcoming>;
 export type QueryUpcomingLazyQueryHookResult = ReturnType<typeof useQueryUpcomingLazyQuery>;
 export type QueryUpcomingQueryResult = Apollo.QueryResult<TQueryUpcoming, TQueryUpcomingVariables>;
-export const QueryWishlistDocument = gql`
-  query QueryWishlist($identifier: String!) {
-    wishlists(filters: { user: { email: { eq: $identifier } } }) {
-      data {
-        id
-        attributes {
-          games {
-            data {
-              id
-              attributes {
-                ...GameFragment
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  ${GameFragment}
-`;
 
 /**
  * __useQueryWishlist__
@@ -2773,11 +2393,11 @@ export const QueryWishlistDocument = gql`
  */
 export function useQueryWishlist(baseOptions: Apollo.QueryHookOptions<TQueryWishlist, TQueryWishlistVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<TQueryWishlist, TQueryWishlistVariables>(QueryWishlistDocument, options);
+  return Apollo.useQuery<TQueryWishlist, TQueryWishlistVariables>(Operations.QueryWishlist, options);
 }
 export function useQueryWishlistLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TQueryWishlist, TQueryWishlistVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<TQueryWishlist, TQueryWishlistVariables>(QueryWishlistDocument, options);
+  return Apollo.useLazyQuery<TQueryWishlist, TQueryWishlistVariables>(Operations.QueryWishlist, options);
 }
 export type QueryWishlistHookResult = ReturnType<typeof useQueryWishlist>;
 export type QueryWishlistLazyQueryHookResult = ReturnType<typeof useQueryWishlistLazyQuery>;
