@@ -1,14 +1,24 @@
 import { useMemo } from 'react';
 import { Session } from 'next-auth';
-import { ApolloClient, HttpLink, NormalizedCacheObject } from '@apollo/client';
+import { ApolloClient, from, HttpLink, NormalizedCacheObject } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { onError } from '@apollo/client/link/error';
 
 import apolloCache from './apolloCache';
 
 let apolloClient: ApolloClient<NormalizedCacheObject | null>;
 
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors)
+    graphQLErrors.forEach(({ message, locations, path }) =>
+      console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`),
+    );
+  if (networkError) console.log(`[Network error]: ${networkError}`);
+});
+
+const httpLink = new HttpLink({ uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql` });
+
 function createApolloClient(session?: Session | null) {
-  const httpLink = new HttpLink({ uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql` });
   const authLink = setContext((_, { headers, session: clientSession }) => {
     const jwt = session?.jwt || clientSession?.jwt || '';
     const Authorization = jwt ? `Bearer ${jwt}` : '';
@@ -18,7 +28,7 @@ function createApolloClient(session?: Session | null) {
 
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
-    link: authLink.concat(httpLink),
+    link: from([authLink, errorLink, httpLink]),
     cache: apolloCache,
   });
 }
