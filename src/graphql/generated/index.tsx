@@ -1834,7 +1834,11 @@ export type TMutationUpdateWishlist = {
   } | null;
 };
 
-export type TQueryGamesVariables = Exact<{ [key: string]: never }>;
+export type TQueryGamesVariables = Exact<{
+  filters?: InputMaybe<TGameFiltersInput>;
+  pagination?: InputMaybe<TPaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>> | InputMaybe<Scalars['String']>>;
+}>;
 
 export type TQueryGames = {
   games?: {
@@ -2025,6 +2029,14 @@ export type TQueryOrders = {
       } | null;
     }>;
   } | null;
+};
+
+export type TQueryProfileMeVariables = Exact<{
+  identifier: Scalars['ID'];
+}>;
+
+export type TQueryProfileMe = {
+  usersPermissionsUser?: { data?: { id?: string | null; attributes?: { username: string; email: string } | null } | null } | null;
 };
 
 export type TQueryRecommendedVariables = Exact<{ [key: string]: never }>;
@@ -2221,6 +2233,9 @@ export type MutationUpdateWishlistMutationOptions = Apollo.BaseMutationOptions<T
  * @example
  * const { data, loading, error } = useQueryGames({
  *   variables: {
+ *      filters: // value for 'filters'
+ *      pagination: // value for 'pagination'
+ *      sort: // value for 'sort'
  *   },
  * });
  */
@@ -2319,6 +2334,34 @@ export function useQueryOrdersLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type QueryOrdersHookResult = ReturnType<typeof useQueryOrders>;
 export type QueryOrdersLazyQueryHookResult = ReturnType<typeof useQueryOrdersLazyQuery>;
 export type QueryOrdersQueryResult = Apollo.QueryResult<TQueryOrders, TQueryOrdersVariables>;
+
+/**
+ * __useQueryProfileMe__
+ *
+ * To run a query within a React component, call `useQueryProfileMe` and pass it any options that fit your needs.
+ * When your component renders, `useQueryProfileMe` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useQueryProfileMe({
+ *   variables: {
+ *      identifier: // value for 'identifier'
+ *   },
+ * });
+ */
+export function useQueryProfileMe(baseOptions: Apollo.QueryHookOptions<TQueryProfileMe, TQueryProfileMeVariables>) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<TQueryProfileMe, TQueryProfileMeVariables>(Operations.QueryProfileMe, options);
+}
+export function useQueryProfileMeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TQueryProfileMe, TQueryProfileMeVariables>) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<TQueryProfileMe, TQueryProfileMeVariables>(Operations.QueryProfileMe, options);
+}
+export type QueryProfileMeHookResult = ReturnType<typeof useQueryProfileMe>;
+export type QueryProfileMeLazyQueryHookResult = ReturnType<typeof useQueryProfileMeLazyQuery>;
+export type QueryProfileMeQueryResult = Apollo.QueryResult<TQueryProfileMe, TQueryProfileMeVariables>;
 
 /**
  * __useQueryRecommended__
