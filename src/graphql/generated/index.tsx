@@ -14,10 +14,23 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /**
+   * A date string, such as 2007-12-03, compliant with the `full-date` format
+   * outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
+   * representation of dates and times using the Gregorian calendar.
+   */
   Date: any;
+  /**
+   * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
+   * `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO
+   * 8601 standard for representation of dates and times using the Gregorian calendar.
+   */
   DateTime: any;
+  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: { [key: string]: any };
+  /** The `Long` scalar type represents 52-bit integers */
   Long: any;
+  /** The `Upload` scalar type represents a file upload. */
   Upload: any;
 };
 
@@ -32,12 +45,12 @@ export type TBanner = {
 };
 
 export type TBannerEntity = {
-  attributes?: Maybe<TBanner>;
-  id?: Maybe<Scalars['ID']>;
+  attributes: TBanner;
+  id: Scalars['ID'];
 };
 
 export type TBannerEntityResponse = {
-  data?: Maybe<TBannerEntity>;
+  data: TBannerEntity;
 };
 
 export type TBannerEntityResponseCollection = {
@@ -105,12 +118,12 @@ export type TCategoryGamesArgs = {
 };
 
 export type TCategoryEntity = {
-  attributes?: Maybe<TCategory>;
-  id?: Maybe<Scalars['ID']>;
+  attributes: TCategory;
+  id: Scalars['ID'];
 };
 
 export type TCategoryEntityResponse = {
-  data?: Maybe<TCategoryEntity>;
+  data: TCategoryEntity;
 };
 
 export type TCategoryEntityResponseCollection = {
@@ -308,12 +321,12 @@ export type TDeveloperGamesArgs = {
 };
 
 export type TDeveloperEntity = {
-  attributes?: Maybe<TDeveloper>;
-  id?: Maybe<Scalars['ID']>;
+  attributes: TDeveloper;
+  id: Scalars['ID'];
 };
 
 export type TDeveloperEntityResponse = {
-  data?: Maybe<TDeveloperEntity>;
+  data: TDeveloperEntity;
 };
 
 export type TDeveloperEntityResponseCollection = {
@@ -382,12 +395,12 @@ export type TEmailDesignerEmailTemplate = {
 };
 
 export type TEmailDesignerEmailTemplateEntity = {
-  attributes?: Maybe<TEmailDesignerEmailTemplate>;
-  id?: Maybe<Scalars['ID']>;
+  attributes: TEmailDesignerEmailTemplate;
+  id: Scalars['ID'];
 };
 
 export type TEmailDesignerEmailTemplateEntityResponse = {
-  data?: Maybe<TEmailDesignerEmailTemplateEntity>;
+  data: TEmailDesignerEmailTemplateEntity;
 };
 
 export type TEmailDesignerEmailTemplateEntityResponseCollection = {
@@ -455,7 +468,7 @@ export type TFloatFilterInput = {
 
 export type TGame = {
   categories?: Maybe<TCategoryRelationResponseCollection>;
-  cover?: Maybe<TUploadFileEntityResponse>;
+  cover: TUploadFileEntityResponse;
   createdAt?: Maybe<Scalars['DateTime']>;
   description: Scalars['String'];
   developers?: Maybe<TDeveloperRelationResponseCollection>;
@@ -496,12 +509,12 @@ export type TGamePlatformsArgs = {
 };
 
 export type TGameEntity = {
-  attributes?: Maybe<TGame>;
-  id?: Maybe<Scalars['ID']>;
+  attributes: TGame;
+  id: Scalars['ID'];
 };
 
 export type TGameEntityResponse = {
-  data?: Maybe<TGameEntity>;
+  data: TGameEntity;
 };
 
 export type TGameEntityResponseCollection = {
@@ -582,12 +595,12 @@ export type THome = {
 };
 
 export type THomeEntity = {
-  attributes?: Maybe<THome>;
-  id?: Maybe<Scalars['ID']>;
+  attributes: THome;
+  id: Scalars['ID'];
 };
 
 export type THomeEntityResponse = {
-  data?: Maybe<THomeEntity>;
+  data: THomeEntity;
 };
 
 export type THomeInput = {
@@ -1000,12 +1013,12 @@ export type TOrderGamesArgs = {
 };
 
 export type TOrderEntity = {
-  attributes?: Maybe<TOrder>;
-  id?: Maybe<Scalars['ID']>;
+  attributes: TOrder;
+  id: Scalars['ID'];
 };
 
 export type TOrderEntityResponse = {
-  data?: Maybe<TOrderEntity>;
+  data: TOrderEntity;
 };
 
 export type TOrderEntityResponseCollection = {
@@ -1068,12 +1081,12 @@ export type TPlatformGamesArgs = {
 };
 
 export type TPlatformEntity = {
-  attributes?: Maybe<TPlatform>;
-  id?: Maybe<Scalars['ID']>;
+  attributes: TPlatform;
+  id: Scalars['ID'];
 };
 
 export type TPlatformEntityResponse = {
-  data?: Maybe<TPlatformEntity>;
+  data: TPlatformEntity;
 };
 
 export type TPlatformEntityResponseCollection = {
@@ -1123,12 +1136,12 @@ export type TPublisherGamesArgs = {
 };
 
 export type TPublisherEntity = {
-  attributes?: Maybe<TPublisher>;
-  id?: Maybe<Scalars['ID']>;
+  attributes: TPublisher;
+  id: Scalars['ID'];
 };
 
 export type TPublisherEntityResponse = {
-  data?: Maybe<TPublisherEntity>;
+  data: TPublisherEntity;
 };
 
 export type TPublisherEntityResponseCollection = {
@@ -1324,12 +1337,12 @@ export type TRecommended = {
 };
 
 export type TRecommendedEntity = {
-  attributes?: Maybe<TRecommended>;
-  id?: Maybe<Scalars['ID']>;
+  attributes: TRecommended;
+  id: Scalars['ID'];
 };
 
 export type TRecommendedEntityResponse = {
-  data?: Maybe<TRecommendedEntity>;
+  data: TRecommendedEntity;
 };
 
 export type TRecommendedInput = {
@@ -1385,12 +1398,12 @@ export type TUploadFile = {
 };
 
 export type TUploadFileEntity = {
-  attributes?: Maybe<TUploadFile>;
-  id?: Maybe<Scalars['ID']>;
+  attributes: TUploadFile;
+  id: Scalars['ID'];
 };
 
 export type TUploadFileEntityResponse = {
-  data?: Maybe<TUploadFileEntity>;
+  data: TUploadFileEntity;
 };
 
 export type TUploadFileEntityResponseCollection = {
@@ -1470,12 +1483,12 @@ export type TUploadFolderFilesArgs = {
 };
 
 export type TUploadFolderEntity = {
-  attributes?: Maybe<TUploadFolder>;
-  id?: Maybe<Scalars['ID']>;
+  attributes: TUploadFolder;
+  id: Scalars['ID'];
 };
 
 export type TUploadFolderEntityResponse = {
-  data?: Maybe<TUploadFolderEntity>;
+  data: TUploadFolderEntity;
 };
 
 export type TUploadFolderEntityResponseCollection = {
@@ -1558,8 +1571,8 @@ export type TUsersPermissionsPermission = {
 };
 
 export type TUsersPermissionsPermissionEntity = {
-  attributes?: Maybe<TUsersPermissionsPermission>;
-  id?: Maybe<Scalars['ID']>;
+  attributes: TUsersPermissionsPermission;
+  id: Scalars['ID'];
 };
 
 export type TUsersPermissionsPermissionFiltersInput = {
@@ -1606,12 +1619,12 @@ export type TUsersPermissionsRoleUsersArgs = {
 };
 
 export type TUsersPermissionsRoleEntity = {
-  attributes?: Maybe<TUsersPermissionsRole>;
-  id?: Maybe<Scalars['ID']>;
+  attributes: TUsersPermissionsRole;
+  id: Scalars['ID'];
 };
 
 export type TUsersPermissionsRoleEntityResponse = {
-  data?: Maybe<TUsersPermissionsRoleEntity>;
+  data: TUsersPermissionsRoleEntity;
 };
 
 export type TUsersPermissionsRoleEntityResponseCollection = {
@@ -1657,12 +1670,12 @@ export type TUsersPermissionsUser = {
 };
 
 export type TUsersPermissionsUserEntity = {
-  attributes?: Maybe<TUsersPermissionsUser>;
-  id?: Maybe<Scalars['ID']>;
+  attributes: TUsersPermissionsUser;
+  id: Scalars['ID'];
 };
 
 export type TUsersPermissionsUserEntityResponse = {
-  data?: Maybe<TUsersPermissionsUserEntity>;
+  data: TUsersPermissionsUserEntity;
 };
 
 export type TUsersPermissionsUserEntityResponseCollection = {
@@ -1718,12 +1731,12 @@ export type TWishlistGamesArgs = {
 };
 
 export type TWishlistEntity = {
-  attributes?: Maybe<TWishlist>;
-  id?: Maybe<Scalars['ID']>;
+  attributes: TWishlist;
+  id: Scalars['ID'];
 };
 
 export type TWishlistEntityResponse = {
-  data?: Maybe<TWishlistEntity>;
+  data: TWishlistEntity;
 };
 
 export type TWishlistEntityResponseCollection = {
@@ -1750,7 +1763,7 @@ export type TWishlistInput = {
 export type TBannerFragment = {
   title: string;
   subtitle: string;
-  image: { data?: { attributes?: { url: string } | null } | null };
+  image: { data: { attributes: { url: string } } };
   button: { label: string; link: string };
   ribbon?: { text: string; color?: TEnum_Componentpageribbon_Color | null; size?: TEnum_Componentpageribbon_Size | null } | null;
 };
@@ -1759,8 +1772,8 @@ export type TGameFragment = {
   name: string;
   slug: string;
   price: number;
-  cover?: { data?: { attributes?: { url: string } | null } | null } | null;
-  developers?: { data: Array<{ attributes?: { name: string } | null }> } | null;
+  cover: { data: { attributes: { url: string } } };
+  developers?: { data: Array<{ attributes: { name: string } }> } | null;
 };
 
 export type THighlightFragment = {
@@ -1769,8 +1782,8 @@ export type THighlightFragment = {
   buttonLabel: string;
   buttonLink: string;
   alignment?: TEnum_Componentpagehighlight_Alignment | null;
-  background: { data?: { attributes?: { url: string } | null } | null };
-  floatImage?: { data?: { attributes?: { url: string } | null } | null } | null;
+  background: { data: { attributes: { url: string } } };
+  floatImage?: { data: { attributes: { url: string } } } | null;
 };
 
 export type TMutationRegisterVariables = Exact<{
@@ -1785,24 +1798,24 @@ export type TMutationCreateWishlistVariables = Exact<{
 
 export type TMutationCreateWishlist = {
   createWishlist?: {
-    data?: {
-      id?: string | null;
-      attributes?: {
+    data: {
+      id: string;
+      attributes: {
         games?: {
           data: Array<{
-            id?: string | null;
-            attributes?: {
+            id: string;
+            attributes: {
               name: string;
               slug: string;
               price: number;
-              cover?: { data?: { attributes?: { url: string } | null } | null } | null;
-              developers?: { data: Array<{ attributes?: { name: string } | null }> } | null;
-            } | null;
+              cover: { data: { attributes: { url: string } } };
+              developers?: { data: Array<{ attributes: { name: string } }> } | null;
+            };
           }>;
         } | null;
-        user?: { data?: { id?: string | null; attributes?: { username: string } | null } | null } | null;
-      } | null;
-    } | null;
+        user?: { data: { id: string; attributes: { username: string } } } | null;
+      };
+    };
   } | null;
 };
 
@@ -1813,24 +1826,24 @@ export type TMutationUpdateWishlistVariables = Exact<{
 
 export type TMutationUpdateWishlist = {
   updateWishlist?: {
-    data?: {
-      id?: string | null;
-      attributes?: {
+    data: {
+      id: string;
+      attributes: {
         games?: {
           data: Array<{
-            id?: string | null;
-            attributes?: {
+            id: string;
+            attributes: {
               name: string;
               slug: string;
               price: number;
-              cover?: { data?: { attributes?: { url: string } | null } | null } | null;
-              developers?: { data: Array<{ attributes?: { name: string } | null }> } | null;
-            } | null;
+              cover: { data: { attributes: { url: string } } };
+              developers?: { data: Array<{ attributes: { name: string } }> } | null;
+            };
           }>;
         } | null;
-        user?: { data?: { id?: string | null; attributes?: { username: string } | null } | null } | null;
-      } | null;
-    } | null;
+        user?: { data: { id: string; attributes: { username: string } } } | null;
+      };
+    };
   } | null;
 };
 
@@ -1843,15 +1856,16 @@ export type TQueryGamesVariables = Exact<{
 export type TQueryGames = {
   games?: {
     data: Array<{
-      id?: string | null;
-      attributes?: {
+      id: string;
+      attributes: {
         name: string;
         slug: string;
         price: number;
-        cover?: { data?: { attributes?: { url: string } | null } | null } | null;
-        developers?: { data: Array<{ attributes?: { name: string } | null }> } | null;
-      } | null;
+        cover: { data: { attributes: { url: string } } };
+        developers?: { data: Array<{ attributes: { name: string } }> } | null;
+      };
     }>;
+    meta: { pagination: { total: number; page: number; pageSize: number; pageCount: number } };
   } | null;
 };
 
@@ -1862,21 +1876,21 @@ export type TQueryGameBySlugVariables = Exact<{
 export type TQueryGameBySlug = {
   games?: {
     data: Array<{
-      id?: string | null;
-      attributes?: {
+      id: string;
+      attributes: {
         name: string;
         short_description: string;
         description: string;
         price: number;
         rating?: TEnum_Game_Rating | null;
         release_date?: any | null;
-        gallery?: { data: Array<{ attributes?: { src: string; label?: string | null } | null }> } | null;
-        cover?: { data?: { attributes?: { src: string } | null } | null } | null;
-        developers?: { data: Array<{ attributes?: { name: string } | null }> } | null;
-        publisher?: { data?: { attributes?: { name: string } | null } | null } | null;
-        categories?: { data: Array<{ attributes?: { name: string } | null }> } | null;
-        platforms?: { data: Array<{ attributes?: { name: string } | null }> } | null;
-      } | null;
+        gallery?: { data: Array<{ attributes: { src: string; label?: string | null } }> } | null;
+        cover: { data: { attributes: { src: string } } };
+        developers?: { data: Array<{ attributes: { name: string } }> } | null;
+        publisher?: { data: { attributes: { name: string } } } | null;
+        categories?: { data: Array<{ attributes: { name: string } }> } | null;
+        platforms?: { data: Array<{ attributes: { name: string } }> } | null;
+      };
     }>;
   } | null;
 };
@@ -1888,55 +1902,55 @@ export type TQueryHomeVariables = Exact<{
 export type TQueryHome = {
   banners?: {
     data: Array<{
-      id?: string | null;
-      attributes?: {
+      id: string;
+      attributes: {
         title: string;
         subtitle: string;
-        image: { data?: { attributes?: { url: string } | null } | null };
+        image: { data: { attributes: { url: string } } };
         button: { label: string; link: string };
         ribbon?: { text: string; color?: TEnum_Componentpageribbon_Color | null; size?: TEnum_Componentpageribbon_Size | null } | null;
-      } | null;
+      };
     }>;
   } | null;
   newGames?: {
     data: Array<{
-      id?: string | null;
-      attributes?: {
+      id: string;
+      attributes: {
         name: string;
         slug: string;
         price: number;
-        cover?: { data?: { attributes?: { url: string } | null } | null } | null;
-        developers?: { data: Array<{ attributes?: { name: string } | null }> } | null;
-      } | null;
+        cover: { data: { attributes: { url: string } } };
+        developers?: { data: Array<{ attributes: { name: string } }> } | null;
+      };
     }>;
   } | null;
   upcomingGames?: {
     data: Array<{
-      id?: string | null;
-      attributes?: {
+      id: string;
+      attributes: {
         name: string;
         slug: string;
         price: number;
-        cover?: { data?: { attributes?: { url: string } | null } | null } | null;
-        developers?: { data: Array<{ attributes?: { name: string } | null }> } | null;
-      } | null;
+        cover: { data: { attributes: { url: string } } };
+        developers?: { data: Array<{ attributes: { name: string } }> } | null;
+      };
     }>;
   } | null;
   freeGames?: {
     data: Array<{
-      id?: string | null;
-      attributes?: {
+      id: string;
+      attributes: {
         name: string;
         slug: string;
         price: number;
-        cover?: { data?: { attributes?: { url: string } | null } | null } | null;
-        developers?: { data: Array<{ attributes?: { name: string } | null }> } | null;
-      } | null;
+        cover: { data: { attributes: { url: string } } };
+        developers?: { data: Array<{ attributes: { name: string } }> } | null;
+      };
     }>;
   } | null;
   sections?: {
-    data?: {
-      attributes?: {
+    data: {
+      attributes: {
         newGames?: {
           title?: string | null;
           highlight?: {
@@ -1945,8 +1959,8 @@ export type TQueryHome = {
             buttonLabel: string;
             buttonLink: string;
             alignment?: TEnum_Componentpagehighlight_Alignment | null;
-            background: { data?: { attributes?: { url: string } | null } | null };
-            floatImage?: { data?: { attributes?: { url: string } | null } | null } | null;
+            background: { data: { attributes: { url: string } } };
+            floatImage?: { data: { attributes: { url: string } } } | null;
           } | null;
         } | null;
         popularGames?: {
@@ -1957,19 +1971,19 @@ export type TQueryHome = {
             buttonLabel: string;
             buttonLink: string;
             alignment?: TEnum_Componentpagehighlight_Alignment | null;
-            background: { data?: { attributes?: { url: string } | null } | null };
-            floatImage?: { data?: { attributes?: { url: string } | null } | null } | null;
+            background: { data: { attributes: { url: string } } };
+            floatImage?: { data: { attributes: { url: string } } } | null;
           } | null;
           games?: {
             data: Array<{
-              id?: string | null;
-              attributes?: {
+              id: string;
+              attributes: {
                 name: string;
                 slug: string;
                 price: number;
-                cover?: { data?: { attributes?: { url: string } | null } | null } | null;
-                developers?: { data: Array<{ attributes?: { name: string } | null }> } | null;
-              } | null;
+                cover: { data: { attributes: { url: string } } };
+                developers?: { data: Array<{ attributes: { name: string } }> } | null;
+              };
             }>;
           } | null;
         } | null;
@@ -1981,8 +1995,8 @@ export type TQueryHome = {
             buttonLabel: string;
             buttonLink: string;
             alignment?: TEnum_Componentpagehighlight_Alignment | null;
-            background: { data?: { attributes?: { url: string } | null } | null };
-            floatImage?: { data?: { attributes?: { url: string } | null } | null } | null;
+            background: { data: { attributes: { url: string } } };
+            floatImage?: { data: { attributes: { url: string } } } | null;
           } | null;
         } | null;
         freeGames?: {
@@ -1993,12 +2007,12 @@ export type TQueryHome = {
             buttonLabel: string;
             buttonLink: string;
             alignment?: TEnum_Componentpagehighlight_Alignment | null;
-            background: { data?: { attributes?: { url: string } | null } | null };
-            floatImage?: { data?: { attributes?: { url: string } | null } | null } | null;
+            background: { data: { attributes: { url: string } } };
+            floatImage?: { data: { attributes: { url: string } } } | null;
           } | null;
         } | null;
-      } | null;
-    } | null;
+      };
+    };
   } | null;
 };
 
@@ -2009,24 +2023,24 @@ export type TQueryOrdersVariables = Exact<{
 export type TQueryOrders = {
   orders?: {
     data: Array<{
-      id?: string | null;
-      attributes?: {
+      id: string;
+      attributes: {
         createdAt?: any | null;
         card_brand?: string | null;
         card_last4?: string | null;
         games?: {
           data: Array<{
-            id?: string | null;
-            attributes?: {
+            id: string;
+            attributes: {
               name: string;
               slug: string;
               price: number;
-              cover?: { data?: { attributes?: { url: string } | null } | null } | null;
-              developers?: { data: Array<{ attributes?: { name: string } | null }> } | null;
-            } | null;
+              cover: { data: { attributes: { url: string } } };
+              developers?: { data: Array<{ attributes: { name: string } }> } | null;
+            };
           }>;
         } | null;
-      } | null;
+      };
     }>;
   } | null;
 };
@@ -2035,16 +2049,14 @@ export type TQueryProfileMeVariables = Exact<{
   identifier: Scalars['ID'];
 }>;
 
-export type TQueryProfileMe = {
-  usersPermissionsUser?: { data?: { id?: string | null; attributes?: { username: string; email: string } | null } | null } | null;
-};
+export type TQueryProfileMe = { usersPermissionsUser?: { data: { id: string; attributes: { username: string; email: string } } } | null };
 
 export type TQueryRecommendedVariables = Exact<{ [key: string]: never }>;
 
 export type TQueryRecommended = {
   recommended?: {
-    data?: {
-      attributes?: {
+    data: {
+      attributes: {
         section: {
           title: string;
           highlight?: {
@@ -2053,24 +2065,24 @@ export type TQueryRecommended = {
             buttonLabel: string;
             buttonLink: string;
             alignment?: TEnum_Componentpagehighlight_Alignment | null;
-            background: { data?: { attributes?: { url: string } | null } | null };
-            floatImage?: { data?: { attributes?: { url: string } | null } | null } | null;
+            background: { data: { attributes: { url: string } } };
+            floatImage?: { data: { attributes: { url: string } } } | null;
           } | null;
           games?: {
             data: Array<{
-              id?: string | null;
-              attributes?: {
+              id: string;
+              attributes: {
                 name: string;
                 slug: string;
                 price: number;
-                cover?: { data?: { attributes?: { url: string } | null } | null } | null;
-                developers?: { data: Array<{ attributes?: { name: string } | null }> } | null;
-              } | null;
+                cover: { data: { attributes: { url: string } } };
+                developers?: { data: Array<{ attributes: { name: string } }> } | null;
+              };
             }>;
           } | null;
         };
-      } | null;
-    } | null;
+      };
+    };
   } | null;
 };
 
@@ -2081,19 +2093,19 @@ export type TQueryUpcomingVariables = Exact<{
 export type TQueryUpcoming = {
   upcomingGames?: {
     data: Array<{
-      id?: string | null;
-      attributes?: {
+      id: string;
+      attributes: {
         name: string;
         slug: string;
         price: number;
-        cover?: { data?: { attributes?: { url: string } | null } | null } | null;
-        developers?: { data: Array<{ attributes?: { name: string } | null }> } | null;
-      } | null;
+        cover: { data: { attributes: { url: string } } };
+        developers?: { data: Array<{ attributes: { name: string } }> } | null;
+      };
     }>;
   } | null;
   showcase?: {
-    data?: {
-      attributes?: {
+    data: {
+      attributes: {
         upcomingGames?: {
           title?: string | null;
           highlight?: {
@@ -2102,12 +2114,12 @@ export type TQueryUpcoming = {
             buttonLabel: string;
             buttonLink: string;
             alignment?: TEnum_Componentpagehighlight_Alignment | null;
-            background: { data?: { attributes?: { url: string } | null } | null };
-            floatImage?: { data?: { attributes?: { url: string } | null } | null } | null;
+            background: { data: { attributes: { url: string } } };
+            floatImage?: { data: { attributes: { url: string } } } | null;
           } | null;
         } | null;
-      } | null;
-    } | null;
+      };
+    };
   } | null;
 };
 
@@ -2118,21 +2130,21 @@ export type TQueryWishlistVariables = Exact<{
 export type TQueryWishlist = {
   wishlists?: {
     data: Array<{
-      id?: string | null;
-      attributes?: {
+      id: string;
+      attributes: {
         games?: {
           data: Array<{
-            id?: string | null;
-            attributes?: {
+            id: string;
+            attributes: {
               name: string;
               slug: string;
               price: number;
-              cover?: { data?: { attributes?: { url: string } | null } | null } | null;
-              developers?: { data: Array<{ attributes?: { name: string } | null }> } | null;
-            } | null;
+              cover: { data: { attributes: { url: string } } };
+              developers?: { data: Array<{ attributes: { name: string } }> } | null;
+            };
           }>;
         } | null;
-      } | null;
+      };
     }>;
   } | null;
 };

@@ -18,7 +18,9 @@
     "build-storybook": "build-storybook -s ./public",
     "generate": "yarn plop --plopfile ./generators/plopfile.js",
     "typecheck": "tsc --project tsconfig.json --noEmit",
-    "graphql:generate": "graphql-codegen --config codegen.yml"
+    "schema:download": "apollo client:download-schema --endpoint=http://localhost:1337/graphql schema-temp.gql",
+    "schema:convert": "node convertToNonNull",
+    "types:generate": "yarn schema:download && yarn schema:convert && graphql-codegen --config codegen.yml"
   },
   "lint-staged": {
     "src/**/*": [
