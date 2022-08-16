@@ -21,8 +21,6 @@ export async function getStaticProps() {
     fetchPolicy: 'no-cache',
   });
 
-  console.log({ upcomingGames });
-
   return {
     props: {
       banners: bannersMapper(banners),
