@@ -51,7 +51,7 @@ const Footer = () => (
             <a>Store</a>
           </Link>
           <Link href="/search">
-            <a>Buscar</a>
+            <a>Search</a>
           </Link>
         </nav>
       </S.Column>

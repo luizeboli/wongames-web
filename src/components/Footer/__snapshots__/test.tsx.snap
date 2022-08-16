@@ -248,7 +248,7 @@ exports[`<Footer /> should render 4 columns 1`] = `
         <a
           href="/search"
         >
-          Buscar
+          Search
         </a>
       </nav>
     </div>
