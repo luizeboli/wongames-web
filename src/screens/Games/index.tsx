@@ -41,9 +41,6 @@ const GamesScreen = ({ filterItems }: GamesScreenProps) => {
   const handleShowMore = () => {
     fetchMore({
       variables: { pagination: { limit: 15, start: data?.games?.data.length ?? 0 } },
-      // updateQuery: (prev, { fetchMoreResult }) => {
-      //   console.log({ prev, fetchMoreResult });
-      // },
     });
   };
 
