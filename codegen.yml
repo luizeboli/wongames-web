@@ -13,6 +13,8 @@ generates:
       dedupeOperationSuffix: true
       omitOperationSuffix: true
       typesPrefix: "T"
+      documentMode: "external"
+      importDocumentNodeExternallyFrom: ".."
       skipTypename: true
       scalars:
         JSON: '{ [key: string]: any }'
