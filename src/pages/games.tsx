@@ -1,10 +1,10 @@
 import { GetServerSidePropsContext } from 'next';
 
-import { QueryGames, QueryGamesVariables } from 'graphql/generated/QueryGames';
-import { QUERY_GAMES } from 'graphql/queries/games';
+import { TQueryGames, TQueryGamesVariables } from 'graphql/generated';
+import { QueryGames } from 'graphql/queries/games';
 import GamesScreen, { GamesScreenProps } from 'screens/Games';
 import { initializeApollo } from 'utils/apollo';
-import { parseQueryStringToWhere } from 'utils/filter';
+import { parseQueryStringToFilters } from 'utils/filter';
 import { genreFields, platformFields, priceFields, sortFields } from 'utils/filter/fields';
 
 export default function GamesPage(props: GamesScreenProps) {
@@ -16,7 +16,8 @@ export async function getServerSideProps({ query }: GetServerSidePropsContext) {
 
   const filterPrice = {
     title: 'Price',
-    name: 'price_lte',
+    name: 'price',
+    filterInput: 'lte',
     type: 'radio',
     fields: priceFields,
   };
@@ -45,11 +46,13 @@ export async function getServerSideProps({ query }: GetServerSidePropsContext) {
 
   const filterItems = [filterSort, filterPrice, filterPlatforms, filterCategories];
 
-  await apolloClient.query<QueryGames, QueryGamesVariables>({
-    query: QUERY_GAMES,
+  await apolloClient.query<TQueryGames, TQueryGamesVariables>({
+    query: QueryGames,
     variables: {
-      limit: 15,
-      where: parseQueryStringToWhere({ queryString: query, filterItems }),
+      pagination: {
+        limit: 15,
+      },
+      filters: parseQueryStringToFilters({ queryString: query, filterItems }),
       sort: query.sort as string | null,
     },
   });
@@ -58,6 +61,7 @@ export async function getServerSideProps({ query }: GetServerSidePropsContext) {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       filterItems,
+      query,
     },
   };
 }

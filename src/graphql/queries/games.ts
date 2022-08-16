@@ -11,6 +11,14 @@ export const QueryGames = gql`
           ...GameFragment
         }
       }
+      meta {
+        pagination {
+          total
+          page
+          pageSize
+          pageCount
+        }
+      }
     }
   }
 
