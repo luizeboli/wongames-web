@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require('fs-extra');
 const graphql = require('graphql');
-const util = require('util');
-
-const log = (info) => console.log(JSON.stringify(info, null, 2));
 
 async function convert(inputFile, outputFile) {
   const schema = graphql.parse(await fs.readFile(inputFile, 'utf8'));
