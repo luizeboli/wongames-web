@@ -40,7 +40,7 @@
     "@stripe/stripe-js": "^1.14.0",
     "@testing-library/react-hooks": "^5.1.2",
     "@types/lodash.xor": "^4.5.6",
-    "dotenv": "^9.0.2",
+    "dotenv": "^16.0.2",
     "graphql": "^15.5.0",
     "joi": "^17.4.0",
     "lodash.xor": "^4.5.0",
