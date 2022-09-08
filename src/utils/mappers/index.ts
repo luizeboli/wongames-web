@@ -1,4 +1,4 @@
-import { TComponentPageHighlight, THighlightFragment, TQueryGames, TQueryHome } from 'graphql/generated';
+import { TGamesFragment, THighlightFragment, TQueryHome } from 'graphql/generated';
 import formatPrice from 'utils/formatPrice';
 
 export const bannersMapper = (banners: TQueryHome['banners']) =>
@@ -15,7 +15,7 @@ export const bannersMapper = (banners: TQueryHome['banners']) =>
     }),
   }));
 
-export const gamesMapper = (games: TQueryGames['games']) =>
+export const gamesMapper = (games: TGamesFragment | null | undefined) =>
   games?.data.length
     ? games.data.map((game) => ({
         id: game.id,
@@ -41,7 +41,7 @@ export const highlightMapper = (hightlight: THighlightFragment | null | undefine
         buttonLink: hightlight.buttonLink,
         alignment: hightlight.alignment,
       }
-    : {};
+    : null;
 
 export const cartMapper = (games: QueryGames_games[] | QueryWishlist_wishlists_games[] | undefined) => {
   return games

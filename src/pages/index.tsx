@@ -5,7 +5,6 @@ import { initializeApollo } from 'utils/apollo';
 import { bannersMapper, gamesMapper, highlightMapper } from 'utils/mappers';
 
 export default function Index(props: HomeScreenProps) {
-  console.log({ props });
   return <Home {...props} />;
 }
 

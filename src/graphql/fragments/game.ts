@@ -21,3 +21,15 @@ export const GameFragment = gql`
     price
   }
 `;
+
+export const GamesFragment = gql`
+  fragment GamesFragment on GameEntityResponseCollection {
+    data {
+      id
+      attributes {
+        ...GameFragment
+      }
+    }
+  }
+  ${GameFragment}
+`;

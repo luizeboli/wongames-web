@@ -663,6 +663,7 @@ input LongFilterInput {
 }
 
 type Mutation {
+  createWishlist(data: WishlistCreateInput!): WishlistEntityResponse
   createUploadFile(data: UploadFileInput!): UploadFileEntityResponse
   updateUploadFile(id: ID!, data: UploadFileInput!): UploadFileEntityResponse
   deleteUploadFile(id: ID!): UploadFileEntityResponse
@@ -697,7 +698,6 @@ type Mutation {
   deletePublisher(id: ID!): PublisherEntityResponse
   updateRecommended(data: RecommendedInput!): RecommendedEntityResponse
   deleteRecommended: RecommendedEntityResponse
-  createWishlist(data: WishlistInput!): WishlistEntityResponse
   updateWishlist(id: ID!, data: WishlistInput!): WishlistEntityResponse
   deleteWishlist(id: ID!): WishlistEntityResponse
   upload(refId: ID, ref: String, field: String, info: FileInfoInput, file: Upload!): UploadFileEntityResponse!
@@ -1127,6 +1127,7 @@ type UsersPermissionsMe {
   confirmed: Boolean
   blocked: Boolean
   role: UsersPermissionsMeRole
+  wishlists: WishlistEntityResponseCollection
 }
 
 type UsersPermissionsMeRole {
@@ -1287,6 +1288,10 @@ type Wishlist {
   games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection
   createdAt: DateTime
   updatedAt: DateTime
+}
+
+input WishlistCreateInput {
+  games: [ID]
 }
 
 type WishlistEntity {

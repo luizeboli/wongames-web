@@ -1,9 +1,8 @@
 import { GetServerSidePropsContext } from 'next';
 
-import { QueryRecommended } from 'graphql/generated/QueryRecommended';
-import { QueryWishlist, QueryWishlistVariables } from 'graphql/generated/QueryWishlist';
-import { QUERY_RECOMMENDED } from 'graphql/queries/recommended';
-import { QUERY_WISHLIST } from 'graphql/queries/wishlist';
+import { TQueryRecommended, TQueryWishlist, TQueryWishlistVariables } from 'graphql/generated';
+import { QueryRecommended } from 'graphql/queries/recommended';
+import { QueryWishlist } from 'graphql/queries/wishlist';
 import Wishlist, { WishlistScreenProps } from 'screens/Wishlist';
 import { initializeApollo } from 'utils/apollo';
 import { gamesMapper, highlightMapper } from 'utils/mappers';
@@ -19,20 +18,19 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   if (!session) return { props: {} };
 
-  await apolloClient.query<QueryWishlist, QueryWishlistVariables>({
-    query: QUERY_WISHLIST,
-    variables: {
-      identifier: session.user?.email as string,
-    },
+  await apolloClient.query<TQueryWishlist, TQueryWishlistVariables>({
+    query: QueryWishlist,
   });
 
-  const { data } = await apolloClient.query<QueryRecommended>({ query: QUERY_RECOMMENDED });
+  const { data } = await apolloClient.query<TQueryRecommended>({ query: QueryRecommended });
+
+  console.log({ data });
 
   return {
     props: {
-      recommendedTitle: data.recommended?.section?.title,
-      recommendedGames: gamesMapper(data.recommended?.section?.games),
-      recommendedHighlight: highlightMapper(data.recommended?.section?.highlight),
+      recommendedTitle: data.recommended?.data.attributes.section.title,
+      recommendedGames: gamesMapper(data.recommended?.data.attributes.section.games),
+      recommendedHighlight: highlightMapper(data.recommended?.data.attributes.section.highlight),
       initializeApollo: apolloClient.cache.extract(),
       session,
     },

@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { useSession } from 'next-auth/client';
 
 import { GameCardProps } from 'components/GameCard';
-import { TQueryWishlist, useMutationCreateWishlist, useMutationUpdateWishlist, useQueryWishlist } from 'graphql/generated';
+import { TGamesFragment, useMutationCreateWishlist, useMutationUpdateWishlist, useQueryWishlist } from 'graphql/generated';
 import { gamesMapper } from 'utils/mappers';
 
 export type WishlistContextData = {
@@ -30,12 +30,12 @@ export type WishlistProviderProps = {
 const WishlistProvider = ({ children }: WishlistProviderProps) => {
   const [session] = useSession();
   const [wishlistId, setWishlistId] = useState<string | undefined>();
-  const [wishlist, setWishlist] = useState<TQueryWishlist[]>([]);
+  const [wishlist, setWishlist] = useState<TGamesFragment | null | undefined>({ data: [] });
 
   const [createWishlist, { loading: isLoadingCreateWishlist }] = useMutationCreateWishlist({
     context: { session },
     onCompleted: (data) => {
-      setWishlist(data.createWishlist?.data?.attributes?.games || []);
+      setWishlist(data.createWishlist?.data?.attributes?.games);
       setWishlistId(data.createWishlist?.data?.id);
     },
   });
@@ -43,62 +43,54 @@ const WishlistProvider = ({ children }: WishlistProviderProps) => {
   const [updateWishlist, { loading: isLoadingUpdateWishlist }] = useMutationUpdateWishlist({
     context: { session },
     onCompleted: (data) => {
-      setWishlist(data.updateWishlist?.data?.attributes?.games || []);
+      setWishlist(data.updateWishlist?.data?.attributes?.games);
     },
   });
 
   const { data, loading: loadingWishlist } = useQueryWishlist({
     skip: !session?.user?.email,
     context: { session },
-    variables: {
-      identifier: session?.user?.email as string,
-    },
   });
 
   useEffect(() => {
-    setWishlist(data?.wishlists[0]?.games || []);
-    setWishlistId(data?.wishlists[0]?.id);
+    if (data?.me?.wishlists?.data.length) {
+      setWishlist(data.me.wishlists.data[0].attributes.games);
+      setWishlistId(data.me.wishlists.data[0].id);
+    }
   }, [data]);
 
-  const wishlistIds = useMemo(() => wishlist.map((game) => game.id), [wishlist]);
+  const wishlistGamesIds = useMemo(() => wishlist?.data.map((wish) => wish.id) ?? [], [wishlist]);
 
-  const isInWishlist = (id: string) => wishlist?.some((game) => game.id === id);
+  const isInWishlist = (id: string) => wishlist?.data.some((game) => game.id === id) ?? false;
 
   const addToWishlist = (id: string) => {
     if (!wishlistId) {
       return createWishlist({
         variables: {
           input: {
-            data: {
-              games: [...wishlistIds, id],
-            },
+            games: [id],
           },
         },
       });
     }
-
     return updateWishlist({
       variables: {
+        id: wishlistId,
         input: {
-          where: { id: wishlistId },
-          data: {
-            games: [...wishlistIds, id],
-          },
+          games: [...wishlistGamesIds, id],
         },
       },
     });
   };
 
   const removeFromWishlist = (id: string) => {
+    if (!wishlistId) return;
+
     return updateWishlist({
       variables: {
+        id: wishlistId,
         input: {
-          where: {
-            id: wishlistId,
-          },
-          data: {
-            games: wishlistIds.filter((gameId) => gameId !== id),
-          },
+          games: wishlistGamesIds.filter((gameId) => gameId !== id),
         },
       },
     });
@@ -111,7 +103,7 @@ const WishlistProvider = ({ children }: WishlistProviderProps) => {
         addToWishlist,
         removeFromWishlist,
         loading: loadingWishlist || isLoadingCreateWishlist || isLoadingUpdateWishlist,
-        items: gamesMapper(wishlist),
+        items: wishlist?.data.length ? gamesMapper(wishlist) : [],
       }}
     >
       {children}

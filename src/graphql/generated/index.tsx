@@ -820,7 +820,7 @@ export type TMutationCreateUsersPermissionsUserArgs = {
 };
 
 export type TMutationCreateWishlistArgs = {
-  data: TWishlistInput;
+  data: TWishlistCreateInput;
 };
 
 export type TMutationDeleteBannerArgs = {
@@ -1550,6 +1550,7 @@ export type TUsersPermissionsMe = {
   id: Scalars['ID'];
   role?: Maybe<TUsersPermissionsMeRole>;
   username: Scalars['String'];
+  wishlists?: Maybe<TWishlistEntityResponseCollection>;
 };
 
 export type TUsersPermissionsMeRole = {
@@ -1730,6 +1731,10 @@ export type TWishlistGamesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+export type TWishlistCreateInput = {
+  games?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+};
+
 export type TWishlistEntity = {
   attributes: TWishlist;
   id: Scalars['ID'];
@@ -1776,6 +1781,19 @@ export type TGameFragment = {
   developers?: { data: Array<{ attributes: { name: string } }> } | null;
 };
 
+export type TGamesFragment = {
+  data: Array<{
+    id: string;
+    attributes: {
+      name: string;
+      slug: string;
+      price: number;
+      cover: { data: { attributes: { url: string } } };
+      developers?: { data: Array<{ attributes: { name: string } }> } | null;
+    };
+  }>;
+};
+
 export type THighlightFragment = {
   title: string;
   subtitle: string;
@@ -1793,7 +1811,7 @@ export type TMutationRegisterVariables = Exact<{
 export type TMutationRegister = { register: { jwt?: string | null } };
 
 export type TMutationCreateWishlistVariables = Exact<{
-  input: TWishlistInput;
+  input: TWishlistCreateInput;
 }>;
 
 export type TMutationCreateWishlist = {
@@ -2123,29 +2141,29 @@ export type TQueryUpcoming = {
   } | null;
 };
 
-export type TQueryWishlistVariables = Exact<{
-  identifier: Scalars['String'];
-}>;
+export type TQueryWishlistVariables = Exact<{ [key: string]: never }>;
 
 export type TQueryWishlist = {
-  wishlists?: {
-    data: Array<{
-      id: string;
-      attributes: {
-        games?: {
-          data: Array<{
-            id: string;
-            attributes: {
-              name: string;
-              slug: string;
-              price: number;
-              cover: { data: { attributes: { url: string } } };
-              developers?: { data: Array<{ attributes: { name: string } }> } | null;
-            };
-          }>;
-        } | null;
-      };
-    }>;
+  me?: {
+    wishlists?: {
+      data: Array<{
+        id: string;
+        attributes: {
+          games?: {
+            data: Array<{
+              id: string;
+              attributes: {
+                name: string;
+                slug: string;
+                price: number;
+                cover: { data: { attributes: { url: string } } };
+                developers?: { data: Array<{ attributes: { name: string } }> } | null;
+              };
+            }>;
+          } | null;
+        };
+      }>;
+    } | null;
   } | null;
 };
 
@@ -2442,11 +2460,10 @@ export type QueryUpcomingQueryResult = Apollo.QueryResult<TQueryUpcoming, TQuery
  * @example
  * const { data, loading, error } = useQueryWishlist({
  *   variables: {
- *      identifier: // value for 'identifier'
  *   },
  * });
  */
-export function useQueryWishlist(baseOptions: Apollo.QueryHookOptions<TQueryWishlist, TQueryWishlistVariables>) {
+export function useQueryWishlist(baseOptions?: Apollo.QueryHookOptions<TQueryWishlist, TQueryWishlistVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useQuery<TQueryWishlist, TQueryWishlistVariables>(Operations.QueryWishlist, options);
 }

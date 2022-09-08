@@ -3,7 +3,7 @@ import { gql } from '@apollo/client';
 import { GameFragment } from 'graphql/fragments/game';
 
 export const MutationCreateWishlist = gql`
-  mutation MutationCreateWishlist($input: WishlistInput!) {
+  mutation MutationCreateWishlist($input: WishlistCreateInput!) {
     createWishlist(data: $input) {
       data {
         id
