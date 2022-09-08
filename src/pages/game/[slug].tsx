@@ -1,13 +1,18 @@
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 
-import { QueryGameBySlug, QueryGameBySlugVariables } from 'graphql/generated/QueryGameBySlug';
-import { QueryGames, QueryGamesVariables } from 'graphql/generated/QueryGames';
-import { QueryRecommended } from 'graphql/generated/QueryRecommended';
-import { QueryUpcoming, QueryUpcomingVariables } from 'graphql/generated/QueryUpcoming';
-import { QUERY_GAME_BY_SLUG, QUERY_GAMES } from 'graphql/queries/games';
-import { QUERY_RECOMMENDED } from 'graphql/queries/recommended';
-import { QUERY_UPCOMING } from 'graphql/queries/upcoming';
+import {
+  TQueryGameBySlug,
+  TQueryGameBySlugVariables,
+  TQueryGames,
+  TQueryGamesVariables,
+  TQueryRecommended,
+  TQueryUpcoming,
+  TQueryUpcomingVariables,
+} from 'graphql/generated';
+import { QueryGameBySlug, QueryGames } from 'graphql/queries/games';
+import { QueryRecommended } from 'graphql/queries/recommended';
+import { QueryUpcoming } from 'graphql/queries/upcoming';
 import Game, { GameScreenProps } from 'screens/Game';
 import { initializeApollo } from 'utils/apollo';
 import { gamesMapper, highlightMapper } from 'utils/mappers';
@@ -23,61 +28,64 @@ export default function Index(props: GameScreenProps) {
 }
 
 export async function getStaticPaths() {
-  const { data } = await apolloClient.query<QueryGames, QueryGamesVariables>({ query: QUERY_GAMES, variables: { limit: 9 } });
+  const { data } = await apolloClient.query<TQueryGames, TQueryGamesVariables>({
+    query: QueryGames,
+    variables: { pagination: { limit: 9 } },
+  });
 
-  const paths = data.games.map(({ slug }) => ({ params: { slug } }));
+  const paths = data.games?.data.map((game) => ({ params: { slug: game.attributes.slug } }));
 
   return { paths, fallback: true };
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { data } = await apolloClient.query<QueryGameBySlug, QueryGameBySlugVariables>({
-    query: QUERY_GAME_BY_SLUG,
+  const { data } = await apolloClient.query<TQueryGameBySlug, TQueryGameBySlugVariables>({
+    query: QueryGameBySlug,
     variables: { slug: `${params?.slug}` },
     fetchPolicy: 'no-cache',
   });
 
-  if (!data.games.length) {
+  if (!data.games?.data.length) {
     return { notFound: true };
   }
 
-  const { data: recommendedData } = await apolloClient.query<QueryRecommended>({ query: QUERY_RECOMMENDED });
+  const { data: recommendedData } = await apolloClient.query<TQueryRecommended>({ query: QueryRecommended });
 
   const TODAY = new Date().toISOString().slice(0, 10);
-  const { data: upcomingData } = await apolloClient.query<QueryUpcoming, QueryUpcomingVariables>({
-    query: QUERY_UPCOMING,
+  const { data: upcomingData } = await apolloClient.query<TQueryUpcoming, TQueryUpcomingVariables>({
+    query: QueryUpcoming,
     variables: { date: TODAY },
   });
 
-  const game = data.games[0];
+  const game = data.games.data[0];
 
   return {
     props: {
       slug: params?.slug,
-      cover: game.cover?.src,
+      cover: game.attributes.cover.data.attributes.src,
       gameInfo: {
         id: game.id,
-        title: game.name,
-        price: game.price,
-        description: game.short_description,
+        title: game.attributes.name,
+        price: game.attributes.price,
+        description: game.attributes.short_description,
       },
-      gallery: game.gallery,
-      description: game.description,
+      gallery: game.attributes.gallery?.data,
+      description: game.attributes.description,
       gameDetails: {
-        developer: game.developers[0]?.name,
-        releaseDate: game.release_date,
-        platforms: game.platforms.map((platform) => platform.name),
-        ...(!!game.publisher && {
-          publisher: game.publisher?.name,
+        developer: game.attributes.developers?.data[0].attributes.name,
+        releaseDate: game.attributes.release_date,
+        platforms: game.attributes.platforms?.data.map((platform) => platform.attributes.name),
+        ...(!!game.attributes.publisher && {
+          publisher: game.attributes.publisher?.data.attributes.name,
         }),
-        rating: game.rating,
-        genres: game.categories.map((category) => category.name),
+        rating: game.attributes.rating,
+        genres: game.attributes.categories?.data.map((category) => category.attributes.name),
       },
-      upcomingTitle: upcomingData.showcase?.upcomingGames?.title,
+      upcomingTitle: upcomingData.showcase?.data.attributes.upcomingGames?.title,
       upcomingGames: gamesMapper(upcomingData.upcomingGames),
-      upcomingHighlight: highlightMapper(upcomingData.showcase?.upcomingGames?.highlight),
-      recommendedTitle: recommendedData.recommended?.section?.title,
-      recommendedGames: gamesMapper(recommendedData.recommended?.section?.games),
+      upcomingHighlight: highlightMapper(upcomingData.showcase?.data.attributes.upcomingGames?.highlight),
+      recommendedTitle: recommendedData.recommended?.data.attributes.section?.title,
+      recommendedGames: gamesMapper(recommendedData.recommended?.data.attributes.section?.games),
     },
     revalidate: 300,
   };
