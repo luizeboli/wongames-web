@@ -13,7 +13,7 @@ const options = {
       name: 'Sign-In',
       credentials: {},
       async authorize({ email, password }: { email: string; password: string }) {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/local`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/local`, {
           method: 'POST',
           body: new URLSearchParams({ identifier: email, password }),
         });
