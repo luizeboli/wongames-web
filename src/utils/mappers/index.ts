@@ -43,13 +43,13 @@ export const highlightMapper = (hightlight: THighlightFragment | null | undefine
       }
     : null;
 
-export const cartMapper = (games: QueryGames_games[] | QueryWishlist_wishlists_games[] | undefined) => {
+export const cartMapper = (games: TGamesFragment | null | undefined) => {
   return games
-    ? games.map((game) => ({
+    ? games.data.map((game) => ({
         id: game.id,
-        img: game.cover?.url,
-        title: game.name,
-        price: formatPrice(game.price),
+        img: game.attributes.cover?.data.attributes.url,
+        title: game.attributes.name,
+        price: formatPrice(game.attributes.price),
       }))
     : [];
 };

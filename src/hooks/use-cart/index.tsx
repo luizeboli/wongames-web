@@ -88,7 +88,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   return (
     <CartContext.Provider
       value={{
-        items: [], //cartMapper(data?.games?.data),
+        items: cartMapper(data?.games),
         quantity: cartItems.length,
         total: formatPrice(totalPrice),
         isInCart,
