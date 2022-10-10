@@ -14,17 +14,9 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /**
-   * A date string, such as 2007-12-03, compliant with the `full-date` format
-   * outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
-   * representation of dates and times using the Gregorian calendar.
-   */
+  /** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   Date: any;
-  /**
-   * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
-   * `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO
-   * 8601 standard for representation of dates and times using the Gregorian calendar.
-   */
+  /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   DateTime: any;
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: { [key: string]: any };
@@ -196,7 +188,7 @@ export type TComponentPageHighlightInput = {
 };
 
 export type TComponentPagePopularGames = {
-  games?: Maybe<TGameRelationResponseCollection>;
+  games: TGameRelationResponseCollection;
   highlight?: Maybe<TComponentPageHighlight>;
   id: Scalars['ID'];
   title: Scalars['String'];
@@ -239,7 +231,7 @@ export type TComponentPageRibbonInput = {
 };
 
 export type TComponentPageSection = {
-  games?: Maybe<TGameRelationResponseCollection>;
+  games: TGameRelationResponseCollection;
   highlight?: Maybe<TComponentPageHighlight>;
   id: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
@@ -467,16 +459,16 @@ export type TFloatFilterInput = {
 };
 
 export type TGame = {
-  categories?: Maybe<TCategoryRelationResponseCollection>;
+  categories: TCategoryRelationResponseCollection;
   cover: TUploadFileEntityResponse;
   createdAt?: Maybe<Scalars['DateTime']>;
   description: Scalars['String'];
-  developers?: Maybe<TDeveloperRelationResponseCollection>;
+  developers: TDeveloperRelationResponseCollection;
   gallery?: Maybe<TUploadFileRelationResponseCollection>;
   name: Scalars['String'];
-  platforms?: Maybe<TPlatformRelationResponseCollection>;
+  platforms: TPlatformRelationResponseCollection;
   price: Scalars['Float'];
-  publisher?: Maybe<TPublisherEntityResponse>;
+  publisher: TPublisherEntityResponse;
   rating?: Maybe<TEnum_Game_Rating>;
   release_date?: Maybe<Scalars['Date']>;
   short_description: Scalars['String'];
@@ -998,12 +990,12 @@ export type TOrder = {
   card_brand?: Maybe<Scalars['String']>;
   card_last4?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  games?: Maybe<TGameRelationResponseCollection>;
+  games: TGameRelationResponseCollection;
   payment_intent_id?: Maybe<Scalars['String']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   total_in_cents: Scalars['Long'];
   updatedAt?: Maybe<Scalars['DateTime']>;
-  user?: Maybe<TUsersPermissionsUserEntityResponse>;
+  user: TUsersPermissionsUserEntityResponse;
 };
 
 export type TOrderGamesArgs = {
@@ -1665,7 +1657,7 @@ export type TUsersPermissionsUser = {
   createdAt?: Maybe<Scalars['DateTime']>;
   email: Scalars['String'];
   provider?: Maybe<Scalars['String']>;
-  role?: Maybe<TUsersPermissionsRoleEntityResponse>;
+  role: TUsersPermissionsRoleEntityResponse;
   updatedAt?: Maybe<Scalars['DateTime']>;
   username: Scalars['String'];
 };
@@ -1722,7 +1714,7 @@ export type TWishlist = {
   createdAt?: Maybe<Scalars['DateTime']>;
   games?: Maybe<TGameRelationResponseCollection>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  user?: Maybe<TUsersPermissionsUserEntityResponse>;
+  user: TUsersPermissionsUserEntityResponse;
 };
 
 export type TWishlistGamesArgs = {
@@ -1778,7 +1770,7 @@ export type TGameFragment = {
   slug: string;
   price: number;
   cover: { data: { attributes: { url: string } } };
-  developers?: { data: Array<{ attributes: { name: string } }> } | null;
+  developers: { data: Array<{ attributes: { name: string } }> };
 };
 
 export type TGamesFragment = {
@@ -1789,7 +1781,7 @@ export type TGamesFragment = {
       slug: string;
       price: number;
       cover: { data: { attributes: { url: string } } };
-      developers?: { data: Array<{ attributes: { name: string } }> } | null;
+      developers: { data: Array<{ attributes: { name: string } }> };
     };
   }>;
 };
@@ -1827,11 +1819,11 @@ export type TMutationCreateWishlist = {
               slug: string;
               price: number;
               cover: { data: { attributes: { url: string } } };
-              developers?: { data: Array<{ attributes: { name: string } }> } | null;
+              developers: { data: Array<{ attributes: { name: string } }> };
             };
           }>;
         } | null;
-        user?: { data: { id: string; attributes: { username: string } } } | null;
+        user: { data: { id: string; attributes: { username: string } } };
       };
     };
   } | null;
@@ -1855,11 +1847,11 @@ export type TMutationUpdateWishlist = {
               slug: string;
               price: number;
               cover: { data: { attributes: { url: string } } };
-              developers?: { data: Array<{ attributes: { name: string } }> } | null;
+              developers: { data: Array<{ attributes: { name: string } }> };
             };
           }>;
         } | null;
-        user?: { data: { id: string; attributes: { username: string } } } | null;
+        user: { data: { id: string; attributes: { username: string } } };
       };
     };
   } | null;
@@ -1880,7 +1872,7 @@ export type TQueryGames = {
         slug: string;
         price: number;
         cover: { data: { attributes: { url: string } } };
-        developers?: { data: Array<{ attributes: { name: string } }> } | null;
+        developers: { data: Array<{ attributes: { name: string } }> };
       };
     }>;
     meta: { pagination: { total: number; page: number; pageSize: number; pageCount: number } };
@@ -1904,10 +1896,10 @@ export type TQueryGameBySlug = {
         release_date?: any | null;
         gallery?: { data: Array<{ attributes: { src: string; label?: string | null } }> } | null;
         cover: { data: { attributes: { src: string } } };
-        developers?: { data: Array<{ attributes: { name: string } }> } | null;
-        publisher?: { data: { attributes: { name: string } } } | null;
-        categories?: { data: Array<{ attributes: { name: string } }> } | null;
-        platforms?: { data: Array<{ attributes: { name: string } }> } | null;
+        developers: { data: Array<{ attributes: { name: string } }> };
+        publisher: { data: { attributes: { name: string } } };
+        categories: { data: Array<{ attributes: { name: string } }> };
+        platforms: { data: Array<{ attributes: { name: string } }> };
       };
     }>;
   } | null;
@@ -1938,7 +1930,7 @@ export type TQueryHome = {
         slug: string;
         price: number;
         cover: { data: { attributes: { url: string } } };
-        developers?: { data: Array<{ attributes: { name: string } }> } | null;
+        developers: { data: Array<{ attributes: { name: string } }> };
       };
     }>;
   } | null;
@@ -1950,7 +1942,7 @@ export type TQueryHome = {
         slug: string;
         price: number;
         cover: { data: { attributes: { url: string } } };
-        developers?: { data: Array<{ attributes: { name: string } }> } | null;
+        developers: { data: Array<{ attributes: { name: string } }> };
       };
     }>;
   } | null;
@@ -1962,7 +1954,7 @@ export type TQueryHome = {
         slug: string;
         price: number;
         cover: { data: { attributes: { url: string } } };
-        developers?: { data: Array<{ attributes: { name: string } }> } | null;
+        developers: { data: Array<{ attributes: { name: string } }> };
       };
     }>;
   } | null;
@@ -1992,7 +1984,7 @@ export type TQueryHome = {
             background: { data: { attributes: { url: string } } };
             floatImage?: { data: { attributes: { url: string } } } | null;
           } | null;
-          games?: {
+          games: {
             data: Array<{
               id: string;
               attributes: {
@@ -2000,10 +1992,10 @@ export type TQueryHome = {
                 slug: string;
                 price: number;
                 cover: { data: { attributes: { url: string } } };
-                developers?: { data: Array<{ attributes: { name: string } }> } | null;
+                developers: { data: Array<{ attributes: { name: string } }> };
               };
             }>;
-          } | null;
+          };
         } | null;
         upcomingGames?: {
           title?: string | null;
@@ -2046,7 +2038,7 @@ export type TQueryOrders = {
         createdAt?: any | null;
         card_brand?: string | null;
         card_last4?: string | null;
-        games?: {
+        games: {
           data: Array<{
             id: string;
             attributes: {
@@ -2054,20 +2046,18 @@ export type TQueryOrders = {
               slug: string;
               price: number;
               cover: { data: { attributes: { url: string } } };
-              developers?: { data: Array<{ attributes: { name: string } }> } | null;
+              developers: { data: Array<{ attributes: { name: string } }> };
             };
           }>;
-        } | null;
+        };
       };
     }>;
   } | null;
 };
 
-export type TQueryProfileMeVariables = Exact<{
-  identifier: Scalars['ID'];
-}>;
+export type TQueryProfileMeVariables = Exact<{ [key: string]: never }>;
 
-export type TQueryProfileMe = { usersPermissionsUser?: { data: { id: string; attributes: { username: string; email: string } } } | null };
+export type TQueryProfileMe = { me?: { id: string; username: string; email?: string | null } | null };
 
 export type TQueryRecommendedVariables = Exact<{ [key: string]: never }>;
 
@@ -2086,7 +2076,7 @@ export type TQueryRecommended = {
             background: { data: { attributes: { url: string } } };
             floatImage?: { data: { attributes: { url: string } } } | null;
           } | null;
-          games?: {
+          games: {
             data: Array<{
               id: string;
               attributes: {
@@ -2094,10 +2084,10 @@ export type TQueryRecommended = {
                 slug: string;
                 price: number;
                 cover: { data: { attributes: { url: string } } };
-                developers?: { data: Array<{ attributes: { name: string } }> } | null;
+                developers: { data: Array<{ attributes: { name: string } }> };
               };
             }>;
-          } | null;
+          };
         };
       };
     };
@@ -2117,7 +2107,7 @@ export type TQueryUpcoming = {
         slug: string;
         price: number;
         cover: { data: { attributes: { url: string } } };
-        developers?: { data: Array<{ attributes: { name: string } }> } | null;
+        developers: { data: Array<{ attributes: { name: string } }> };
       };
     }>;
   } | null;
@@ -2157,7 +2147,7 @@ export type TQueryWishlist = {
                 slug: string;
                 price: number;
                 cover: { data: { attributes: { url: string } } };
-                developers?: { data: Array<{ attributes: { name: string } }> } | null;
+                developers: { data: Array<{ attributes: { name: string } }> };
               };
             }>;
           } | null;
@@ -2377,11 +2367,10 @@ export type QueryOrdersQueryResult = Apollo.QueryResult<TQueryOrders, TQueryOrde
  * @example
  * const { data, loading, error } = useQueryProfileMe({
  *   variables: {
- *      identifier: // value for 'identifier'
  *   },
  * });
  */
-export function useQueryProfileMe(baseOptions: Apollo.QueryHookOptions<TQueryProfileMe, TQueryProfileMeVariables>) {
+export function useQueryProfileMe(baseOptions?: Apollo.QueryHookOptions<TQueryProfileMe, TQueryProfileMeVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useQuery<TQueryProfileMe, TQueryProfileMeVariables>(Operations.QueryProfileMe, options);
 }

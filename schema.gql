@@ -1,12 +1,4 @@
-"""Exposes a URL that specifies the behaviour of this scalar."""
-directive @specifiedBy(
-  """The URL that specifies the behaviour of this scalar."""
-  url: String!
-) on SCALAR
-
-"""
-Direct the client to resolve this field locally, either from the cache or local resolvers.
-"""
+"""Direct the client to resolve this field locally, either from the cache or local resolvers."""
 directive @client(
   """
   When true, the client will never use the cache for this value. See
@@ -31,635 +23,12 @@ https://www.apollographql.com/docs/react/advanced/caching/#the-connection-direct
 directive @connection(
   """Specify the store key."""
   key: String!
-  """
-  An array of query argument names to include in the generated custom store key.
-  """
+  """An array of query argument names to include in the generated custom store key."""
   filter: [String!]
 ) on FIELD
 
-type Banner {
-  image: UploadFileEntityResponse!
-  title: String!
-  subtitle: String!
-  button: ComponentPageButton!
-  ribbon: ComponentPageRibbon
-  createdAt: DateTime
-  updatedAt: DateTime
-}
-
-type BannerEntity {
-  id: ID!
-  attributes: Banner!
-}
-
-type BannerEntityResponse {
-  data: BannerEntity!
-}
-
-type BannerEntityResponseCollection {
-  data: [BannerEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input BannerFiltersInput {
-  id: IDFilterInput
-  title: StringFilterInput
-  subtitle: StringFilterInput
-  button: ComponentPageButtonFiltersInput
-  ribbon: ComponentPageRibbonFiltersInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  and: [BannerFiltersInput]
-  or: [BannerFiltersInput]
-  not: BannerFiltersInput
-}
-
-input BannerInput {
-  image: ID
-  title: String
-  subtitle: String
-  button: ComponentPageButtonInput
-  ribbon: ComponentPageRibbonInput
-}
-
-input BooleanFilterInput {
-  and: [Boolean]
-  or: [Boolean]
-  not: BooleanFilterInput
-  eq: Boolean
-  eqi: Boolean
-  ne: Boolean
-  startsWith: Boolean
-  endsWith: Boolean
-  contains: Boolean
-  notContains: Boolean
-  containsi: Boolean
-  notContainsi: Boolean
-  gt: Boolean
-  gte: Boolean
-  lt: Boolean
-  lte: Boolean
-  null: Boolean
-  notNull: Boolean
-  in: [Boolean]
-  notIn: [Boolean]
-  between: [Boolean]
-}
-
-type Category {
-  name: String!
-  slug: String!
-  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection
-  createdAt: DateTime
-  updatedAt: DateTime
-}
-
-type CategoryEntity {
-  id: ID!
-  attributes: Category!
-}
-
-type CategoryEntityResponse {
-  data: CategoryEntity!
-}
-
-type CategoryEntityResponseCollection {
-  data: [CategoryEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input CategoryFiltersInput {
-  id: IDFilterInput
-  name: StringFilterInput
-  slug: StringFilterInput
-  games: GameFiltersInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  and: [CategoryFiltersInput]
-  or: [CategoryFiltersInput]
-  not: CategoryFiltersInput
-}
-
-input CategoryInput {
-  name: String
-  slug: String
+input WishlistCreateInput {
   games: [ID]
-}
-
-type CategoryRelationResponseCollection {
-  data: [CategoryEntity!]!
-}
-
-type ComponentPageButton {
-  id: ID!
-  label: String!
-  link: String!
-}
-
-input ComponentPageButtonFiltersInput {
-  label: StringFilterInput
-  link: StringFilterInput
-  and: [ComponentPageButtonFiltersInput]
-  or: [ComponentPageButtonFiltersInput]
-  not: ComponentPageButtonFiltersInput
-}
-
-input ComponentPageButtonInput {
-  id: ID
-  label: String
-  link: String
-}
-
-type ComponentPageHighlight {
-  id: ID!
-  title: String!
-  subtitle: String!
-  background: UploadFileEntityResponse!
-  floatImage: UploadFileEntityResponse
-  buttonLabel: String!
-  buttonLink: String!
-  alignment: ENUM_COMPONENTPAGEHIGHLIGHT_ALIGNMENT
-}
-
-input ComponentPageHighlightInput {
-  id: ID
-  title: String
-  subtitle: String
-  background: ID
-  floatImage: ID
-  buttonLabel: String
-  buttonLink: String
-  alignment: ENUM_COMPONENTPAGEHIGHLIGHT_ALIGNMENT
-}
-
-type ComponentPagePopularGames {
-  id: ID!
-  title: String!
-  highlight: ComponentPageHighlight
-  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection
-}
-
-input ComponentPagePopularGamesInput {
-  id: ID
-  title: String
-  highlight: ComponentPageHighlightInput
-  games: [ID]
-}
-
-type ComponentPageRibbon {
-  id: ID!
-  text: String!
-  color: ENUM_COMPONENTPAGERIBBON_COLOR
-  size: ENUM_COMPONENTPAGERIBBON_SIZE
-}
-
-input ComponentPageRibbonFiltersInput {
-  text: StringFilterInput
-  color: StringFilterInput
-  size: StringFilterInput
-  and: [ComponentPageRibbonFiltersInput]
-  or: [ComponentPageRibbonFiltersInput]
-  not: ComponentPageRibbonFiltersInput
-}
-
-input ComponentPageRibbonInput {
-  id: ID
-  text: String
-  color: ENUM_COMPONENTPAGERIBBON_COLOR
-  size: ENUM_COMPONENTPAGERIBBON_SIZE
-}
-
-type ComponentPageSection {
-  id: ID!
-  title: String
-  highlight: ComponentPageHighlight
-  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection
-}
-
-input ComponentPageSectionInput {
-  id: ID
-  title: String
-  highlight: ComponentPageHighlightInput
-  games: [ID]
-}
-
-"""
-A date string, such as 2007-12-03, compliant with the `full-date` format
-outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
-representation of dates and times using the Gregorian calendar.
-"""
-scalar Date
-
-input DateFilterInput {
-  and: [Date]
-  or: [Date]
-  not: DateFilterInput
-  eq: Date
-  eqi: Date
-  ne: Date
-  startsWith: Date
-  endsWith: Date
-  contains: Date
-  notContains: Date
-  containsi: Date
-  notContainsi: Date
-  gt: Date
-  gte: Date
-  lt: Date
-  lte: Date
-  null: Boolean
-  notNull: Boolean
-  in: [Date]
-  notIn: [Date]
-  between: [Date]
-}
-
-"""
-A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
-`date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO
-8601 standard for representation of dates and times using the Gregorian calendar.
-"""
-scalar DateTime
-
-input DateTimeFilterInput {
-  and: [DateTime]
-  or: [DateTime]
-  not: DateTimeFilterInput
-  eq: DateTime
-  eqi: DateTime
-  ne: DateTime
-  startsWith: DateTime
-  endsWith: DateTime
-  contains: DateTime
-  notContains: DateTime
-  containsi: DateTime
-  notContainsi: DateTime
-  gt: DateTime
-  gte: DateTime
-  lt: DateTime
-  lte: DateTime
-  null: Boolean
-  notNull: Boolean
-  in: [DateTime]
-  notIn: [DateTime]
-  between: [DateTime]
-}
-
-type Developer {
-  name: String!
-  slug: String!
-  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection
-  createdAt: DateTime
-  updatedAt: DateTime
-}
-
-type DeveloperEntity {
-  id: ID!
-  attributes: Developer!
-}
-
-type DeveloperEntityResponse {
-  data: DeveloperEntity!
-}
-
-type DeveloperEntityResponseCollection {
-  data: [DeveloperEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input DeveloperFiltersInput {
-  id: IDFilterInput
-  name: StringFilterInput
-  slug: StringFilterInput
-  games: GameFiltersInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  and: [DeveloperFiltersInput]
-  or: [DeveloperFiltersInput]
-  not: DeveloperFiltersInput
-}
-
-input DeveloperInput {
-  name: String
-  slug: String
-  games: [ID]
-}
-
-type DeveloperRelationResponseCollection {
-  data: [DeveloperEntity!]!
-}
-
-type EmailDesignerEmailTemplate {
-  templateReferenceId: Int
-  design: JSON
-  name: String
-  subject: String
-  bodyHtml: String
-  bodyText: String
-  enabled: Boolean
-  tags: JSON
-  createdAt: DateTime
-  updatedAt: DateTime
-}
-
-type EmailDesignerEmailTemplateEntity {
-  id: ID!
-  attributes: EmailDesignerEmailTemplate!
-}
-
-type EmailDesignerEmailTemplateEntityResponse {
-  data: EmailDesignerEmailTemplateEntity!
-}
-
-type EmailDesignerEmailTemplateEntityResponseCollection {
-  data: [EmailDesignerEmailTemplateEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input EmailDesignerEmailTemplateFiltersInput {
-  id: IDFilterInput
-  templateReferenceId: IntFilterInput
-  design: JSONFilterInput
-  name: StringFilterInput
-  subject: StringFilterInput
-  bodyHtml: StringFilterInput
-  bodyText: StringFilterInput
-  enabled: BooleanFilterInput
-  tags: JSONFilterInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  and: [EmailDesignerEmailTemplateFiltersInput]
-  or: [EmailDesignerEmailTemplateFiltersInput]
-  not: EmailDesignerEmailTemplateFiltersInput
-}
-
-input EmailDesignerEmailTemplateInput {
-  templateReferenceId: Int
-  design: JSON
-  name: String
-  subject: String
-  bodyHtml: String
-  bodyText: String
-  enabled: Boolean
-  tags: JSON
-}
-
-enum ENUM_COMPONENTPAGEHIGHLIGHT_ALIGNMENT {
-  left
-  right
-}
-
-enum ENUM_COMPONENTPAGERIBBON_COLOR {
-  primary
-  secondary
-}
-
-enum ENUM_COMPONENTPAGERIBBON_SIZE {
-  small
-  normal
-}
-
-enum ENUM_GAME_RATING {
-  free
-  br_0
-  br_10
-  br_12
-  br_14
-  br_16
-  br_18
-}
-
-input FileInfoInput {
-  name: String
-  alternativeText: String
-  caption: String
-}
-
-input FloatFilterInput {
-  and: [Float]
-  or: [Float]
-  not: FloatFilterInput
-  eq: Float
-  eqi: Float
-  ne: Float
-  startsWith: Float
-  endsWith: Float
-  contains: Float
-  notContains: Float
-  containsi: Float
-  notContainsi: Float
-  gt: Float
-  gte: Float
-  lt: Float
-  lte: Float
-  null: Boolean
-  notNull: Boolean
-  in: [Float]
-  notIn: [Float]
-  between: [Float]
-}
-
-type Game {
-  name: String!
-  slug: String!
-  short_description: String!
-  description: String!
-  price: Float!
-  release_date: Date
-  rating: ENUM_GAME_RATING
-  cover: UploadFileEntityResponse!
-  gallery(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection
-  categories(filters: CategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): CategoryRelationResponseCollection
-  developers(filters: DeveloperFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): DeveloperRelationResponseCollection
-  platforms(filters: PlatformFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): PlatformRelationResponseCollection
-  publisher: PublisherEntityResponse
-  createdAt: DateTime
-  updatedAt: DateTime
-}
-
-type GameEntity {
-  id: ID!
-  attributes: Game!
-}
-
-type GameEntityResponse {
-  data: GameEntity!
-}
-
-type GameEntityResponseCollection {
-  data: [GameEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input GameFiltersInput {
-  id: IDFilterInput
-  name: StringFilterInput
-  slug: StringFilterInput
-  short_description: StringFilterInput
-  description: StringFilterInput
-  price: FloatFilterInput
-  release_date: DateFilterInput
-  rating: StringFilterInput
-  categories: CategoryFiltersInput
-  developers: DeveloperFiltersInput
-  platforms: PlatformFiltersInput
-  publisher: PublisherFiltersInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  and: [GameFiltersInput]
-  or: [GameFiltersInput]
-  not: GameFiltersInput
-}
-
-input GameInput {
-  name: String
-  slug: String
-  short_description: String
-  description: String
-  price: Float
-  release_date: Date
-  rating: ENUM_GAME_RATING
-  cover: ID
-  gallery: [ID]
-  categories: [ID]
-  developers: [ID]
-  platforms: [ID]
-  publisher: ID
-}
-
-type GameRelationResponseCollection {
-  data: [GameEntity!]!
-}
-
-union GenericMorph = ComponentPageButton | ComponentPageHighlight | ComponentPagePopularGames | ComponentPageRibbon | ComponentPageSection | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | EmailDesignerEmailTemplate | Banner | Category | Developer | Game | Home | Order | Platform | Publisher | Recommended | Wishlist
-
-type Home {
-  newGames: ComponentPageSection
-  upcomingGames: ComponentPageSection
-  freeGames: ComponentPageSection
-  popularGames: ComponentPagePopularGames
-  createdAt: DateTime
-  updatedAt: DateTime
-}
-
-type HomeEntity {
-  id: ID!
-  attributes: Home!
-}
-
-type HomeEntityResponse {
-  data: HomeEntity!
-}
-
-input HomeInput {
-  newGames: ComponentPageSectionInput
-  upcomingGames: ComponentPageSectionInput
-  freeGames: ComponentPageSectionInput
-  popularGames: ComponentPagePopularGamesInput
-}
-
-input IDFilterInput {
-  and: [ID]
-  or: [ID]
-  not: IDFilterInput
-  eq: ID
-  eqi: ID
-  ne: ID
-  startsWith: ID
-  endsWith: ID
-  contains: ID
-  notContains: ID
-  containsi: ID
-  notContainsi: ID
-  gt: ID
-  gte: ID
-  lt: ID
-  lte: ID
-  null: Boolean
-  notNull: Boolean
-  in: [ID]
-  notIn: [ID]
-  between: [ID]
-}
-
-input IntFilterInput {
-  and: [Int]
-  or: [Int]
-  not: IntFilterInput
-  eq: Int
-  eqi: Int
-  ne: Int
-  startsWith: Int
-  endsWith: Int
-  contains: Int
-  notContains: Int
-  containsi: Int
-  notContainsi: Int
-  gt: Int
-  gte: Int
-  lt: Int
-  lte: Int
-  null: Boolean
-  notNull: Boolean
-  in: [Int]
-  notIn: [Int]
-  between: [Int]
-}
-
-"""
-The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSON
-
-input JSONFilterInput {
-  and: [JSON]
-  or: [JSON]
-  not: JSONFilterInput
-  eq: JSON
-  eqi: JSON
-  ne: JSON
-  startsWith: JSON
-  endsWith: JSON
-  contains: JSON
-  notContains: JSON
-  containsi: JSON
-  notContainsi: JSON
-  gt: JSON
-  gte: JSON
-  lt: JSON
-  lte: JSON
-  null: Boolean
-  notNull: Boolean
-  in: [JSON]
-  notIn: [JSON]
-  between: [JSON]
-}
-
-"""The `Long` scalar type represents 52-bit integers"""
-scalar Long
-
-input LongFilterInput {
-  and: [Long]
-  or: [Long]
-  not: LongFilterInput
-  eq: Long
-  eqi: Long
-  ne: Long
-  startsWith: Long
-  endsWith: Long
-  contains: Long
-  notContains: Long
-  containsi: Long
-  notContainsi: Long
-  gt: Long
-  gte: Long
-  lt: Long
-  lte: Long
-  null: Boolean
-  notNull: Boolean
-  in: [Long]
-  notIn: [Long]
-  between: [Long]
 }
 
 type Mutation {
@@ -721,65 +90,26 @@ type Mutation {
   register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
   """Request a reset password token"""
   forgotPassword(email: String!): UsersPermissionsPasswordPayload
-  """
-  Reset user password. Confirm with a code (resetToken from forgotPassword)
-  """
+  """Reset user password. Confirm with a code (resetToken from forgotPassword)"""
   resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
   """Confirm an email users email address"""
   emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
 }
 
-type Order {
-  user: UsersPermissionsUserEntityResponse
-  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection
-  total_in_cents: Long!
-  payment_intent_id: String
-  card_brand: String
-  card_last4: String
-  createdAt: DateTime
-  updatedAt: DateTime
-  publishedAt: DateTime
-}
+"""The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."""
+scalar JSON
 
-type OrderEntity {
-  id: ID!
-  attributes: Order!
-}
+"""A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."""
+scalar DateTime
 
-type OrderEntityResponse {
-  data: OrderEntity!
-}
+"""A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."""
+scalar Date
 
-type OrderEntityResponseCollection {
-  data: [OrderEntity!]!
-  meta: ResponseCollectionMeta!
-}
+"""The `Long` scalar type represents 52-bit integers"""
+scalar Long
 
-input OrderFiltersInput {
-  id: IDFilterInput
-  user: UsersPermissionsUserFiltersInput
-  games: GameFiltersInput
-  total_in_cents: LongFilterInput
-  payment_intent_id: StringFilterInput
-  card_brand: StringFilterInput
-  card_last4: StringFilterInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
-  and: [OrderFiltersInput]
-  or: [OrderFiltersInput]
-  not: OrderFiltersInput
-}
-
-input OrderInput {
-  user: ID
-  games: [ID]
-  total_in_cents: Long
-  payment_intent_id: String
-  card_brand: String
-  card_last4: String
-  publishedAt: DateTime
-}
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
 
 type Pagination {
   total: Int!
@@ -788,55 +118,8 @@ type Pagination {
   pageCount: Int!
 }
 
-input PaginationArg {
-  page: Int
-  pageSize: Int
-  start: Int
-  limit: Int
-}
-
-type Platform {
-  name: String!
-  slug: String
-  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection
-  createdAt: DateTime
-  updatedAt: DateTime
-}
-
-type PlatformEntity {
-  id: ID!
-  attributes: Platform!
-}
-
-type PlatformEntityResponse {
-  data: PlatformEntity!
-}
-
-type PlatformEntityResponseCollection {
-  data: [PlatformEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input PlatformFiltersInput {
-  id: IDFilterInput
-  name: StringFilterInput
-  slug: StringFilterInput
-  games: GameFiltersInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  and: [PlatformFiltersInput]
-  or: [PlatformFiltersInput]
-  not: PlatformFiltersInput
-}
-
-input PlatformInput {
-  name: String
-  slug: String
-  games: [ID]
-}
-
-type PlatformRelationResponseCollection {
-  data: [PlatformEntity!]!
+type ResponseCollectionMeta {
+  pagination: Pagination!
 }
 
 enum PublicationState {
@@ -844,99 +127,52 @@ enum PublicationState {
   PREVIEW
 }
 
-type Publisher {
-  name: String!
-  slug: String!
-  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection
-  createdAt: DateTime
-  updatedAt: DateTime
+input IDFilterInput {
+  and: [ID]
+  or: [ID]
+  not: IDFilterInput
+  eq: ID
+  eqi: ID
+  ne: ID
+  startsWith: ID
+  endsWith: ID
+  contains: ID
+  notContains: ID
+  containsi: ID
+  notContainsi: ID
+  gt: ID
+  gte: ID
+  lt: ID
+  lte: ID
+  null: Boolean
+  notNull: Boolean
+  in: [ID]
+  notIn: [ID]
+  between: [ID]
 }
 
-type PublisherEntity {
-  id: ID!
-  attributes: Publisher!
-}
-
-type PublisherEntityResponse {
-  data: PublisherEntity!
-}
-
-type PublisherEntityResponseCollection {
-  data: [PublisherEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input PublisherFiltersInput {
-  id: IDFilterInput
-  name: StringFilterInput
-  slug: StringFilterInput
-  games: GameFiltersInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  and: [PublisherFiltersInput]
-  or: [PublisherFiltersInput]
-  not: PublisherFiltersInput
-}
-
-input PublisherInput {
-  name: String
-  slug: String
-  games: [ID]
-}
-
-type Query {
-  uploadFile(id: ID): UploadFileEntityResponse
-  uploadFiles(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileEntityResponseCollection
-  uploadFolder(id: ID): UploadFolderEntityResponse
-  uploadFolders(filters: UploadFolderFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFolderEntityResponseCollection
-  usersPermissionsRole(id: ID): UsersPermissionsRoleEntityResponse
-  usersPermissionsRoles(filters: UsersPermissionsRoleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsRoleEntityResponseCollection
-  usersPermissionsUser(id: ID): UsersPermissionsUserEntityResponse
-  usersPermissionsUsers(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsUserEntityResponseCollection
-  emailDesignerEmailTemplate(id: ID): EmailDesignerEmailTemplateEntityResponse
-  emailDesignerEmailTemplates(filters: EmailDesignerEmailTemplateFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): EmailDesignerEmailTemplateEntityResponseCollection
-  banner(id: ID): BannerEntityResponse
-  banners(filters: BannerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): BannerEntityResponseCollection
-  category(id: ID): CategoryEntityResponse
-  categories(filters: CategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): CategoryEntityResponseCollection
-  developer(id: ID): DeveloperEntityResponse
-  developers(filters: DeveloperFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): DeveloperEntityResponseCollection
-  game(id: ID): GameEntityResponse
-  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameEntityResponseCollection
-  home: HomeEntityResponse
-  order(id: ID): OrderEntityResponse
-  orders(filters: OrderFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): OrderEntityResponseCollection
-  platform(id: ID): PlatformEntityResponse
-  platforms(filters: PlatformFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): PlatformEntityResponseCollection
-  publisher(id: ID): PublisherEntityResponse
-  publishers(filters: PublisherFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): PublisherEntityResponseCollection
-  recommended: RecommendedEntityResponse
-  wishlist(id: ID): WishlistEntityResponse
-  wishlists(filters: WishlistFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): WishlistEntityResponseCollection
-  me: UsersPermissionsMe
-}
-
-type Recommended {
-  section: ComponentPagePopularGames!
-  createdAt: DateTime
-  updatedAt: DateTime
-}
-
-type RecommendedEntity {
-  id: ID!
-  attributes: Recommended!
-}
-
-type RecommendedEntityResponse {
-  data: RecommendedEntity!
-}
-
-input RecommendedInput {
-  section: ComponentPagePopularGamesInput
-}
-
-type ResponseCollectionMeta {
-  pagination: Pagination!
+input BooleanFilterInput {
+  and: [Boolean]
+  or: [Boolean]
+  not: BooleanFilterInput
+  eq: Boolean
+  eqi: Boolean
+  ne: Boolean
+  startsWith: Boolean
+  endsWith: Boolean
+  contains: Boolean
+  notContains: Boolean
+  containsi: Boolean
+  notContainsi: Boolean
+  gt: Boolean
+  gte: Boolean
+  lt: Boolean
+  lte: Boolean
+  null: Boolean
+  notNull: Boolean
+  in: [Boolean]
+  notIn: [Boolean]
+  between: [Boolean]
 }
 
 input StringFilterInput {
@@ -963,41 +199,256 @@ input StringFilterInput {
   between: [String]
 }
 
-"""The `Upload` scalar type represents a file upload."""
-scalar Upload
-
-type UploadFile {
-  name: String!
-  alternativeText: String
-  caption: String
-  width: Int
-  height: Int
-  formats: JSON
-  hash: String!
-  ext: String
-  mime: String!
-  size: Float!
-  url: String!
-  previewUrl: String
-  provider: String!
-  provider_metadata: JSON
-  related: [GenericMorph]
-  createdAt: DateTime
-  updatedAt: DateTime
+input IntFilterInput {
+  and: [Int]
+  or: [Int]
+  not: IntFilterInput
+  eq: Int
+  eqi: Int
+  ne: Int
+  startsWith: Int
+  endsWith: Int
+  contains: Int
+  notContains: Int
+  containsi: Int
+  notContainsi: Int
+  gt: Int
+  gte: Int
+  lt: Int
+  lte: Int
+  null: Boolean
+  notNull: Boolean
+  in: [Int]
+  notIn: [Int]
+  between: [Int]
 }
 
-type UploadFileEntity {
+input LongFilterInput {
+  and: [Long]
+  or: [Long]
+  not: LongFilterInput
+  eq: Long
+  eqi: Long
+  ne: Long
+  startsWith: Long
+  endsWith: Long
+  contains: Long
+  notContains: Long
+  containsi: Long
+  notContainsi: Long
+  gt: Long
+  gte: Long
+  lt: Long
+  lte: Long
+  null: Boolean
+  notNull: Boolean
+  in: [Long]
+  notIn: [Long]
+  between: [Long]
+}
+
+input FloatFilterInput {
+  and: [Float]
+  or: [Float]
+  not: FloatFilterInput
+  eq: Float
+  eqi: Float
+  ne: Float
+  startsWith: Float
+  endsWith: Float
+  contains: Float
+  notContains: Float
+  containsi: Float
+  notContainsi: Float
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  null: Boolean
+  notNull: Boolean
+  in: [Float]
+  notIn: [Float]
+  between: [Float]
+}
+
+input DateFilterInput {
+  and: [Date]
+  or: [Date]
+  not: DateFilterInput
+  eq: Date
+  eqi: Date
+  ne: Date
+  startsWith: Date
+  endsWith: Date
+  contains: Date
+  notContains: Date
+  containsi: Date
+  notContainsi: Date
+  gt: Date
+  gte: Date
+  lt: Date
+  lte: Date
+  null: Boolean
+  notNull: Boolean
+  in: [Date]
+  notIn: [Date]
+  between: [Date]
+}
+
+input DateTimeFilterInput {
+  and: [DateTime]
+  or: [DateTime]
+  not: DateTimeFilterInput
+  eq: DateTime
+  eqi: DateTime
+  ne: DateTime
+  startsWith: DateTime
+  endsWith: DateTime
+  contains: DateTime
+  notContains: DateTime
+  containsi: DateTime
+  notContainsi: DateTime
+  gt: DateTime
+  gte: DateTime
+  lt: DateTime
+  lte: DateTime
+  null: Boolean
+  notNull: Boolean
+  in: [DateTime]
+  notIn: [DateTime]
+  between: [DateTime]
+}
+
+input JSONFilterInput {
+  and: [JSON]
+  or: [JSON]
+  not: JSONFilterInput
+  eq: JSON
+  eqi: JSON
+  ne: JSON
+  startsWith: JSON
+  endsWith: JSON
+  contains: JSON
+  notContains: JSON
+  containsi: JSON
+  notContainsi: JSON
+  gt: JSON
+  gte: JSON
+  lt: JSON
+  lte: JSON
+  null: Boolean
+  notNull: Boolean
+  in: [JSON]
+  notIn: [JSON]
+  between: [JSON]
+}
+
+input ComponentPageButtonFiltersInput {
+  label: StringFilterInput
+  link: StringFilterInput
+  and: [ComponentPageButtonFiltersInput]
+  or: [ComponentPageButtonFiltersInput]
+  not: ComponentPageButtonFiltersInput
+}
+
+input ComponentPageButtonInput {
+  id: ID
+  label: String
+  link: String
+}
+
+type ComponentPageButton {
   id: ID!
-  attributes: UploadFile!
+  label: String!
+  link: String!
 }
 
-type UploadFileEntityResponse {
-  data: UploadFileEntity!
+enum ENUM_COMPONENTPAGEHIGHLIGHT_ALIGNMENT {
+  left
+  right
 }
 
-type UploadFileEntityResponseCollection {
-  data: [UploadFileEntity!]!
-  meta: ResponseCollectionMeta!
+input ComponentPageHighlightInput {
+  id: ID
+  title: String
+  subtitle: String
+  background: ID
+  floatImage: ID
+  buttonLabel: String
+  buttonLink: String
+  alignment: ENUM_COMPONENTPAGEHIGHLIGHT_ALIGNMENT
+}
+
+type ComponentPageHighlight {
+  id: ID!
+  title: String!
+  subtitle: String!
+  background: UploadFileEntityResponse!
+  floatImage: UploadFileEntityResponse
+  buttonLabel: String!
+  buttonLink: String!
+  alignment: ENUM_COMPONENTPAGEHIGHLIGHT_ALIGNMENT
+}
+
+input ComponentPagePopularGamesInput {
+  id: ID
+  title: String
+  highlight: ComponentPageHighlightInput
+  games: [ID]
+}
+
+type ComponentPagePopularGames {
+  id: ID!
+  title: String!
+  highlight: ComponentPageHighlight
+  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection!
+}
+
+enum ENUM_COMPONENTPAGERIBBON_COLOR {
+  primary
+  secondary
+}
+
+enum ENUM_COMPONENTPAGERIBBON_SIZE {
+  small
+  normal
+}
+
+input ComponentPageRibbonFiltersInput {
+  text: StringFilterInput
+  color: StringFilterInput
+  size: StringFilterInput
+  and: [ComponentPageRibbonFiltersInput]
+  or: [ComponentPageRibbonFiltersInput]
+  not: ComponentPageRibbonFiltersInput
+}
+
+input ComponentPageRibbonInput {
+  id: ID
+  text: String
+  color: ENUM_COMPONENTPAGERIBBON_COLOR
+  size: ENUM_COMPONENTPAGERIBBON_SIZE
+}
+
+type ComponentPageRibbon {
+  id: ID!
+  text: String!
+  color: ENUM_COMPONENTPAGERIBBON_COLOR
+  size: ENUM_COMPONENTPAGERIBBON_SIZE
+}
+
+input ComponentPageSectionInput {
+  id: ID
+  title: String
+  highlight: ComponentPageHighlightInput
+  games: [ID]
+}
+
+type ComponentPageSection {
+  id: ID!
+  title: String
+  highlight: ComponentPageHighlight
+  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection!
 }
 
 input UploadFileFiltersInput {
@@ -1044,8 +495,66 @@ input UploadFileInput {
   folderPath: String
 }
 
+type UploadFile {
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [GenericMorph]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type UploadFileEntity {
+  id: ID!
+  attributes: UploadFile!
+}
+
+type UploadFileEntityResponse {
+  data: UploadFileEntity!
+}
+
+type UploadFileEntityResponseCollection {
+  data: [UploadFileEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
 type UploadFileRelationResponseCollection {
   data: [UploadFileEntity!]!
+}
+
+input UploadFolderFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  pathId: IntFilterInput
+  parent: UploadFolderFiltersInput
+  children: UploadFolderFiltersInput
+  files: UploadFileFiltersInput
+  path: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  and: [UploadFolderFiltersInput]
+  or: [UploadFolderFiltersInput]
+  not: UploadFolderFiltersInput
+}
+
+input UploadFolderInput {
+  name: String
+  pathId: Int
+  parent: ID
+  children: [ID]
+  files: [ID]
+  path: String
 }
 
 type UploadFolder {
@@ -1073,72 +582,19 @@ type UploadFolderEntityResponseCollection {
   meta: ResponseCollectionMeta!
 }
 
-input UploadFolderFiltersInput {
-  id: IDFilterInput
-  name: StringFilterInput
-  pathId: IntFilterInput
-  parent: UploadFolderFiltersInput
-  children: UploadFolderFiltersInput
-  files: UploadFileFiltersInput
-  path: StringFilterInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  and: [UploadFolderFiltersInput]
-  or: [UploadFolderFiltersInput]
-  not: UploadFolderFiltersInput
-}
-
-input UploadFolderInput {
-  name: String
-  pathId: Int
-  parent: ID
-  children: [ID]
-  files: [ID]
-  path: String
-}
-
 type UploadFolderRelationResponseCollection {
   data: [UploadFolderEntity!]!
 }
 
-type UsersPermissionsCreateRolePayload {
-  ok: Boolean!
-}
-
-type UsersPermissionsDeleteRolePayload {
-  ok: Boolean!
-}
-
-input UsersPermissionsLoginInput {
-  identifier: String!
-  password: String!
-  provider: String! = "local"
-}
-
-type UsersPermissionsLoginPayload {
-  jwt: String
-  user: UsersPermissionsMe!
-}
-
-type UsersPermissionsMe {
-  id: ID!
-  username: String!
-  email: String
-  confirmed: Boolean
-  blocked: Boolean
-  role: UsersPermissionsMeRole
-  wishlists: WishlistEntityResponseCollection
-}
-
-type UsersPermissionsMeRole {
-  id: ID!
-  name: String!
-  description: String
-  type: String
-}
-
-type UsersPermissionsPasswordPayload {
-  ok: Boolean!
+input UsersPermissionsPermissionFiltersInput {
+  id: IDFilterInput
+  action: StringFilterInput
+  role: UsersPermissionsRoleFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  and: [UsersPermissionsPermissionFiltersInput]
+  or: [UsersPermissionsPermissionFiltersInput]
+  not: UsersPermissionsPermissionFiltersInput
 }
 
 type UsersPermissionsPermission {
@@ -1153,49 +609,8 @@ type UsersPermissionsPermissionEntity {
   attributes: UsersPermissionsPermission!
 }
 
-input UsersPermissionsPermissionFiltersInput {
-  id: IDFilterInput
-  action: StringFilterInput
-  role: UsersPermissionsRoleFiltersInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  and: [UsersPermissionsPermissionFiltersInput]
-  or: [UsersPermissionsPermissionFiltersInput]
-  not: UsersPermissionsPermissionFiltersInput
-}
-
 type UsersPermissionsPermissionRelationResponseCollection {
   data: [UsersPermissionsPermissionEntity!]!
-}
-
-input UsersPermissionsRegisterInput {
-  username: String!
-  email: String!
-  password: String!
-}
-
-type UsersPermissionsRole {
-  name: String!
-  description: String
-  type: String
-  permissions(filters: UsersPermissionsPermissionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsPermissionRelationResponseCollection
-  users(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsUserRelationResponseCollection
-  createdAt: DateTime
-  updatedAt: DateTime
-}
-
-type UsersPermissionsRoleEntity {
-  id: ID!
-  attributes: UsersPermissionsRole!
-}
-
-type UsersPermissionsRoleEntityResponse {
-  data: UsersPermissionsRoleEntity!
-}
-
-type UsersPermissionsRoleEntityResponseCollection {
-  data: [UsersPermissionsRoleEntity!]!
-  meta: ResponseCollectionMeta!
 }
 
 input UsersPermissionsRoleFiltersInput {
@@ -1220,32 +635,27 @@ input UsersPermissionsRoleInput {
   users: [ID]
 }
 
-type UsersPermissionsUpdateRolePayload {
-  ok: Boolean!
-}
-
-type UsersPermissionsUser {
-  username: String!
-  email: String!
-  provider: String
-  confirmed: Boolean
-  blocked: Boolean
-  role: UsersPermissionsRoleEntityResponse
+type UsersPermissionsRole {
+  name: String!
+  description: String
+  type: String
+  permissions(filters: UsersPermissionsPermissionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsPermissionRelationResponseCollection
+  users(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsUserRelationResponseCollection
   createdAt: DateTime
   updatedAt: DateTime
 }
 
-type UsersPermissionsUserEntity {
+type UsersPermissionsRoleEntity {
   id: ID!
-  attributes: UsersPermissionsUser!
+  attributes: UsersPermissionsRole!
 }
 
-type UsersPermissionsUserEntityResponse {
-  data: UsersPermissionsUserEntity!
+type UsersPermissionsRoleEntityResponse {
+  data: UsersPermissionsRoleEntity!
 }
 
-type UsersPermissionsUserEntityResponseCollection {
-  data: [UsersPermissionsUserEntity!]!
+type UsersPermissionsRoleEntityResponseCollection {
+  data: [UsersPermissionsRoleEntity!]!
   meta: ResponseCollectionMeta!
 }
 
@@ -1279,33 +689,483 @@ input UsersPermissionsUserInput {
   confirmationToken: String
 }
 
+type UsersPermissionsUser {
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRoleEntityResponse!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type UsersPermissionsUserEntity {
+  id: ID!
+  attributes: UsersPermissionsUser!
+}
+
+type UsersPermissionsUserEntityResponse {
+  data: UsersPermissionsUserEntity!
+}
+
+type UsersPermissionsUserEntityResponseCollection {
+  data: [UsersPermissionsUserEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
 type UsersPermissionsUserRelationResponseCollection {
   data: [UsersPermissionsUserEntity!]!
 }
 
-type Wishlist {
-  user: UsersPermissionsUserEntityResponse
+input EmailDesignerEmailTemplateFiltersInput {
+  id: IDFilterInput
+  templateReferenceId: IntFilterInput
+  design: JSONFilterInput
+  name: StringFilterInput
+  subject: StringFilterInput
+  bodyHtml: StringFilterInput
+  bodyText: StringFilterInput
+  enabled: BooleanFilterInput
+  tags: JSONFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  and: [EmailDesignerEmailTemplateFiltersInput]
+  or: [EmailDesignerEmailTemplateFiltersInput]
+  not: EmailDesignerEmailTemplateFiltersInput
+}
+
+input EmailDesignerEmailTemplateInput {
+  templateReferenceId: Int
+  design: JSON
+  name: String
+  subject: String
+  bodyHtml: String
+  bodyText: String
+  enabled: Boolean
+  tags: JSON
+}
+
+type EmailDesignerEmailTemplate {
+  templateReferenceId: Int
+  design: JSON
+  name: String
+  subject: String
+  bodyHtml: String
+  bodyText: String
+  enabled: Boolean
+  tags: JSON
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type EmailDesignerEmailTemplateEntity {
+  id: ID!
+  attributes: EmailDesignerEmailTemplate!
+}
+
+type EmailDesignerEmailTemplateEntityResponse {
+  data: EmailDesignerEmailTemplateEntity!
+}
+
+type EmailDesignerEmailTemplateEntityResponseCollection {
+  data: [EmailDesignerEmailTemplateEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input BannerFiltersInput {
+  id: IDFilterInput
+  title: StringFilterInput
+  subtitle: StringFilterInput
+  button: ComponentPageButtonFiltersInput
+  ribbon: ComponentPageRibbonFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  and: [BannerFiltersInput]
+  or: [BannerFiltersInput]
+  not: BannerFiltersInput
+}
+
+input BannerInput {
+  image: ID
+  title: String
+  subtitle: String
+  button: ComponentPageButtonInput
+  ribbon: ComponentPageRibbonInput
+}
+
+type Banner {
+  image: UploadFileEntityResponse!
+  title: String!
+  subtitle: String!
+  button: ComponentPageButton!
+  ribbon: ComponentPageRibbon
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type BannerEntity {
+  id: ID!
+  attributes: Banner!
+}
+
+type BannerEntityResponse {
+  data: BannerEntity!
+}
+
+type BannerEntityResponseCollection {
+  data: [BannerEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input CategoryFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  slug: StringFilterInput
+  games: GameFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  and: [CategoryFiltersInput]
+  or: [CategoryFiltersInput]
+  not: CategoryFiltersInput
+}
+
+input CategoryInput {
+  name: String
+  slug: String
+  games: [ID]
+}
+
+type Category {
+  name: String!
+  slug: String!
   games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection
   createdAt: DateTime
   updatedAt: DateTime
 }
 
-input WishlistCreateInput {
+type CategoryEntity {
+  id: ID!
+  attributes: Category!
+}
+
+type CategoryEntityResponse {
+  data: CategoryEntity!
+}
+
+type CategoryEntityResponseCollection {
+  data: [CategoryEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type CategoryRelationResponseCollection {
+  data: [CategoryEntity!]!
+}
+
+input DeveloperFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  slug: StringFilterInput
+  games: GameFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  and: [DeveloperFiltersInput]
+  or: [DeveloperFiltersInput]
+  not: DeveloperFiltersInput
+}
+
+input DeveloperInput {
+  name: String
+  slug: String
   games: [ID]
 }
 
-type WishlistEntity {
+type Developer {
+  name: String!
+  slug: String!
+  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type DeveloperEntity {
   id: ID!
-  attributes: Wishlist!
+  attributes: Developer!
 }
 
-type WishlistEntityResponse {
-  data: WishlistEntity!
+type DeveloperEntityResponse {
+  data: DeveloperEntity!
 }
 
-type WishlistEntityResponseCollection {
-  data: [WishlistEntity!]!
+type DeveloperEntityResponseCollection {
+  data: [DeveloperEntity!]!
   meta: ResponseCollectionMeta!
+}
+
+type DeveloperRelationResponseCollection {
+  data: [DeveloperEntity!]!
+}
+
+enum ENUM_GAME_RATING {
+  free
+  br_0
+  br_10
+  br_12
+  br_14
+  br_16
+  br_18
+}
+
+input GameFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  slug: StringFilterInput
+  short_description: StringFilterInput
+  description: StringFilterInput
+  price: FloatFilterInput
+  release_date: DateFilterInput
+  rating: StringFilterInput
+  categories: CategoryFiltersInput
+  developers: DeveloperFiltersInput
+  platforms: PlatformFiltersInput
+  publisher: PublisherFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  and: [GameFiltersInput]
+  or: [GameFiltersInput]
+  not: GameFiltersInput
+}
+
+input GameInput {
+  name: String
+  slug: String
+  short_description: String
+  description: String
+  price: Float
+  release_date: Date
+  rating: ENUM_GAME_RATING
+  cover: ID
+  gallery: [ID]
+  categories: [ID]
+  developers: [ID]
+  platforms: [ID]
+  publisher: ID
+}
+
+type Game {
+  name: String!
+  slug: String!
+  short_description: String!
+  description: String!
+  price: Float!
+  release_date: Date
+  rating: ENUM_GAME_RATING
+  cover: UploadFileEntityResponse!
+  gallery(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection
+  categories(filters: CategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): CategoryRelationResponseCollection!
+  developers(filters: DeveloperFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): DeveloperRelationResponseCollection!
+  platforms(filters: PlatformFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): PlatformRelationResponseCollection!
+  publisher: PublisherEntityResponse!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type GameEntity {
+  id: ID!
+  attributes: Game!
+}
+
+type GameEntityResponse {
+  data: GameEntity!
+}
+
+type GameEntityResponseCollection {
+  data: [GameEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type GameRelationResponseCollection {
+  data: [GameEntity!]!
+}
+
+input HomeInput {
+  newGames: ComponentPageSectionInput
+  upcomingGames: ComponentPageSectionInput
+  freeGames: ComponentPageSectionInput
+  popularGames: ComponentPagePopularGamesInput
+}
+
+type Home {
+  newGames: ComponentPageSection
+  upcomingGames: ComponentPageSection
+  freeGames: ComponentPageSection
+  popularGames: ComponentPagePopularGames
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type HomeEntity {
+  id: ID!
+  attributes: Home!
+}
+
+type HomeEntityResponse {
+  data: HomeEntity!
+}
+
+input OrderFiltersInput {
+  id: IDFilterInput
+  user: UsersPermissionsUserFiltersInput
+  games: GameFiltersInput
+  total_in_cents: LongFilterInput
+  payment_intent_id: StringFilterInput
+  card_brand: StringFilterInput
+  card_last4: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [OrderFiltersInput]
+  or: [OrderFiltersInput]
+  not: OrderFiltersInput
+}
+
+input OrderInput {
+  user: ID
+  games: [ID]
+  total_in_cents: Long
+  payment_intent_id: String
+  card_brand: String
+  card_last4: String
+  publishedAt: DateTime
+}
+
+type Order {
+  user: UsersPermissionsUserEntityResponse!
+  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection!
+  total_in_cents: Long!
+  payment_intent_id: String
+  card_brand: String
+  card_last4: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type OrderEntity {
+  id: ID!
+  attributes: Order!
+}
+
+type OrderEntityResponse {
+  data: OrderEntity!
+}
+
+type OrderEntityResponseCollection {
+  data: [OrderEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input PlatformFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  slug: StringFilterInput
+  games: GameFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  and: [PlatformFiltersInput]
+  or: [PlatformFiltersInput]
+  not: PlatformFiltersInput
+}
+
+input PlatformInput {
+  name: String
+  slug: String
+  games: [ID]
+}
+
+type Platform {
+  name: String!
+  slug: String
+  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type PlatformEntity {
+  id: ID!
+  attributes: Platform!
+}
+
+type PlatformEntityResponse {
+  data: PlatformEntity!
+}
+
+type PlatformEntityResponseCollection {
+  data: [PlatformEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type PlatformRelationResponseCollection {
+  data: [PlatformEntity!]!
+}
+
+input PublisherFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  slug: StringFilterInput
+  games: GameFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  and: [PublisherFiltersInput]
+  or: [PublisherFiltersInput]
+  not: PublisherFiltersInput
+}
+
+input PublisherInput {
+  name: String
+  slug: String
+  games: [ID]
+}
+
+type Publisher {
+  name: String!
+  slug: String!
+  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type PublisherEntity {
+  id: ID!
+  attributes: Publisher!
+}
+
+type PublisherEntityResponse {
+  data: PublisherEntity!
+}
+
+type PublisherEntityResponseCollection {
+  data: [PublisherEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input RecommendedInput {
+  section: ComponentPagePopularGamesInput
+}
+
+type Recommended {
+  section: ComponentPagePopularGames!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type RecommendedEntity {
+  id: ID!
+  attributes: Recommended!
+}
+
+type RecommendedEntityResponse {
+  data: RecommendedEntity!
 }
 
 input WishlistFiltersInput {
@@ -1322,4 +1182,122 @@ input WishlistFiltersInput {
 input WishlistInput {
   user: ID
   games: [ID]
+}
+
+type Wishlist {
+  user: UsersPermissionsUserEntityResponse!
+  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type WishlistEntity {
+  id: ID!
+  attributes: Wishlist!
+}
+
+type WishlistEntityResponse {
+  data: WishlistEntity!
+}
+
+type WishlistEntityResponseCollection {
+  data: [WishlistEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+union GenericMorph = ComponentPageButton | ComponentPageHighlight | ComponentPagePopularGames | ComponentPageRibbon | ComponentPageSection | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | EmailDesignerEmailTemplate | Banner | Category | Developer | Game | Home | Order | Platform | Publisher | Recommended | Wishlist
+
+input FileInfoInput {
+  name: String
+  alternativeText: String
+  caption: String
+}
+
+type UsersPermissionsMe {
+  id: ID!
+  username: String!
+  email: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+  wishlists: WishlistEntityResponseCollection
+}
+
+type UsersPermissionsMeRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+input UsersPermissionsRegisterInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String! = "local"
+}
+
+type UsersPermissionsPasswordPayload {
+  ok: Boolean!
+}
+
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
+}
+
+type UsersPermissionsCreateRolePayload {
+  ok: Boolean!
+}
+
+type UsersPermissionsUpdateRolePayload {
+  ok: Boolean!
+}
+
+type UsersPermissionsDeleteRolePayload {
+  ok: Boolean!
+}
+
+input PaginationArg {
+  page: Int
+  pageSize: Int
+  start: Int
+  limit: Int
+}
+
+type Query {
+  uploadFile(id: ID): UploadFileEntityResponse
+  uploadFiles(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileEntityResponseCollection
+  uploadFolder(id: ID): UploadFolderEntityResponse
+  uploadFolders(filters: UploadFolderFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFolderEntityResponseCollection
+  usersPermissionsRole(id: ID): UsersPermissionsRoleEntityResponse
+  usersPermissionsRoles(filters: UsersPermissionsRoleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsRoleEntityResponseCollection
+  usersPermissionsUser(id: ID): UsersPermissionsUserEntityResponse
+  usersPermissionsUsers(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsUserEntityResponseCollection
+  emailDesignerEmailTemplate(id: ID): EmailDesignerEmailTemplateEntityResponse
+  emailDesignerEmailTemplates(filters: EmailDesignerEmailTemplateFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): EmailDesignerEmailTemplateEntityResponseCollection
+  banner(id: ID): BannerEntityResponse
+  banners(filters: BannerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): BannerEntityResponseCollection
+  category(id: ID): CategoryEntityResponse
+  categories(filters: CategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): CategoryEntityResponseCollection
+  developer(id: ID): DeveloperEntityResponse
+  developers(filters: DeveloperFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): DeveloperEntityResponseCollection
+  game(id: ID): GameEntityResponse
+  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameEntityResponseCollection
+  home: HomeEntityResponse
+  order(id: ID): OrderEntityResponse
+  orders(filters: OrderFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): OrderEntityResponseCollection
+  platform(id: ID): PlatformEntityResponse
+  platforms(filters: PlatformFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): PlatformEntityResponseCollection
+  publisher(id: ID): PublisherEntityResponse
+  publishers(filters: PublisherFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): PublisherEntityResponseCollection
+  recommended: RecommendedEntityResponse
+  wishlist(id: ID): WishlistEntityResponse
+  wishlists(filters: WishlistFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): WishlistEntityResponseCollection
+  me: UsersPermissionsMe
 }
