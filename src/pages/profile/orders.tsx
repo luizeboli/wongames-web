@@ -1,8 +1,8 @@
 import { GetServerSidePropsContext } from 'next';
 
 import OrdersList, { OrdersListProps } from 'components/OrdersList';
-import { QueryOrders, QueryOrdersVariables } from 'graphql/generated/QueryOrders';
-import { QUERY_ORDERS } from 'graphql/queries/orders';
+import { TQueryOrders } from 'graphql/generated';
+import { QueryOrders } from 'graphql/queries/orders';
 import Profile from 'screens/Profile';
 import { initializeApollo } from 'utils/apollo';
 import { ordersMapper } from 'utils/mappers';
@@ -26,17 +26,16 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     };
   }
 
-  const { data } = await apolloClient.query<QueryOrders, QueryOrdersVariables>({
-    query: QUERY_ORDERS,
-    variables: {
-      identifier: session?.id as string,
-    },
+  const { data } = await apolloClient.query<TQueryOrders>({
+    query: QueryOrders,
     fetchPolicy: 'no-cache',
   });
 
+  console.log({ data: data.me?.orders?.data });
+
   return {
     props: {
-      items: ordersMapper(data.orders),
+      items: ordersMapper(data.me?.orders?.data),
       session,
     },
   };

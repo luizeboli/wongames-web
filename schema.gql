@@ -1221,6 +1221,7 @@ type UsersPermissionsMe {
   blocked: Boolean
   role: UsersPermissionsMeRole
   wishlists: WishlistEntityResponseCollection
+  orders: OrderEntityResponseCollection
 }
 
 type UsersPermissionsMeRole {

@@ -1540,6 +1540,7 @@ export type TUsersPermissionsMe = {
   confirmed?: Maybe<Scalars['Boolean']>;
   email?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
+  orders?: Maybe<TOrderEntityResponseCollection>;
   role?: Maybe<TUsersPermissionsMeRole>;
   username: Scalars['String'];
   wishlists?: Maybe<TWishlistEntityResponseCollection>;
@@ -1796,6 +1797,27 @@ export type THighlightFragment = {
   floatImage?: { data: { attributes: { url: string } } } | null;
 };
 
+export type TOrderFragment = {
+  id: string;
+  attributes: {
+    createdAt?: any | null;
+    card_brand?: string | null;
+    card_last4?: string | null;
+    games: {
+      data: Array<{
+        id: string;
+        attributes: {
+          name: string;
+          slug: string;
+          price: number;
+          cover: { data: { attributes: { url: string } } };
+          developers: { data: Array<{ attributes: { name: string } }> };
+        };
+      }>;
+    };
+  };
+};
+
 export type TMutationRegisterVariables = Exact<{
   input: TUsersPermissionsRegisterInput;
 }>;
@@ -2026,32 +2048,32 @@ export type TQueryHome = {
   } | null;
 };
 
-export type TQueryOrdersVariables = Exact<{
-  identifier: Scalars['ID'];
-}>;
+export type TQueryOrdersVariables = Exact<{ [key: string]: never }>;
 
 export type TQueryOrders = {
-  orders?: {
-    data: Array<{
-      id: string;
-      attributes: {
-        createdAt?: any | null;
-        card_brand?: string | null;
-        card_last4?: string | null;
-        games: {
-          data: Array<{
-            id: string;
-            attributes: {
-              name: string;
-              slug: string;
-              price: number;
-              cover: { data: { attributes: { url: string } } };
-              developers: { data: Array<{ attributes: { name: string } }> };
-            };
-          }>;
+  me?: {
+    orders?: {
+      data: Array<{
+        id: string;
+        attributes: {
+          createdAt?: any | null;
+          card_brand?: string | null;
+          card_last4?: string | null;
+          games: {
+            data: Array<{
+              id: string;
+              attributes: {
+                name: string;
+                slug: string;
+                price: number;
+                cover: { data: { attributes: { url: string } } };
+                developers: { data: Array<{ attributes: { name: string } }> };
+              };
+            }>;
+          };
         };
-      };
-    }>;
+      }>;
+    } | null;
   } | null;
 };
 
@@ -2339,11 +2361,10 @@ export type QueryHomeQueryResult = Apollo.QueryResult<TQueryHome, TQueryHomeVari
  * @example
  * const { data, loading, error } = useQueryOrders({
  *   variables: {
- *      identifier: // value for 'identifier'
  *   },
  * });
  */
-export function useQueryOrders(baseOptions: Apollo.QueryHookOptions<TQueryOrders, TQueryOrdersVariables>) {
+export function useQueryOrders(baseOptions?: Apollo.QueryHookOptions<TQueryOrders, TQueryOrdersVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useQuery<TQueryOrders, TQueryOrdersVariables>(Operations.QueryOrders, options);
 }
