@@ -3726,10 +3726,10 @@
     resolve-from "^5.0.0"
     store2 "^2.12.0"
 
-"@stripe/react-stripe-js@^1.4.0":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@stripe/react-stripe-js/-/react-stripe-js-1.4.1.tgz#884d59286fff00ba77389b32c045516f65d7a340"
-  integrity sha512-FjcVrhf72+9fUL3Lz3xi02ni9tzH1A1x6elXlr6tvBDgSD55oPJuodoP8eC7xTnBIKq0olF5uJvgtkJyDCdzjA==
+"@stripe/react-stripe-js@^1.12.0":
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/@stripe/react-stripe-js/-/react-stripe-js-1.12.0.tgz#61d772f6271dacd19b1c9a3fb190bb7fcb568947"
+  integrity sha512-LW/f/slRq8x0y99qFjlZirnIk+q0zQvNNRtidigvHfYSbHji4QdtKDMD/HfYmtriPDRpIxOFilwsJ3ayPCC9Fw==
   dependencies:
     prop-types "^15.7.2"
 

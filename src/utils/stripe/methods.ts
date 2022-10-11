@@ -27,7 +27,7 @@ type PaymentIntentProps = {
 };
 
 export const createPaymentIntent = async ({ items, token }: PaymentIntentProps) => {
-  return fetcher({ url: '/orders/create-payment-intent', body: JSON.stringify({ cart: items }), token });
+  return fetcher({ url: '/api/orders/create-payment-intent', body: JSON.stringify({ cart: items }), token });
 };
 
 type CreatePaymentProps = {
@@ -38,7 +38,7 @@ type CreatePaymentProps = {
 
 export const createPayment = ({ items, paymentIntent, token }: CreatePaymentProps) => {
   return fetcher({
-    url: '/orders',
+    url: '/api/orders',
     body: JSON.stringify({ cart: items, paymentIntentId: paymentIntent?.id, paymentMethod: paymentIntent?.payment_method }),
     token,
   });

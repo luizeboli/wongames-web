@@ -42,7 +42,7 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
         }
 
         if (data.error) {
-          setError(data.error);
+          setError(data.error?.message || 'Unexpeted error');
           return;
         }
 
@@ -62,6 +62,7 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
   };
 
   const handleChange = async (event: StripeCardElementChangeEvent) => {
+    setError('');
     setDisabled(event.empty);
 
     if (event.error) {
