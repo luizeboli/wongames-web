@@ -21,6 +21,7 @@ const platformsIcons = {
   linux: <Linux title="Linux" size={18} />,
   windows: <Windows title="Windows" size={18} />,
   apple: <Apple title="Apple" size={18} />,
+  mac: <Apple title="Mac" size={18} />,
 };
 
 const ratings = {
