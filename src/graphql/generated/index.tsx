@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as Apollo from '@apollo/client';
 
 import * as Operations from '..';
