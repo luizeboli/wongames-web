@@ -69,6 +69,7 @@ const WishlistProvider = ({ children }: WishlistProviderProps) => {
         variables: {
           input: {
             games: [id],
+            user: session?.id as string,
           },
         },
       });

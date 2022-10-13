@@ -1,4 +1,3 @@
-/* eslint-disable */
 import * as Apollo from '@apollo/client';
 
 import * as Operations from '..';
@@ -813,7 +812,7 @@ export type TMutationCreateUsersPermissionsUserArgs = {
 };
 
 export type TMutationCreateWishlistArgs = {
-  data: TWishlistCreateInput;
+  data: TWishlistInput;
 };
 
 export type TMutationDeleteBannerArgs = {
@@ -1725,10 +1724,6 @@ export type TWishlistGamesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-export type TWishlistCreateInput = {
-  games?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-};
-
 export type TWishlistEntity = {
   attributes: TWishlist;
   id: Scalars['ID'];
@@ -1826,7 +1821,7 @@ export type TMutationRegisterVariables = Exact<{
 export type TMutationRegister = { register: { jwt?: string | null } };
 
 export type TMutationCreateWishlistVariables = Exact<{
-  input: TWishlistCreateInput;
+  input: TWishlistInput;
 }>;
 
 export type TMutationCreateWishlist = {
@@ -1846,7 +1841,6 @@ export type TMutationCreateWishlist = {
             };
           }>;
         } | null;
-        user: { data: { id: string; attributes: { username: string } } };
       };
     };
   } | null;
@@ -1874,7 +1868,6 @@ export type TMutationUpdateWishlist = {
             };
           }>;
         } | null;
-        user: { data: { id: string; attributes: { username: string } } };
       };
     };
   } | null;

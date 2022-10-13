@@ -27,75 +27,6 @@ directive @connection(
   filter: [String!]
 ) on FIELD
 
-input WishlistCreateInput {
-  games: [ID]
-}
-
-type Mutation {
-  createWishlist(data: WishlistCreateInput!): WishlistEntityResponse
-  createUploadFile(data: UploadFileInput!): UploadFileEntityResponse
-  updateUploadFile(id: ID!, data: UploadFileInput!): UploadFileEntityResponse
-  deleteUploadFile(id: ID!): UploadFileEntityResponse
-  createUploadFolder(data: UploadFolderInput!): UploadFolderEntityResponse
-  updateUploadFolder(id: ID!, data: UploadFolderInput!): UploadFolderEntityResponse
-  deleteUploadFolder(id: ID!): UploadFolderEntityResponse
-  createEmailDesignerEmailTemplate(data: EmailDesignerEmailTemplateInput!): EmailDesignerEmailTemplateEntityResponse
-  updateEmailDesignerEmailTemplate(id: ID!, data: EmailDesignerEmailTemplateInput!): EmailDesignerEmailTemplateEntityResponse
-  deleteEmailDesignerEmailTemplate(id: ID!): EmailDesignerEmailTemplateEntityResponse
-  createBanner(data: BannerInput!): BannerEntityResponse
-  updateBanner(id: ID!, data: BannerInput!): BannerEntityResponse
-  deleteBanner(id: ID!): BannerEntityResponse
-  createCategory(data: CategoryInput!): CategoryEntityResponse
-  updateCategory(id: ID!, data: CategoryInput!): CategoryEntityResponse
-  deleteCategory(id: ID!): CategoryEntityResponse
-  createDeveloper(data: DeveloperInput!): DeveloperEntityResponse
-  updateDeveloper(id: ID!, data: DeveloperInput!): DeveloperEntityResponse
-  deleteDeveloper(id: ID!): DeveloperEntityResponse
-  createGame(data: GameInput!): GameEntityResponse
-  updateGame(id: ID!, data: GameInput!): GameEntityResponse
-  deleteGame(id: ID!): GameEntityResponse
-  updateHome(data: HomeInput!): HomeEntityResponse
-  deleteHome: HomeEntityResponse
-  createOrder(data: OrderInput!): OrderEntityResponse
-  updateOrder(id: ID!, data: OrderInput!): OrderEntityResponse
-  deleteOrder(id: ID!): OrderEntityResponse
-  createPlatform(data: PlatformInput!): PlatformEntityResponse
-  updatePlatform(id: ID!, data: PlatformInput!): PlatformEntityResponse
-  deletePlatform(id: ID!): PlatformEntityResponse
-  createPublisher(data: PublisherInput!): PublisherEntityResponse
-  updatePublisher(id: ID!, data: PublisherInput!): PublisherEntityResponse
-  deletePublisher(id: ID!): PublisherEntityResponse
-  updateRecommended(data: RecommendedInput!): RecommendedEntityResponse
-  deleteRecommended: RecommendedEntityResponse
-  updateWishlist(id: ID!, data: WishlistInput!): WishlistEntityResponse
-  deleteWishlist(id: ID!): WishlistEntityResponse
-  upload(refId: ID, ref: String, field: String, info: FileInfoInput, file: Upload!): UploadFileEntityResponse!
-  multipleUpload(refId: ID, ref: String, field: String, files: [Upload]!): [UploadFileEntityResponse]!
-  updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
-  removeFile(id: ID!): UploadFileEntityResponse
-  """Create a new role"""
-  createUsersPermissionsRole(data: UsersPermissionsRoleInput!): UsersPermissionsCreateRolePayload
-  """Update an existing role"""
-  updateUsersPermissionsRole(id: ID!, data: UsersPermissionsRoleInput!): UsersPermissionsUpdateRolePayload
-  """Delete an existing role"""
-  deleteUsersPermissionsRole(id: ID!): UsersPermissionsDeleteRolePayload
-  """Create a new user"""
-  createUsersPermissionsUser(data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
-  """Update an existing user"""
-  updateUsersPermissionsUser(id: ID!, data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
-  """Delete an existing user"""
-  deleteUsersPermissionsUser(id: ID!): UsersPermissionsUserEntityResponse!
-  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
-  """Register a user"""
-  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
-  """Request a reset password token"""
-  forgotPassword(email: String!): UsersPermissionsPasswordPayload
-  """Reset user password. Confirm with a code (resetToken from forgotPassword)"""
-  resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
-  """Confirm an email users email address"""
-  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
-}
-
 """The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."""
 scalar JSON
 
@@ -1301,4 +1232,69 @@ type Query {
   wishlist(id: ID): WishlistEntityResponse
   wishlists(filters: WishlistFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): WishlistEntityResponseCollection
   me: UsersPermissionsMe
+}
+
+type Mutation {
+  createUploadFile(data: UploadFileInput!): UploadFileEntityResponse
+  updateUploadFile(id: ID!, data: UploadFileInput!): UploadFileEntityResponse
+  deleteUploadFile(id: ID!): UploadFileEntityResponse
+  createUploadFolder(data: UploadFolderInput!): UploadFolderEntityResponse
+  updateUploadFolder(id: ID!, data: UploadFolderInput!): UploadFolderEntityResponse
+  deleteUploadFolder(id: ID!): UploadFolderEntityResponse
+  createEmailDesignerEmailTemplate(data: EmailDesignerEmailTemplateInput!): EmailDesignerEmailTemplateEntityResponse
+  updateEmailDesignerEmailTemplate(id: ID!, data: EmailDesignerEmailTemplateInput!): EmailDesignerEmailTemplateEntityResponse
+  deleteEmailDesignerEmailTemplate(id: ID!): EmailDesignerEmailTemplateEntityResponse
+  createBanner(data: BannerInput!): BannerEntityResponse
+  updateBanner(id: ID!, data: BannerInput!): BannerEntityResponse
+  deleteBanner(id: ID!): BannerEntityResponse
+  createCategory(data: CategoryInput!): CategoryEntityResponse
+  updateCategory(id: ID!, data: CategoryInput!): CategoryEntityResponse
+  deleteCategory(id: ID!): CategoryEntityResponse
+  createDeveloper(data: DeveloperInput!): DeveloperEntityResponse
+  updateDeveloper(id: ID!, data: DeveloperInput!): DeveloperEntityResponse
+  deleteDeveloper(id: ID!): DeveloperEntityResponse
+  createGame(data: GameInput!): GameEntityResponse
+  updateGame(id: ID!, data: GameInput!): GameEntityResponse
+  deleteGame(id: ID!): GameEntityResponse
+  updateHome(data: HomeInput!): HomeEntityResponse
+  deleteHome: HomeEntityResponse
+  createOrder(data: OrderInput!): OrderEntityResponse
+  updateOrder(id: ID!, data: OrderInput!): OrderEntityResponse
+  deleteOrder(id: ID!): OrderEntityResponse
+  createPlatform(data: PlatformInput!): PlatformEntityResponse
+  updatePlatform(id: ID!, data: PlatformInput!): PlatformEntityResponse
+  deletePlatform(id: ID!): PlatformEntityResponse
+  createPublisher(data: PublisherInput!): PublisherEntityResponse
+  updatePublisher(id: ID!, data: PublisherInput!): PublisherEntityResponse
+  deletePublisher(id: ID!): PublisherEntityResponse
+  updateRecommended(data: RecommendedInput!): RecommendedEntityResponse
+  deleteRecommended: RecommendedEntityResponse
+  createWishlist(data: WishlistInput!): WishlistEntityResponse
+  updateWishlist(id: ID!, data: WishlistInput!): WishlistEntityResponse
+  deleteWishlist(id: ID!): WishlistEntityResponse
+  upload(refId: ID, ref: String, field: String, info: FileInfoInput, file: Upload!): UploadFileEntityResponse!
+  multipleUpload(refId: ID, ref: String, field: String, files: [Upload]!): [UploadFileEntityResponse]!
+  updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
+  removeFile(id: ID!): UploadFileEntityResponse
+  """Create a new role"""
+  createUsersPermissionsRole(data: UsersPermissionsRoleInput!): UsersPermissionsCreateRolePayload
+  """Update an existing role"""
+  updateUsersPermissionsRole(id: ID!, data: UsersPermissionsRoleInput!): UsersPermissionsUpdateRolePayload
+  """Delete an existing role"""
+  deleteUsersPermissionsRole(id: ID!): UsersPermissionsDeleteRolePayload
+  """Create a new user"""
+  createUsersPermissionsUser(data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
+  """Update an existing user"""
+  updateUsersPermissionsUser(id: ID!, data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
+  """Delete an existing user"""
+  deleteUsersPermissionsUser(id: ID!): UsersPermissionsUserEntityResponse!
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  """Register a user"""
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+  """Request a reset password token"""
+  forgotPassword(email: String!): UsersPermissionsPasswordPayload
+  """Reset user password. Confirm with a code (resetToken from forgotPassword)"""
+  resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
+  """Confirm an email users email address"""
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
 }
