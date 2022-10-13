@@ -48,7 +48,7 @@ const FormResetPassword = () => {
     const data = await response.json();
 
     if (data.error) {
-      setFormError(data.message[0].messages[0].message);
+      setFormError(data.error.message);
       setLoading(false);
     } else {
       signIn('credentials', {

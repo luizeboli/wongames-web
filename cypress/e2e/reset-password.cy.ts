@@ -1,5 +1,3 @@
-/// <reference path="../support/index.d.ts" />
-
 describe('Reset Password', () => {
   it('should show error if password does not match', () => {
     cy.visit('/reset-password');

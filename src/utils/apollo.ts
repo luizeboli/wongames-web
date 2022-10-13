@@ -16,7 +16,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (networkError) console.log(`[Network error]: ${networkError}`);
 });
 
-const httpLink = new HttpLink({ uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql` });
+const httpLink = new HttpLink({ uri: process.env.NEXT_PUBLIC_GRAPHQL_API });
 
 function createApolloClient(session?: Session | null) {
   const authLink = setContext((_, { headers, session: clientSession }) => {
