@@ -1,18 +1,16 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { signIn } from 'next-auth/client';
-import { useMutation } from '@apollo/client';
 import { AccountCircle, Email, ErrorOutline, Lock } from '@styled-icons/material-outlined';
 
 import Button from 'components/Button';
 import { FormError, FormLink, FormLoading, FormWrapper } from 'components/Form';
 import TextField from 'components/TextField';
-import { UsersPermissionsRegisterInput } from 'graphql/generated/globalTypes';
-import { MUTATION_REGISTER } from 'graphql/mutations/register';
+import { TUsersPermissionsRegisterInput, useMutationRegister } from 'graphql/generated';
 import { FieldErrors, signUpValidate } from 'utils/validations';
 
 const FormSignUp = () => {
-  const [values, setValues] = useState<UsersPermissionsRegisterInput>({
+  const [values, setValues] = useState<TUsersPermissionsRegisterInput>({
     username: '',
     email: '',
     password: '',
@@ -20,7 +18,7 @@ const FormSignUp = () => {
   const [fieldError, setFieldError] = useState<FieldErrors>({});
   const [formError, setFormError] = useState('');
 
-  const [createUser, { error, loading }] = useMutation(MUTATION_REGISTER, {
+  const [createUser, { error, loading }] = useMutationRegister({
     onCompleted: () => {
       if (!error) {
         signIn('credentials', { email: values.email, password: values.password, callbackUrl: '/' });
