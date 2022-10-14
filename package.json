@@ -20,18 +20,14 @@
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "schema:download": "apollo client:download-schema --endpoint=http://localhost:1337/graphql schema-temp.gql",
     "schema:convert": "node convertToNonNull",
-    "types:generate": "yarn schema:download && yarn schema:convert && graphql-codegen --config codegen.yml"
+    "types:generate": "yarn schema:download && yarn schema:convert && graphql-codegen --config codegen.yml",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "src/**/*": [
       "yarn lint --fix",
       "yarn test --findRelatedTests --bail"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
