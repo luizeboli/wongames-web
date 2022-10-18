@@ -1,41 +1,65 @@
-import { QUERY_GAMES } from 'graphql/queries/games';
+import { QueryGames } from 'graphql/queries/games';
 
 export const gamesMock = {
   request: {
-    query: QUERY_GAMES,
-    variables: { where: { id: ['1', '2'] } },
+    query: QueryGames,
+    variables: { filters: { id: { in: ['1', '2'] } } },
   },
   result: {
     data: {
-      games: [
-        {
-          id: '1',
-          name: 'Sample Game',
-          slug: 'sample-game',
-          short_description: 'sample description',
-          price: 10.5,
-          developers: [{ name: 'sample developer' }],
-          cover: {
-            url: '/sample-game.jpg',
+      games: {
+        data: [
+          {
+            id: '1',
+            attributes: {
+              name: 'Sample Game',
+              slug: 'sample-game',
+              short_description: 'sample description',
+              price: 10.5,
+              developers: {
+                data: [{ attributes: { name: 'sample developer' } }],
+              },
+              cover: {
+                data: [
+                  {
+                    attributes: {
+                      url: '/sample-game.jpg',
+                    },
+                  },
+                ],
+              },
+            },
           },
-          __typename: 'Game',
-        },
-        {
-          id: '2',
-          name: 'Sample Game',
-          slug: 'sample-game',
-          short_description: 'sample description',
-          price: 10.5,
-          developers: [{ name: 'sample developer' }],
-          cover: {
-            url: '/sample-game.jpg',
+          {
+            id: '2',
+            attributes: {
+              name: 'Sample Game',
+              slug: 'sample-game',
+              short_description: 'sample description',
+              price: 10.5,
+              developers: {
+                data: [{ attributes: { name: 'sample developer' } }],
+              },
+              cover: {
+                data: [
+                  {
+                    attributes: {
+                      url: '/sample-game.jpg',
+                    },
+                  },
+                ],
+              },
+            },
           },
-          __typename: 'Game',
+        ],
+        meta: {
+          pagination: {
+            total: 2,
+            page: 1,
+            pageSize: 2,
+            pageCount: 1,
+          },
         },
-      ],
-      gamesConnection: {
-        values: [{ id: '1' }, { id: '2' }],
-        __typename: 'GameConnection',
       },
     },
   },

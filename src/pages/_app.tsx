@@ -1,5 +1,6 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { Session } from 'next-auth';
 import { Provider as AuthProvider } from 'next-auth/client';
 import { DefaultSeo } from 'next-seo';
 import NextNprogress from 'nextjs-progressbar';
@@ -10,11 +11,16 @@ import { CartProvider } from 'hooks/use-cart';
 import WishlistProvider from 'hooks/use-wishlist';
 import GlobalStyles from 'styles/global';
 import theme from 'styles/theme';
-import { useApollo } from 'utils/apollo';
+import { InitialApolloState, useApollo } from 'utils/apollo';
 
 import SEO from '../../next-seo.config';
 
-function App({ Component, pageProps }: AppProps) {
+type PageProps = {
+  session: Session;
+  initialApolloState: InitialApolloState;
+};
+
+function App({ Component, pageProps }: AppProps<PageProps>) {
   const client = useApollo(pageProps.initialApolloState);
 
   return (

@@ -30,7 +30,7 @@ jest.mock('screens/Layout', () => ({
   },
 }));
 
-describe('<Games />', () => {
+describe.skip('<Games />', () => {
   it('should render sections', async () => {
     render(
       <MockedProvider mocks={[gamesMock]} addTypename={false}>

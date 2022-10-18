@@ -29,6 +29,8 @@ const GamesScreen = ({ filterItems }: GamesScreenProps) => {
     },
   });
 
+  console.log({ loading, data, filters: parseQueryStringToFilters({ queryString: query, filterItems }), query: query.sort });
+
   const hasMoreGames = Number(data?.games?.meta.pagination.page) < Number(data?.games?.meta.pagination.pageCount);
 
   const handleFilter = (items: ParsedUrlQueryInput) => {

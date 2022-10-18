@@ -103,6 +103,7 @@ exports[`<Highlight /> should render correctly 1`] = `
 <div>
   <section
     class="c0"
+    data-cy="highlight"
   >
     <img
       alt="Heading 1"

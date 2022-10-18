@@ -3,15 +3,13 @@ const withPWA = require('next-pwa');
 
 const isProd = process.env.NODE_ENV === 'production';
 
-module.exports = withPWA({
-  pwa: {
-    dest: 'public',
-    disable: !isProd,
-  },
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = {
   images: {
     domains: ['res.cloudinary.com'],
   },
-  future: {
-    webpack5: true,
-  },
-});
+};
+
+module.exports = nextConfig;

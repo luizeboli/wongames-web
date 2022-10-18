@@ -33,7 +33,7 @@ function createApolloClient(session?: Session | null) {
   });
 }
 
-export function initializeApollo(initialState = null, session?: Session | null) {
+export function initializeApollo(initialState: InitialApolloState = null, session?: Session | null) {
   const apolloClientGlobal = apolloClient ?? createApolloClient(session);
 
   if (initialState) {
@@ -48,7 +48,9 @@ export function initializeApollo(initialState = null, session?: Session | null) 
   return apolloClient;
 }
 
-export function useApollo(initialState = null, session?: Session | null) {
+export function useApollo(initialState: InitialApolloState = null, session?: Session | null) {
   const store = useMemo(() => initializeApollo(initialState, session), [initialState, session]);
   return store;
 }
+
+export type InitialApolloState = NormalizedCacheObject | undefined | null;

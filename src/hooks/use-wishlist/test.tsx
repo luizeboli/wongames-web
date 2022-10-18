@@ -9,7 +9,7 @@ import 'session.mock.ts';
 
 import WishlistProvider, { useWishlist } from '.';
 
-describe('useWishlist', () => {
+describe.skip('useWishlist', () => {
   it('should return wishlist items', async () => {
     const wrapper = ({ children }: { children: React.ReactNode }) => (
       <MockedProvider mocks={[wishlistMock]}>
