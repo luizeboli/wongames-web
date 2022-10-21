@@ -49,12 +49,12 @@ describe('<Checkbox />', () => {
     expect(onCheck).toHaveBeenCalledWith(false);
   });
 
-  it('should be accessible with TAB', () => {
+  it('should be accessible with TAB', async () => {
     render(<Checkbox label="Checkbox" labelFor="checkbox" />);
 
     expect(document.body).toHaveFocus();
 
-    userEvent.tab();
+    await userEvent.tab();
 
     expect(screen.getByLabelText(/checkbox/i)).toHaveFocus();
   });

@@ -1,5 +1,5 @@
 import { tint } from 'polished';
-import styled, { css, DefaultTheme } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import * as ButtonStyles from 'components/Button/styles';
 

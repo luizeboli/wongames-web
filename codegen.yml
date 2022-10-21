@@ -1,0 +1,23 @@
+overwrite: true
+schema: "schema.gql"
+documents: "src/graphql/**/*.ts"
+generates:
+  src/graphql/generated/index.tsx:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      withHooks: true
+      dedupeFragments: true
+      dedupeOperationSuffix: true
+      omitOperationSuffix: true
+      typesPrefix: "T"
+      documentMode: "external"
+      importDocumentNodeExternallyFrom: ".."
+      skipTypename: true
+      scalars:
+        JSON: '{ [key: string]: any }'
+hooks:
+  afterAllFileWrite:
+      - eslint --fix

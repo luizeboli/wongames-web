@@ -2,15 +2,17 @@ import { ParsedUrlQueryInput } from 'querystring';
 
 import { ItemProps } from 'components/ExploreSidebar';
 
+type FilterItem = { filterInput?: string } & Pick<ItemProps, 'type' | 'name'>;
+
 type ParseArgs = {
   queryString: ParsedUrlQueryInput;
-  filterItems?: Pick<ItemProps, 'type' | 'name'>[];
+  filterItems?: FilterItem[];
 };
 
 /*
- * Receives a query string and parse it to GraphQL where format
+ * Receives a query string and parse it to GraphQL filters query format
  */
-export const parseQueryStringToWhere = ({ queryString, filterItems }: ParseArgs) => {
+export const parseQueryStringToFilters = ({ queryString, filterItems }: ParseArgs) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const obj: any = {};
 
@@ -19,8 +21,19 @@ export const parseQueryStringToWhere = ({ queryString, filterItems }: ParseArgs)
     .forEach((key) => {
       const item = filterItems?.find((item) => item.name === key);
       const isCheckbox = item?.type === 'checkbox';
+      const isNumber = item?.name === 'price';
 
-      obj[key] = !isCheckbox ? queryString[key] : { name_contains: queryString[key] };
+      if (isCheckbox) {
+        obj[key] = { name: { in: queryString[key] } };
+        return;
+      }
+
+      if (item?.filterInput) {
+        obj[key] = { [item.filterInput]: isNumber ? Number(queryString[key]) : queryString[key] };
+        return;
+      }
+
+      obj[key] = queryString[key];
     });
 
   return obj;
@@ -29,7 +42,7 @@ export const parseQueryStringToWhere = ({ queryString, filterItems }: ParseArgs)
 /*
  * Receives a query string and parse it to filter format to use in explore page
  */
-export const parseQueryStringToFilter = ({ queryString, filterItems }: ParseArgs) => {
+export const parseQueryStringToSidebar = ({ queryString, filterItems }: ParseArgs) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const obj: any = {};
 

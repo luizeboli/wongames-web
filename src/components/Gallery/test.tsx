@@ -12,8 +12,8 @@ describe('<Gallery />', () => {
   it('should render thumbnails as buttons', () => {
     render(<Gallery items={mockGallery} />);
 
-    expect(screen.getByRole('button', { name: /thumb - gallery image 1/i })).toHaveAttribute('src', mockGallery[0].src);
-    expect(screen.getByRole('button', { name: /thumb - gallery image 2/i })).toHaveAttribute('src', mockGallery[1].src);
+    expect(screen.getByRole('button', { name: /thumb - gallery image 1/i })).toHaveAttribute('src', mockGallery[0].attributes.src);
+    expect(screen.getByRole('button', { name: /thumb - gallery image 2/i })).toHaveAttribute('src', mockGallery[1].attributes.src);
   });
 
   it('should handle open modal', () => {

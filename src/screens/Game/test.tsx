@@ -9,6 +9,7 @@ import { render, screen } from 'utils/test-utils';
 import Game, { GameScreenProps } from '.';
 
 const props: GameScreenProps = {
+  slug: 'mock-game',
   cover: 'bg-image.jpg',
   gameInfo: gameInfoMock,
   gallery: galleryMock,

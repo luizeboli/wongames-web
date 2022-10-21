@@ -248,7 +248,7 @@ exports[`<Footer /> should render 4 columns 1`] = `
         <a
           href="/search"
         >
-          Buscar
+          Search
         </a>
       </nav>
     </div>
@@ -270,7 +270,9 @@ exports[`<Footer /> should render 4 columns 1`] = `
   <div
     class="c6"
   >
-    Won Games 2020 © All rights reserved.
+    Won Games 
+    2022
+     © All rights reserved.
   </div>
 </footer>
 `;

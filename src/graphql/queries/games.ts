@@ -1,17 +1,23 @@
-import { gql, QueryHookOptions, useQuery } from '@apollo/client';
+import { gql } from '@apollo/client';
 
 import { GameFragment } from 'graphql/fragments/game';
-import { QueryGames, QueryGamesVariables } from 'graphql/generated/QueryGames';
 
-export const QUERY_GAMES = gql`
-  query QueryGames($limit: Int, $start: Int, $where: JSON, $sort: String) {
-    games(limit: $limit, start: $start, where: $where, sort: $sort) {
-      ...GameFragment
-    }
-
-    gamesConnection(where: $where) {
-      values {
+export const QueryGames = gql`
+  query QueryGames($filters: GameFiltersInput, $pagination: PaginationArg, $sort: [String]) {
+    games(filters: $filters, pagination: $pagination, sort: $sort) {
+      data {
         id
+        attributes {
+          ...GameFragment
+        }
+      }
+      meta {
+        pagination {
+          total
+          page
+          pageSize
+          pageCount
+        }
       }
     }
   }
@@ -19,38 +25,63 @@ export const QUERY_GAMES = gql`
   ${GameFragment}
 `;
 
-export const QUERY_GAME_BY_SLUG = gql`
+export const QueryGameBySlug = gql`
   query QueryGameBySlug($slug: String!) {
-    games(where: { slug: $slug }) {
-      id
-      name
-      short_description
-      description
-      price
-      rating
-      release_date
-      gallery {
-        src: url
-        label: alternativeText
-      }
-      cover {
-        src: url
-      }
-      developers {
-        name
-      }
-      publisher {
-        name
-      }
-      categories {
-        name
-      }
-      platforms {
-        name
+    games(filters: { slug: { eq: $slug } }) {
+      data {
+        id
+        attributes {
+          name
+          short_description
+          description
+          price
+          rating
+          release_date
+          gallery {
+            data {
+              attributes {
+                src: url
+                label: alternativeText
+              }
+            }
+          }
+          cover {
+            data {
+              attributes {
+                src: url
+              }
+            }
+          }
+          developers {
+            data {
+              attributes {
+                name
+              }
+            }
+          }
+          publisher {
+            data {
+              attributes {
+                name
+              }
+            }
+          }
+          categories {
+            data {
+              attributes {
+                name
+              }
+            }
+          }
+          platforms {
+            data {
+              attributes {
+                name
+              }
+            }
+          }
+        }
       }
     }
   }
 `;
-
-export const useQueryGames = (options?: QueryHookOptions<QueryGames, QueryGamesVariables>) =>
-  useQuery<QueryGames, QueryGamesVariables>(QUERY_GAMES, options);

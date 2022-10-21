@@ -6,9 +6,9 @@ import Empty from 'components/Empty';
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar';
 import GameCard from 'components/GameCard';
 import { Grid } from 'components/Grid';
-import { useQueryGames } from 'graphql/queries/games';
+import { useQueryGames } from 'graphql/generated';
 import Layout from 'screens/Layout';
-import { parseQueryStringToFilter, parseQueryStringToWhere } from 'utils/filter';
+import { parseQueryStringToFilters, parseQueryStringToSidebar } from 'utils/filter';
 
 import * as S from './styles';
 
@@ -20,13 +20,20 @@ const GamesScreen = ({ filterItems }: GamesScreenProps) => {
   const { push, query } = useRouter();
   const { data, loading, fetchMore } = useQueryGames({
     notifyOnNetworkStatusChange: true,
-    variables: { limit: 15, where: parseQueryStringToWhere({ queryString: query, filterItems }), sort: query.sort as string | null },
+    variables: {
+      pagination: {
+        limit: 15,
+      },
+      filters: parseQueryStringToFilters({ queryString: query, filterItems }),
+      sort: query.sort as string | null,
+    },
   });
 
-  const hasMoreGames = (data?.games?.length || 0) < (data?.gamesConnection?.values?.length || 0);
+  console.log({ loading, data, filters: parseQueryStringToFilters({ queryString: query, filterItems }), query: query.sort });
+
+  const hasMoreGames = Number(data?.games?.meta.pagination.page) < Number(data?.games?.meta.pagination.pageCount);
 
   const handleFilter = (items: ParsedUrlQueryInput) => {
-    // Push has an option to preserve scroll: { scroll: false }
     push({
       pathname: '/games',
       query: items,
@@ -34,31 +41,33 @@ const GamesScreen = ({ filterItems }: GamesScreenProps) => {
   };
 
   const handleShowMore = () => {
-    fetchMore({ variables: { limit: 15, start: data?.games.length } });
+    fetchMore({
+      variables: { pagination: { limit: 15, start: data?.games?.data.length ?? 0 } },
+    });
   };
 
   return (
     <Layout>
       <S.Main>
         <ExploreSidebar
-          initialValues={parseQueryStringToFilter({ queryString: query, filterItems })}
+          initialValues={parseQueryStringToSidebar({ queryString: query, filterItems })}
           items={filterItems}
           onFilter={handleFilter}
         />
 
         <section>
-          {data?.games?.length ? (
+          {data?.games?.data.length ? (
             <>
               <Grid>
-                {data?.games.map((game) => (
+                {data?.games?.data.map((game) => (
                   <GameCard
                     id={game.id}
-                    key={game.name}
-                    title={game.name}
-                    slug={game.slug}
-                    developer={game.developers[0]?.name ?? null}
-                    img={game.cover!.url}
-                    price={game.price}
+                    key={game.id}
+                    title={game.attributes.name}
+                    slug={game.attributes.slug}
+                    developer={game.attributes.developers?.data[0].attributes?.name}
+                    img={game.attributes.cover.data?.attributes?.url}
+                    price={game.attributes?.price}
                   />
                 ))}
               </Grid>

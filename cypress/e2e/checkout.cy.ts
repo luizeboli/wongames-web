@@ -1,18 +1,10 @@
 /// <reference path="../support/index.d.ts" />
 
-import { createUser } from '../support/generate';
-
 describe('Free Games', () => {
-  let user;
-
-  before(() => {
-    user = createUser();
-  });
-
   it('should be able to buy free games', () => {
     cy.visit('/sign-in');
     cy.signIn();
-    cy.visit('/games?price_lte=0');
+    cy.visit('/games?price=0');
 
     cy.addGameToCartByIndex(0);
 
@@ -30,10 +22,7 @@ describe('Free Games', () => {
 
     cy.url().should('eq', `${Cypress.config().baseUrl}/success`);
 
-    cy.findByText(/your purchase was successful!/i).should('exist');
+    cy.findByRole('heading', {name: /your purchase was successful!/i}).should('exist')
   });
 });
 
-describe('Paid Games', () => {
-  it('');
-});

@@ -2,15 +2,34 @@ import { gql } from '@apollo/client';
 
 export const GameFragment = gql`
   fragment GameFragment on Game {
-    id
     name
     slug
     cover {
-      url
+      data {
+        attributes {
+          url
+        }
+      }
     }
     developers {
-      name
+      data {
+        attributes {
+          name
+        }
+      }
     }
     price
   }
+`;
+
+export const GamesFragment = gql`
+  fragment GamesFragment on GameEntityResponseCollection {
+    data {
+      id
+      attributes {
+        ...GameFragment
+      }
+    }
+  }
+  ${GameFragment}
 `;

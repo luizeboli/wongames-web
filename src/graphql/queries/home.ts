@@ -4,50 +4,79 @@ import { BannerFragment } from 'graphql/fragments/banner';
 import { GameFragment } from 'graphql/fragments/game';
 import { HighlightFragment } from 'graphql/fragments/highlight';
 
-export const QUERY_HOME = gql`
+export const QueryHome = gql`
   query QueryHome($date: Date!) {
     banners {
-      ...BannerFragment
-    }
-
-    newGames: games(where: { release_date_lte: $date }, sort: "release_date:desc", limit: 12) {
-      ...GameFragment
-    }
-
-    upcomingGames: games(where: { release_date_gt: $date }, sort: "release_date:asc", limit: 12) {
-      ...GameFragment
-    }
-
-    freeGames: games(where: { price: 0 }, sort: "release_date:desc", limit: 12) {
-      ...GameFragment
-    }
-
-    sections: home {
-      newGames {
-        title
-        highlight {
-          ...HighlightFragment
+      data {
+        id
+        attributes {
+          ...BannerFragment
         }
       }
-      popularGames {
-        title
-        highlight {
-          ...HighlightFragment
-        }
-        games(limit: 12) {
+    }
+
+    newGames: games(filters: { release_date: { lte: $date } }, pagination: { limit: 12 }, sort: "release_date:desc") {
+      data {
+        id
+        attributes {
           ...GameFragment
         }
       }
-      upcomingGames {
-        title
-        highlight {
-          ...HighlightFragment
+    }
+
+    upcomingGames: games(filters: { release_date: { gt: $date } }, pagination: { limit: 12 }, sort: "release_date:asc") {
+      data {
+        id
+        attributes {
+          ...GameFragment
         }
       }
-      freeGames {
-        title
-        highlight {
-          ...HighlightFragment
+    }
+
+    freeGames: games(filters: { price: { eq: 0 } }, pagination: { limit: 12 }, sort: "release_date:desc") {
+      data {
+        id
+        attributes {
+          ...GameFragment
+        }
+      }
+    }
+
+    sections: home {
+      data {
+        attributes {
+          newGames {
+            title
+            highlight {
+              ...HighlightFragment
+            }
+          }
+          popularGames {
+            title
+            highlight {
+              ...HighlightFragment
+            }
+            games(pagination: { limit: 12 }) {
+              data {
+                id
+                attributes {
+                  ...GameFragment
+                }
+              }
+            }
+          }
+          upcomingGames {
+            title
+            highlight {
+              ...HighlightFragment
+            }
+          }
+          freeGames {
+            title
+            highlight {
+              ...HighlightFragment
+            }
+          }
         }
       }
     }

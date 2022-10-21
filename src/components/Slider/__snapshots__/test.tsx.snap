@@ -116,7 +116,6 @@ exports[`<Slider /> should render children as slider item 1`] = `
     <div
       class="slick-slider slick-initialized"
     >
-      
       <div
         class="slick-list"
       >
@@ -158,8 +157,6 @@ exports[`<Slider /> should render children as slider item 1`] = `
           </div>
         </div>
       </div>
-      
-      
     </div>
   </section>
 </div>

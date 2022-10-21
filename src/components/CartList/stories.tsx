@@ -11,11 +11,6 @@ export default {
     items,
     total: 'R$ 330,00',
   },
-  argTypes: {
-    items: {
-      type: '',
-    },
-  },
   parameters: {
     backgrounds: {
       default: 'won-dark',

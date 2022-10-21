@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-import { UsersPermissionsRegisterInput } from 'graphql/generated/globalTypes';
+import { TUsersPermissionsRegisterInput } from 'graphql/generated';
 
 const fieldsValidations = {
   username: Joi.string().min(5).required(),
@@ -28,20 +28,20 @@ function getFieldErrors(objErrors: Joi.ValidationResult) {
   return normalizedErrors;
 }
 
-export function signUpValidate(values: UsersPermissionsRegisterInput) {
+export function signUpValidate(values: TUsersPermissionsRegisterInput) {
   const schema = Joi.object(fieldsValidations);
 
   return getFieldErrors(schema.validate(values, { abortEarly: false }));
 }
 
-export function signInValidate(values: Omit<UsersPermissionsRegisterInput, 'username'>) {
+export function signInValidate(values: Omit<TUsersPermissionsRegisterInput, 'username'>) {
   const { email, password } = fieldsValidations;
   const schema = Joi.object({ email, password });
 
   return getFieldErrors(schema.validate(values, { abortEarly: false }));
 }
 
-type ForgotPasswordValidateParams = Pick<UsersPermissionsRegisterInput, 'email'>;
+type ForgotPasswordValidateParams = Pick<TUsersPermissionsRegisterInput, 'email'>;
 export function forgotPasswordValidate(values: ForgotPasswordValidateParams) {
   const { email } = fieldsValidations;
   const schema = Joi.object({ email });

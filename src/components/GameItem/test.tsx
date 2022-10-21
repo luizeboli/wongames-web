@@ -23,7 +23,7 @@ describe('<GameItem />', () => {
     expect(screen.getByText('R$ 215,00')).toBeInTheDocument();
   });
 
-  it('should render remove if the item is in the cart and call remove', () => {
+  it('should render remove if the item is in the cart and call remove', async () => {
     const cartProviderProps = {
       ...CartContextDefaultValues,
       isInCart: () => true,
@@ -34,7 +34,7 @@ describe('<GameItem />', () => {
     const removeLink = screen.getByText(/remove/i);
     expect(removeLink).toBeInTheDocument();
 
-    userEvent.click(removeLink);
+    await userEvent.click(removeLink);
     expect(cartProviderProps.removeFromCart).toHaveBeenCalledWith('1');
   });
 

@@ -26,17 +26,15 @@ describe('<Highlight />', () => {
   });
 
   it('should render background image', () => {
-    const { container } = render(<Highlight {...props} />);
+    render(<Highlight {...props} />);
 
-    expect(container.firstChild).toHaveStyle({
-      backgroundImage: `url(${props.backgroundImage})`,
-    });
+    expect(screen.getByRole('img')).toHaveAttribute('src', '/img/red-dead-img.jpg');
   });
 
   it('should render float image', () => {
     render(<Highlight {...props} floatImage="/float-image.png" />);
 
-    expect(screen.getByRole('img', { name: props.title })).toHaveAttribute('src', '/float-image.png');
+    expect(screen.getAllByRole('img', { name: props.title })[1]).toHaveAttribute('src', '/float-image.png');
   });
 
   it('should render a float image aligned on left by default', () => {

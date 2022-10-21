@@ -1,4 +1,4 @@
-import { parseQueryStringToFilter, parseQueryStringToWhere } from '.';
+import { parseQueryStringToFilters, parseQueryStringToSidebar } from '.';
 
 const filterItems = [
   { name: 'price_lte', type: 'radio' },
@@ -16,19 +16,19 @@ const queryString = {
 
 describe('parseQueryStringToWhere', () => {
   it('should parse query string to where format', () => {
-    const parsedQuery = parseQueryStringToWhere({ queryString, filterItems });
+    const parsedQuery = parseQueryStringToFilters({ queryString, filterItems });
 
     expect(parsedQuery).toStrictEqual({
       price_lte: 100,
-      platforms: { name_contains: ['windows', 'linux'] },
-      developers: { name_contains: 'Rockstar Games' },
+      platforms: { name: { in: ['windows', 'linux'] } },
+      developers: { name: { in: 'Rockstar Games' } },
     });
   });
 });
 
 describe('parseQueryStringToFilter', () => {
   it('should parse query string to filter values format', () => {
-    const parsedQuery = parseQueryStringToFilter({ queryString, filterItems });
+    const parsedQuery = parseQueryStringToSidebar({ queryString, filterItems });
 
     expect(parsedQuery).toStrictEqual({
       price_lte: 100,

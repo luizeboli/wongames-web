@@ -53,8 +53,10 @@ const modalSettings: SliderSettings = {
 };
 
 export type GalleryImageProps = {
-  src: string;
-  label: string;
+  attributes: {
+    src: string;
+    label: string;
+  };
 };
 
 export type GalleryProps = {
@@ -88,8 +90,8 @@ const Gallery = ({ items }: GalleryProps) => {
               sliderRef.current!.slickGoTo(index, true);
             }}
             key={`thumb-${index}`}
-            src={item.src}
-            alt={`Thumb - ${item.label}`}
+            src={item.attributes.src}
+            alt={`Thumb - ${item.attributes.label}`}
           />
         ))}
       </Slider>
@@ -102,7 +104,7 @@ const Gallery = ({ items }: GalleryProps) => {
         <S.Content>
           <Slider ref={sliderRef} settings={modalSettings}>
             {items.map((item, index) => (
-              <img key={`image-${index}`} src={item.src} alt={item.label} />
+              <img key={`image-${index}`} src={item.attributes.src} alt={item.attributes.label} />
             ))}
           </Slider>
         </S.Content>

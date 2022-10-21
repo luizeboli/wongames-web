@@ -1,5 +1,5 @@
-import { QueryRecommended } from 'graphql/generated/QueryRecommended';
-import { QUERY_RECOMMENDED } from 'graphql/queries/recommended';
+import { TQueryRecommended } from 'graphql/generated';
+import { QueryRecommended } from 'graphql/queries/recommended';
 import Success, { SuccessTemplateProps } from 'screens/Success';
 import { initializeApollo } from 'utils/apollo';
 import { gamesMapper, highlightMapper } from 'utils/mappers';
@@ -11,16 +11,16 @@ export default function SuccessPage(props: SuccessTemplateProps) {
 export async function getStaticProps() {
   const apolloClient = initializeApollo();
 
-  const { data } = await apolloClient.query<QueryRecommended>({
-    query: QUERY_RECOMMENDED,
+  const { data } = await apolloClient.query<TQueryRecommended>({
+    query: QueryRecommended,
   });
 
   return {
     revalidate: 60 * 60,
     props: {
-      recommendedTitle: data.recommended?.section?.title,
-      recommendedGames: gamesMapper(data.recommended?.section?.games),
-      recommendedHighlight: highlightMapper(data.recommended?.section?.highlight),
+      recommendedTitle: data.recommended?.data.attributes.section.title,
+      recommendedGames: gamesMapper(data.recommended?.data.attributes.section.games),
+      recommendedHighlight: highlightMapper(data.recommended?.data.attributes.section?.highlight),
     },
   };
 }

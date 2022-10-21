@@ -1,11 +1,20 @@
-import { InMemoryCache } from '@apollo/client';
-import { concatPagination } from '@apollo/client/utilities';
+import { InMemoryCache } from '@apollo/client/cache';
 
 export default new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
-        games: concatPagination(['where', 'sort']),
+        games: {
+          keyArgs: ['filters', 'sort'],
+          merge(existing, incoming) {
+            if (!existing) return incoming;
+
+            return {
+              data: [...existing.data, ...incoming.data],
+              meta: incoming.meta,
+            };
+          },
+        },
       },
     },
     Wishlist: {

@@ -38,7 +38,7 @@ export const handlers = [
     const { code } = req.body;
 
     if (code === 'wrong_code')
-      return res(ctx.status(400), ctx.json({ error: 'Bad Request', message: [{ messages: [{ message: 'Incorrect code provided' }] }] }));
+      return res(ctx.status(400), ctx.json({ error: { type: 'Bad Request', message: 'Incorrect code provided' } }));
 
     return res(ctx.status(200), ctx.json({ user: { email: 'valid@email.com' } }));
   }),

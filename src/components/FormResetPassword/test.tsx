@@ -1,7 +1,7 @@
 import { signIn } from 'next-auth/client';
 import userEvent from '@testing-library/user-event';
 
-import { render, screen, waitFor } from 'utils/test-utils';
+import { act, render, screen, waitFor } from 'utils/test-utils';
 
 import 'server.mock';
 
@@ -41,12 +41,15 @@ describe('<FormResetPassword>', () => {
 
   it('should show error when code provided is wrong', async () => {
     query = { code: 'wrong_code' };
+
     render(<FormResetPassword />);
 
     await userEvent.type(screen.getByPlaceholderText('Password'), '123');
     await userEvent.type(screen.getByPlaceholderText(/confirm/i), '123');
 
-    userEvent.click(screen.getByRole('button', { name: /reset password/i }));
+    await act(async () => {
+      await userEvent.click(screen.getByRole('button', { name: /reset password/i }));
+    });
 
     expect(await screen.findByText(/Incorrect code provided/i)).toBeInTheDocument();
   });

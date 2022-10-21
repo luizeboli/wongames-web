@@ -10,6 +10,7 @@ import Heading from 'components/Heading';
 import { HighlightProps } from 'components/Highlight';
 import PaymentForm from 'components/PaymentForm';
 import Showcase from 'components/Showcase';
+import { useCart } from 'hooks/use-cart';
 import Layout from 'screens/Layout';
 
 import * as S from './styles';
@@ -23,6 +24,7 @@ export type CartProps = {
 } & CartListProps;
 
 const Cart = ({ recommendedGames, recommendedHighlight, session }: CartProps) => {
+  const { items } = useCart();
   return (
     <Layout>
       <Container>
@@ -33,9 +35,11 @@ const Cart = ({ recommendedGames, recommendedHighlight, session }: CartProps) =>
         <S.Content>
           <CartList />
 
-          <Elements stripe={stripe}>
-            <PaymentForm session={session} />
-          </Elements>
+          {!!items.length && (
+            <Elements stripe={stripe}>
+              <PaymentForm session={session} />
+            </Elements>
+          )}
         </S.Content>
 
         <Divider />

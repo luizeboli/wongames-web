@@ -78,7 +78,7 @@ Cypress.Commands.add('addGameToCartByIndex', (index) => {
     });
 });
 
-Cypress.Commands.add('removeGameFromCartByIndex', (index) => {
+Cypress.Commands.add('removeFromCartByIndex', (index) => {
   cy.getByDataCy('game-card')
     .eq(index)
     .within(() => {

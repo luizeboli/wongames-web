@@ -76,7 +76,7 @@ describe('validations', () => {
 
     it('should return invalid email error', () => {
       const values = { email: 'invalid-email' };
-      expect(forgotPasswordValidate(values).email).toMatchInlineSnapshot(`"\\"email\\" must be a valid email"`);
+      expect(forgotPasswordValidate(values).email).toMatchInlineSnapshot(`""email" must be a valid email"`);
     });
   });
 
@@ -92,7 +92,7 @@ describe('validations', () => {
     it('should validate confirm password when empty', () => {
       const values = { password: '123', confirm_password: '' };
 
-      expect(resetPasswordValidate(values).confirm_password).toMatchInlineSnapshot(`"\\"confirm_password\\" is not allowed to be empty"`);
+      expect(resetPasswordValidate(values).confirm_password).toMatchInlineSnapshot(`""confirm_password" is not allowed to be empty"`);
     });
 
     it('should validate confirm password when different', () => {
