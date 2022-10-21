@@ -97,6 +97,8 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
     router.push('/success');
   };
 
+  console.log({ freeGames });
+
   return (
     <S.Container>
       <form onSubmit={handleSubmit}>
