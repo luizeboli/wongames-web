@@ -4,7 +4,7 @@ import 'next-image.mock';
 import dotenv from 'dotenv';
 
 dotenv.config({
-  path: '.env.development',
+  path: '.env.testing',
 });
 
 global.setImmediate = global.setImmediate || jest.useRealTimers;
