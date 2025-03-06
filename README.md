@@ -3,7 +3,7 @@
  <p>Won Games</p>
 </h1>
 
-Welcome to the frontend of Won Games e-commerce, built in [React Avançado course](https://www.udemy.com/course/react-avancado) by Willian Justen.
+Welcome to the frontend of Won Games e-commerce
 
 ## Techs?
 
